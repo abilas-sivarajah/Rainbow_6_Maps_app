@@ -106,6 +106,9 @@ export interface GameMap {
   id: string;
   name: string;
   floors: MapFloor[];
+  /** Optionales offizielles Vorschaubild (unter /public). Fällt sonst auf die
+   *  erste Etage zurück. */
+  thumbnail?: string;
   releaseYear?: number;
   /** Spiellisten, z.B. "Ranked", "Standard", "Quick Match" */
   playlists?: string[];
