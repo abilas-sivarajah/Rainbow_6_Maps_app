@@ -73,49 +73,24 @@ export interface Operator {
 
 // ---- Maps -----------------------------------------------------------------
 
-export type RoomShape = "rect" | "circle";
-
 /**
- * Ein anklickbarer Raum auf einer Etage.
- * Koordinaten sind PROZENTUAL (0–100) relativ zur Etagengrafik, damit das
- * Overlay bei jeder Bildgröße korrekt sitzt.
+ * Eine Map wird über einen eigenständigen, interaktiven Etagen-Viewer
+ * (HTML-Datei unter /public/maps/<id>.html) dargestellt. Jede Viewer-Datei
+ * enthält das komplette SVG samt Etagen-Umschalter und wird per iframe
+ * eingebettet.
  */
-export interface Room {
-  id: string;
-  name: string;
-  shape: RoomShape;
-  /** Position der oberen linken Ecke (rect) bzw. des Mittelpunkts (circle), in % */
-  x: number;
-  y: number;
-  /** Breite/Höhe in % (nur rect) */
-  width?: number;
-  height?: number;
-  /** Radius in % (nur circle) */
-  radius?: number;
-  /** Ist hier ein Missionsziel (Bombe/Geisel/Secure)? */
-  objective?: boolean;
-  description?: string;
-}
-
-export interface Floor {
-  id: string;
-  name: string;
-  /** Reihenfolge von unten (0 = tiefste Etage) nach oben */
-  order: number;
-  /** Bildpfad unter /public, z.B. "/maps/oregon/basement.svg" */
-  image: string;
-  rooms?: Room[];
-}
-
 export interface GameMap {
   id: string;
   name: string;
+  /** Pfad zum eingebetteten Etagen-Viewer, z.B. "/maps/oregon.html" */
+  viewer: string;
+  /** Anzahl der Etagen (für Anzeige/Übersicht) */
+  floors: number;
   releaseYear?: number;
   /** Spiellisten, z.B. "Ranked", "Standard", "Quick Match" */
-  playlists: string[];
-  /** Thumbnail unter /public */
-  thumbnail: string;
+  playlists?: string[];
   location?: string;
   description?: string;
-  floors: Floor[];
+  /** Akzentfarbe für die Übersichtskarte (Hex) */
+  accent?: string;
 }

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { maps, getMap } from "@/data/maps";
-import { MapViewer } from "@/components/MapViewer";
+import { MapEmbed } from "@/components/MapEmbed";
 import { Tag } from "@/components/ui";
 
 export function generateStaticParams() {
@@ -19,7 +19,7 @@ export async function generateMetadata({
   if (!map) return { title: "Map nicht gefunden · R6 Codex" };
   return {
     title: `${map.name} · R6 Codex`,
-    description: `${map.name} – interaktiver Etagen-Viewer mit ${map.floors.length} Etagen.`,
+    description: `${map.name} – interaktiver Etagen-Viewer mit ${map.floors} Etagen.`,
   };
 }
 
@@ -51,14 +51,19 @@ export default async function MapDetail({
             </p>
           )}
         </div>
-        <div className="flex flex-wrap gap-2">
-          {map.playlists.map((p) => (
+        <div className="flex flex-wrap items-center gap-2">
+          <Tag>{map.floors} Etagen</Tag>
+          {map.playlists?.map((p) => (
             <Tag key={p}>{p}</Tag>
           ))}
         </div>
       </div>
 
-      <MapViewer map={map} />
+      <MapEmbed map={map} />
+
+      <p className="mt-3 text-sm text-muted">
+        Etagen über die Leiste oben im Viewer umschalten.
+      </p>
     </div>
   );
 }
