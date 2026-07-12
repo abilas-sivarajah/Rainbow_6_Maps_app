@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { operators } from "@/data/operators";
+import { operators, weapons } from "@/data/r6";
 import { maps } from "@/data/maps";
-import { weapons } from "@/data/weapons";
 
 const stats = [
   { label: "Operator", value: operators.length, href: "/operators" },

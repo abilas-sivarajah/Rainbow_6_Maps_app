@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
-import { operators, getOperator } from "@/data/operators";
+import { operators, getOperator, uniqueAbilityName, asset } from "@/data/r6";
 import { LoadoutSection } from "@/components/LoadoutSection";
+import { AssetImage } from "@/components/AssetImage";
 import { OperatorAvatar, SideBadge, StatPips, Tag } from "@/components/ui";
 
 export function generateStaticParams() {
-  return operators.map((o) => ({ id: o.id }));
+  return operators.map((o) => ({ id: o.slug }));
 }
 
 export async function generateMetadata({
@@ -18,9 +18,12 @@ export async function generateMetadata({
   const { id } = await params;
   const op = getOperator(id);
   if (!op) return { title: "Operator nicht gefunden · R6 Codex" };
+  const ability = uniqueAbilityName(op);
   return {
     title: `${op.name} · R6 Codex`,
-    description: `${op.name} (${op.organization}) – ${op.gadget.name}. Stats, Fähigkeit und Loadout.`,
+    description: `${op.name}${op.faction ? ` (${op.faction})` : ""}${
+      ability ? ` – ${ability}` : ""
+    }. Stats, Fähigkeit und Loadout.`,
   };
 }
 
@@ -35,6 +38,7 @@ export default async function OperatorDetail({
 
   const pipColor =
     op.side === "attacker" ? "var(--color-attacker)" : "var(--color-defender)";
+  const ability = uniqueAbilityName(op) ?? op.ability;
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
@@ -50,21 +54,19 @@ export default async function OperatorDetail({
         <div className="flex flex-col gap-6">
           <div className="rounded-xl border border-border bg-surface p-6">
             <div className="mb-4 flex items-center gap-4">
-              {op.portrait ? (
-                <Image
-                  src={op.portrait}
-                  alt={op.name}
-                  width={72}
-                  height={72}
-                  className="h-18 w-18 rounded-lg object-cover"
-                />
-              ) : (
-                <OperatorAvatar name={op.name} accent={op.accent} size={72} />
-              )}
+              <AssetImage
+                src={asset(op.image ?? op.icon)}
+                alt={op.name}
+                className="h-20 w-20 shrink-0 rounded-lg bg-surface-2 object-cover object-top"
+                fallback={<OperatorAvatar name={op.name} accent={pipColor} size={72} />}
+              />
               <div>
                 <h1 className="text-3xl font-black">{op.name}</h1>
+                {op.realName && (
+                  <p className="text-sm text-muted">{op.realName}</p>
+                )}
                 <p className="text-sm text-muted">
-                  {op.organization} · {op.country}
+                  {[op.faction, op.placeOfBirth].filter(Boolean).join(" · ")}
                 </p>
               </div>
             </div>
@@ -74,7 +76,9 @@ export default async function OperatorDetail({
                 <Tag key={r}>{r}</Tag>
               ))}
             </div>
-            <p className="text-sm text-muted">{op.bio}</p>
+            {op.quote && (
+              <p className="text-sm italic text-muted">{op.quote}</p>
+            )}
           </div>
 
           <div className="rounded-xl border border-border bg-surface p-6">
@@ -103,8 +107,12 @@ export default async function OperatorDetail({
             <h2 className="mb-1 text-xs font-semibold uppercase tracking-widest text-accent">
               Spezialfähigkeit
             </h2>
-            <h3 className="mb-2 text-2xl font-bold">{op.gadget.name}</h3>
-            <p className="text-muted">{op.gadget.description}</p>
+            <h3 className="mb-2 text-2xl font-bold">{ability}</h3>
+            {op.abilityDescription && (
+              <p className="whitespace-pre-line text-muted">
+                {op.abilityDescription}
+              </p>
+            )}
           </div>
 
           <div>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { operators, allRoles } from "@/data/operators";
+import { operators, allRoles } from "@/data/r6";
 import { OperatorBrowser } from "@/components/OperatorBrowser";
 
 export const metadata: Metadata = {

@@ -25,8 +25,9 @@ export function OperatorBrowser({
       if (!q) return true;
       return (
         op.name.toLowerCase().includes(q) ||
-        op.organization.toLowerCase().includes(q) ||
-        op.gadget.name.toLowerCase().includes(q)
+        (op.realName?.toLowerCase().includes(q) ?? false) ||
+        (op.faction?.toLowerCase().includes(q) ?? false) ||
+        op.loadout.some((l) => l.name.toLowerCase().includes(q))
       );
     });
   }, [operators, query, side, role]);
@@ -89,7 +90,7 @@ export function OperatorBrowser({
       ) : (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((op) => (
-            <OperatorCard key={op.id} operator={op} />
+            <OperatorCard key={op.slug} operator={op} />
           ))}
         </div>
       )}

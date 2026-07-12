@@ -2,73 +2,87 @@
 // Alle Inhalte (Operator, Waffen, Maps) folgen diesen Typen, damit die
 // Datenbasis konsistent und leicht erweiterbar bleibt.
 
+// Die Daten stammen aus R6_complete.json (siehe src/data/r6.ts).
+
 export type Side = "attacker" | "defender";
 
-export type WeaponType =
-  | "Assault Rifle"
-  | "SMG"
-  | "LMG"
-  | "Shotgun"
-  | "Marksman Rifle"
-  | "Pistol"
-  | "Machine Pistol"
-  | "Shield";
+export type LoadoutSlot =
+  | "primary"
+  | "secondary"
+  | "gadget"
+  | "unique-ability";
+
+/** Ein Eintrag im Operator-Loadout (verweist per Name auf Waffe/Gadget). */
+export interface LoadoutItem {
+  name: string;
+  slot: LoadoutSlot;
+  subtype?: string | null;
+  image?: string;
+}
 
 export interface Weapon {
-  id: string;
   name: string;
-  type: WeaponType;
+  slot?: string;
+  subtype?: string | null;
+  /** Normalisierter Typ (Title Case), z.B. "Assault Rifle" */
+  type?: string;
   /** Schaden pro Treffer */
-  damage: number;
-  /** Schussrate in Schuss/Minute (0 bei Einzelfeuer/Shotguns ohne RPM) */
-  fireRate: number;
-  /** Mobilität 1–100 (höher = beweglicher) */
-  mobility: number;
-  /** Magazingröße */
-  magazine: number;
-  /** Anzahl Magazine (Reserve inkl.) */
-  capacity: number;
+  damage?: number;
+  /** Detaillierte Schadenswerte (Distanz/Aufsätze) */
+  damageDetail?: string;
+  /** Schussrate in Schuss/Minute */
+  rpm?: number;
+  /** Mobilität */
+  mobility?: number;
+  /** Magazingröße (String, da z.B. "25+1") */
+  magazine?: string | number;
+  maxAmmo?: string;
+  ammoType?: string;
+  fireModes?: string;
+  description?: string;
+  /** Bildpfad (relativ, siehe R6_complete.json) */
+  image?: string;
+  /** Operator, die diese Waffe nutzen */
+  usedBy?: string[];
+}
+
+export interface Gadget {
+  name: string;
+  usedBy?: string[];
   description?: string;
 }
 
-/** Ein Loadout referenziert Waffen über ihre id (siehe weapons.ts). */
-export interface Loadout {
-  primary: string[];
-  secondary: string[];
-  gadgets: string[];
-}
-
-export interface Ability {
-  name: string;
-  description: string;
-}
-
 export interface Operator {
-  id: string;
   name: string;
+  slug: string;
+  realName?: string;
   side: Side;
-  /** Spezialeinheit, z.B. "SAS", "GIGN", "FBI SWAT" */
-  organization: string;
-  /** Herkunftsland (ISO-Kürzel oder Klartext) */
-  country: string;
-  /** Geschwindigkeit 1–3 */
-  speed: 1 | 2 | 3;
-  /** Rüstung 1–3 */
-  armor: 1 | 2 | 3;
   /** Absolute Gesundheit (HP) */
   health: number;
+  /** Geschwindigkeit 1–3 */
+  speed: number;
+  /** Rüstung 1–3 */
+  armor: number;
   /** Schwierigkeit 1–3 */
-  difficulty: 1 | 2 | 3;
-  /** Rollen/Spielweisen, z.B. "Breach", "Intel", "Anchor" */
+  difficulty: number;
+  /** Spezialeinheit, z.B. "SAS", "GIGN", "SWAT" */
+  faction?: string | null;
+  squad?: string[];
+  /** Rollen/Spielweisen, z.B. "breach", "intel", "support" */
   roles: string[];
-  /** Das definierende Gadget / die Spezialfähigkeit */
-  gadget: Ability;
-  loadout: Loadout;
-  bio: string;
-  /** Optionaler Portrait-Pfad unter /public. Fällt sonst auf Initialen zurück. */
-  portrait?: string;
-  /** Akzentfarbe für Initialen-Avatar (Hex) */
-  accent?: string;
+  dateOfBirth?: string;
+  placeOfBirth?: string;
+  /** Überschrift der Fähigkeit (aus JSON) */
+  ability: string;
+  /** Beschreibungstext der Fähigkeit */
+  abilityDescription?: string;
+  loadout: LoadoutItem[];
+  organization?: string;
+  quote?: string;
+  /** Render-/Portrait-Bild (relativ, siehe R6_complete.json) */
+  image?: string;
+  /** Icon-Bild (relativ, siehe R6_complete.json) */
+  icon?: string;
 }
 
 // ---- Maps -----------------------------------------------------------------
