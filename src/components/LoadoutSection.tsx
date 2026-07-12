@@ -1,21 +1,34 @@
 import type { LoadoutItem } from "@/data/types";
-import { getWeapon, getGadget } from "@/data/r6";
+import { getWeapon, getGadget, asset } from "@/data/r6";
+import { AssetImage } from "./AssetImage";
 import { StatBar, Tag } from "./ui";
 
 function WeaponRow({ item }: { item: LoadoutItem }) {
   const w = getWeapon(item.name);
   if (!w) {
     return (
-      <div className="rounded-lg border border-border bg-surface p-4">
+      <div className="flex items-center gap-3 rounded-lg border border-border bg-surface p-4">
+        <AssetImage
+          src={asset(item.image)}
+          alt={item.name}
+          className="h-8 w-14 shrink-0 object-contain"
+        />
         <span className="font-semibold">{item.name}</span>
-        {item.subtype && <span className="ml-2 text-sm text-muted">{item.subtype}</span>}
+        {item.subtype && <span className="text-sm text-muted">{item.subtype}</span>}
       </div>
     );
   }
   return (
     <div className="rounded-lg border border-border bg-surface p-4">
       <div className="mb-3 flex items-center justify-between gap-2">
-        <span className="font-semibold">{w.name}</span>
+        <div className="flex items-center gap-2">
+          <AssetImage
+            src={asset(item.image ?? w.image)}
+            alt={w.name}
+            className="h-8 w-16 shrink-0 object-contain"
+          />
+          <span className="font-semibold">{w.name}</span>
+        </div>
         {w.type && <Tag>{w.type}</Tag>}
       </div>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -45,11 +58,18 @@ function WeaponRow({ item }: { item: LoadoutItem }) {
 function GadgetRow({ item }: { item: LoadoutItem }) {
   const g = getGadget(item.name);
   return (
-    <div className="rounded-lg border border-border bg-surface p-3">
-      <span className="font-medium">{item.name}</span>
-      {g?.description && (
-        <p className="mt-1 line-clamp-2 text-sm text-muted">{g.description}</p>
-      )}
+    <div className="flex items-start gap-3 rounded-lg border border-border bg-surface p-3">
+      <AssetImage
+        src={asset(item.image)}
+        alt={item.name}
+        className="h-10 w-10 shrink-0 object-contain"
+      />
+      <div className="min-w-0">
+        <span className="font-medium">{item.name}</span>
+        {g?.description && (
+          <p className="mt-1 line-clamp-2 text-sm text-muted">{g.description}</p>
+        )}
+      </div>
     </div>
   );
 }

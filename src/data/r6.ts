@@ -1,13 +1,12 @@
 import type { Operator, Weapon, Gadget } from "./types";
-import raw from "../../R6_complete.json";
+import raw from "../../R6_bundle/R6_complete.json";
 
-// Einzige Datenquelle: R6_complete.json (Repo-Root). Diese Datei wird vom
-// Nutzer gepflegt/aktualisiert; hier wird sie typisiert aufbereitet.
+// Einzige Datenquelle: R6_bundle/R6_complete.json. Diese Datei wird vom Nutzer
+// gepflegt/aktualisiert; hier wird sie typisiert aufbereitet.
 //
-// Hinweis: Die Bildpfade im JSON (image/icon/loadout[].image) zeigen auf
-// Dateien, die aktuell NICHT im Repo liegen – daher werden sie in der UI nicht
-// verwendet (Initialen-Avatare als Fallback). Sobald die Bilder unter den
-// referenzierten Pfaden vorliegen, können sie eingebunden werden.
+// Die zugehörigen Bilder liegen unter public/img/ (operators/ und loadout/),
+// sodass die Pfade aus dem JSON (z.B. "img/operators/ash_render.png") über
+// asset() zu "/img/operators/ash_render.png" aufgelöst und ausgeliefert werden.
 
 interface RawShape {
   operators: Operator[];
