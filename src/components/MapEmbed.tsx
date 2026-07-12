@@ -29,7 +29,7 @@ function setupPanZoom(iframe: HTMLIFrameElement): PanZoomApi {
       overflow:hidden;cursor:grab;touch-action:none;background:#0e1118}
     #wrap.grabbing{cursor:grabbing}
     #wrap svg{position:absolute;top:0;left:0;margin:0;max-width:none;
-      height:auto;transform-origin:0 0;will-change:transform}
+      height:auto;transform-origin:0 0}
   `;
   doc.head.appendChild(style);
 
@@ -39,8 +39,38 @@ function setupPanZoom(iframe: HTMLIFrameElement): PanZoomApi {
   const MIN = 0.05;
   const MAX = 20;
 
-  const apply = () => {
-    svg.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+  // Gecachte Maße des Viewports (nur bei Bedarf neu lesen – getBoundingClientRect
+  // im Hot-Path erzwingt sonst teure Layout-Berechnungen).
+  let wrapRect = wrap.getBoundingClientRect();
+
+  // Transform-Updates auf ein Update pro Frame bündeln, damit sich bei den
+  // großen SVGs keine Events aufstauen (sonst „hängt" die Bewegung hinterher).
+  let rafId = 0;
+  const schedule = () => {
+    if (rafId) return;
+    rafId = win.requestAnimationFrame(() => {
+      rafId = 0;
+      svg.style.transform =
+        `translate(${tx}px, ${ty}px) scale(${scale})`;
+    });
+  };
+
+  // will-change nur während aktiver Interaktion setzen (dauerhaft auf einem
+  // riesigen Layer kostet zu viel Speicher/Leistung).
+  let wcTimer = 0;
+  const activate = () => {
+    svg.style.willChange = "transform";
+    if (wcTimer) {
+      win.clearTimeout(wcTimer);
+      wcTimer = 0;
+    }
+  };
+  const deactivate = () => {
+    if (wcTimer) win.clearTimeout(wcTimer);
+    wcTimer = win.setTimeout(() => {
+      svg.style.willChange = "auto";
+      wcTimer = 0;
+    }, 400);
   };
 
   const positionWrap = () => {
@@ -51,18 +81,19 @@ function setupPanZoom(iframe: HTMLIFrameElement): PanZoomApi {
   const fit = () => {
     positionWrap();
     svg.style.transform = "none";
-    const wr = wrap.getBoundingClientRect();
+    wrapRect = wrap.getBoundingClientRect();
     const sr = svg.getBoundingClientRect();
-    if (sr.width > 0 && wr.width > 0) {
-      scale = Math.min(wr.width / sr.width, wr.height / sr.height) * 0.98;
-      tx = (wr.width - sr.width * scale) / 2;
-      ty = (wr.height - sr.height * scale) / 2;
+    if (sr.width > 0 && wrapRect.width > 0) {
+      scale =
+        Math.min(wrapRect.width / sr.width, wrapRect.height / sr.height) * 0.98;
+      tx = (wrapRect.width - sr.width * scale) / 2;
+      ty = (wrapRect.height - sr.height * scale) / 2;
     } else {
       scale = 1;
       tx = 0;
       ty = 0;
     }
-    apply();
+    schedule();
   };
 
   const zoomAt = (factor: number, px: number, py: number) => {
@@ -70,15 +101,20 @@ function setupPanZoom(iframe: HTMLIFrameElement): PanZoomApi {
     tx = px - ((px - tx) / scale) * next;
     ty = py - ((py - ty) / scale) * next;
     scale = next;
-    apply();
+    schedule();
   };
 
   wrap.addEventListener(
     "wheel",
     (e) => {
       e.preventDefault();
-      const r = wrap.getBoundingClientRect();
-      zoomAt(e.deltaY < 0 ? 1.12 : 1 / 1.12, e.clientX - r.left, e.clientY - r.top);
+      activate();
+      zoomAt(
+        e.deltaY < 0 ? 1.12 : 1 / 1.12,
+        e.clientX - wrapRect.left,
+        e.clientY - wrapRect.top,
+      );
+      deactivate();
     },
     { passive: false },
   );
@@ -88,9 +124,11 @@ function setupPanZoom(iframe: HTMLIFrameElement): PanZoomApi {
   let sy = 0;
   wrap.addEventListener("pointerdown", (e) => {
     dragging = true;
+    wrapRect = wrap.getBoundingClientRect();
     sx = e.clientX - tx;
     sy = e.clientY - ty;
     wrap.classList.add("grabbing");
+    activate();
     try {
       wrap.setPointerCapture(e.pointerId);
     } catch {}
@@ -99,11 +137,13 @@ function setupPanZoom(iframe: HTMLIFrameElement): PanZoomApi {
     if (!dragging) return;
     tx = e.clientX - sx;
     ty = e.clientY - sy;
-    apply();
+    schedule();
   });
   const endDrag = () => {
+    if (!dragging) return;
     dragging = false;
     wrap.classList.remove("grabbing");
+    deactivate();
   };
   wrap.addEventListener("pointerup", endDrag);
   wrap.addEventListener("pointercancel", endDrag);
@@ -111,8 +151,10 @@ function setupPanZoom(iframe: HTMLIFrameElement): PanZoomApi {
 
   // Doppelklick zum Reinzoomen an der Cursorposition.
   wrap.addEventListener("dblclick", (e) => {
-    const r = wrap.getBoundingClientRect();
-    zoomAt(1.6, e.clientX - r.left, e.clientY - r.top);
+    wrapRect = wrap.getBoundingClientRect();
+    activate();
+    zoomAt(1.6, e.clientX - wrapRect.left, e.clientY - wrapRect.top);
+    deactivate();
   });
 
   fit();
