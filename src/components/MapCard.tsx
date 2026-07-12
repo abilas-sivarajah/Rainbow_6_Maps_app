@@ -20,7 +20,7 @@ export function MapCard({ map }: { map: GameMap }) {
           style={{ background: accent }}
         />
         <span className="rounded-md bg-bg/60 px-2 py-1 text-xs font-medium text-text">
-          {map.floors} Etagen
+          {map.floors.length} Etagen
         </span>
       </div>
       <div className="p-4">

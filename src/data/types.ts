@@ -87,19 +87,25 @@ export interface Operator {
 
 // ---- Maps -----------------------------------------------------------------
 
+/** Eine Etage als optimiertes Bild (WebP) mit Größe. */
+export interface MapFloor {
+  id: string;
+  name: string;
+  /** Pfad unter /public, z.B. "/maps-img/oregon/floor-1.webp" */
+  image: string;
+  /** Bildmaße (für passgenaues Einpassen) */
+  w?: number;
+  h?: number;
+}
+
 /**
- * Eine Map wird über einen eigenständigen, interaktiven Etagen-Viewer
- * (HTML-Datei unter /public/maps/<id>.html) dargestellt. Jede Viewer-Datei
- * enthält das komplette SVG samt Etagen-Umschalter und wird per iframe
- * eingebettet.
+ * Eine Map besteht aus mehreren Etagen-Bildern, die im interaktiven Viewer
+ * (Zoom/Pan) einzeln angezeigt werden.
  */
 export interface GameMap {
   id: string;
   name: string;
-  /** Pfad zum eingebetteten Etagen-Viewer, z.B. "/maps/oregon.html" */
-  viewer: string;
-  /** Anzahl der Etagen (für Anzeige/Übersicht) */
-  floors: number;
+  floors: MapFloor[];
   releaseYear?: number;
   /** Spiellisten, z.B. "Ranked", "Standard", "Quick Match" */
   playlists?: string[];

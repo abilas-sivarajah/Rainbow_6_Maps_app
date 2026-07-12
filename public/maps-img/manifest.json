@@ -1,0 +1,420 @@
+{
+  "oregon": [
+    {
+      "id": "floor-1",
+      "name": "Floor 0",
+      "image": "/maps-img/oregon/floor-1.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 134
+    },
+    {
+      "id": "floor-2",
+      "name": "Floor 1",
+      "image": "/maps-img/oregon/floor-2.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 156
+    },
+    {
+      "id": "floor-3",
+      "name": "Floor 2",
+      "image": "/maps-img/oregon/floor-3.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 155
+    },
+    {
+      "id": "floor-4",
+      "name": "Floor 3",
+      "image": "/maps-img/oregon/floor-4.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 158
+    },
+    {
+      "id": "floor-5",
+      "name": "Floor 4",
+      "image": "/maps-img/oregon/floor-5.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 157
+    }
+  ],
+  "bank": [
+    {
+      "id": "floor-1",
+      "name": "Floor 0",
+      "image": "/maps-img/bank/floor-1.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 191
+    },
+    {
+      "id": "floor-2",
+      "name": "Floor 1",
+      "image": "/maps-img/bank/floor-2.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 218
+    },
+    {
+      "id": "floor-3",
+      "name": "Floor 2",
+      "image": "/maps-img/bank/floor-3.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 216
+    },
+    {
+      "id": "floor-4",
+      "name": "Floor 3",
+      "image": "/maps-img/bank/floor-4.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 208
+    }
+  ],
+  "villa": [
+    {
+      "id": "floor-1",
+      "name": "Floor 0",
+      "image": "/maps-img/villa/floor-1.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 498
+    },
+    {
+      "id": "floor-2",
+      "name": "Floor 1",
+      "image": "/maps-img/villa/floor-2.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 520
+    },
+    {
+      "id": "floor-3",
+      "name": "Floor 2",
+      "image": "/maps-img/villa/floor-3.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 525
+    },
+    {
+      "id": "floor-4",
+      "name": "Floor 3",
+      "image": "/maps-img/villa/floor-4.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 513
+    }
+  ],
+  "club": [
+    {
+      "id": "floor-1",
+      "name": "Floor 0",
+      "image": "/maps-img/club/floor-1.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 221
+    },
+    {
+      "id": "floor-2",
+      "name": "Floor 1",
+      "image": "/maps-img/club/floor-2.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 231
+    },
+    {
+      "id": "floor-3",
+      "name": "Floor 2",
+      "image": "/maps-img/club/floor-3.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 234
+    },
+    {
+      "id": "floor-4",
+      "name": "Floor 3",
+      "image": "/maps-img/club/floor-4.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 228
+    }
+  ],
+  "kafe": [
+    {
+      "id": "floor-1",
+      "name": "Floor 1",
+      "image": "/maps-img/kafe/floor-1.webp",
+      "w": 2600,
+      "h": 1464,
+      "kb": 270
+    },
+    {
+      "id": "floor-2",
+      "name": "Floor 2",
+      "image": "/maps-img/kafe/floor-2.webp",
+      "w": 2600,
+      "h": 1464,
+      "kb": 272
+    },
+    {
+      "id": "floor-3",
+      "name": "Floor 3",
+      "image": "/maps-img/kafe/floor-3.webp",
+      "w": 2600,
+      "h": 1464,
+      "kb": 270
+    },
+    {
+      "id": "floor-4",
+      "name": "Floor 4",
+      "image": "/maps-img/kafe/floor-4.webp",
+      "w": 2600,
+      "h": 1464,
+      "kb": 268
+    }
+  ],
+  "border": [
+    {
+      "id": "floor-1",
+      "name": "Floor 1",
+      "image": "/maps-img/border/floor-1.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 334
+    },
+    {
+      "id": "floor-2",
+      "name": "Floor 2",
+      "image": "/maps-img/border/floor-2.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 330
+    },
+    {
+      "id": "floor-3",
+      "name": "Floor 3",
+      "image": "/maps-img/border/floor-3.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 311
+    }
+  ],
+  "chalet": [
+    {
+      "id": "floor-1",
+      "name": "Floor 0",
+      "image": "/maps-img/chalet/floor-1.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 256
+    },
+    {
+      "id": "floor-2",
+      "name": "Floor 1",
+      "image": "/maps-img/chalet/floor-2.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 275
+    },
+    {
+      "id": "floor-3",
+      "name": "Floor 2",
+      "image": "/maps-img/chalet/floor-3.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 275
+    },
+    {
+      "id": "floor-4",
+      "name": "Floor 3",
+      "image": "/maps-img/chalet/floor-4.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 252
+    }
+  ],
+  "coastline": [
+    {
+      "id": "floor-1",
+      "name": "Floor 1",
+      "image": "/maps-img/coastline/floor-1.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 287
+    },
+    {
+      "id": "floor-2",
+      "name": "Floor 2",
+      "image": "/maps-img/coastline/floor-2.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 295
+    },
+    {
+      "id": "floor-3",
+      "name": "Floor 3",
+      "image": "/maps-img/coastline/floor-3.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 295
+    }
+  ],
+  "consulate": [
+    {
+      "id": "floor-1",
+      "name": "Floor 0",
+      "image": "/maps-img/consulate/floor-1.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 248
+    },
+    {
+      "id": "floor-2",
+      "name": "Floor 1",
+      "image": "/maps-img/consulate/floor-2.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 265
+    },
+    {
+      "id": "floor-3",
+      "name": "Floor 2",
+      "image": "/maps-img/consulate/floor-3.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 268
+    },
+    {
+      "id": "floor-4",
+      "name": "Floor 3",
+      "image": "/maps-img/consulate/floor-4.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 249
+    }
+  ],
+  "emerald": [
+    {
+      "id": "floor-1",
+      "name": "Floor 1",
+      "image": "/maps-img/emerald/floor-1.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 469
+    },
+    {
+      "id": "floor-2",
+      "name": "Floor 2",
+      "image": "/maps-img/emerald/floor-2.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 472
+    },
+    {
+      "id": "floor-3",
+      "name": "Floor 3",
+      "image": "/maps-img/emerald/floor-3.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 466
+    }
+  ],
+  "labs": [
+    {
+      "id": "floor-1",
+      "name": "Floor 0",
+      "image": "/maps-img/labs/floor-1.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 212
+    },
+    {
+      "id": "floor-2",
+      "name": "Floor 1",
+      "image": "/maps-img/labs/floor-2.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 226
+    },
+    {
+      "id": "floor-3",
+      "name": "Floor 2",
+      "image": "/maps-img/labs/floor-3.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 232
+    },
+    {
+      "id": "floor-4",
+      "name": "Floor 3",
+      "image": "/maps-img/labs/floor-4.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 230
+    }
+  ],
+  "lair": [
+    {
+      "id": "floor-1",
+      "name": "Floor 0",
+      "image": "/maps-img/lair/floor-1.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 595
+    },
+    {
+      "id": "floor-2",
+      "name": "Floor 1",
+      "image": "/maps-img/lair/floor-2.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 601
+    },
+    {
+      "id": "floor-3",
+      "name": "Floor 2",
+      "image": "/maps-img/lair/floor-3.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 600
+    },
+    {
+      "id": "floor-4",
+      "name": "Floor 3",
+      "image": "/maps-img/lair/floor-4.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 584
+    }
+  ],
+  "skyscraper": [
+    {
+      "id": "floor-1",
+      "name": "Floor 1",
+      "image": "/maps-img/skyscraper/floor-1.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 150
+    },
+    {
+      "id": "floor-2",
+      "name": "Floor 2",
+      "image": "/maps-img/skyscraper/floor-2.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 159
+    },
+    {
+      "id": "floor-3",
+      "name": "Floor 3",
+      "image": "/maps-img/skyscraper/floor-3.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 160
+    }
+  ]
+}
