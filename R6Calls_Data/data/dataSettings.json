@@ -1,0 +1,380 @@
+  {
+    "settingsGroups": [
+      {
+        "id": "main",
+        "name": "Main",
+        "settings": [
+          {
+            "id": "openDesktopOnClose",
+            "name": "Open Desktop app when game closes",
+            "type": "checkbox",
+            "default": true
+          },
+          {
+            "id": "adsSide",
+            "name": "Side for ads",
+            "type": "combo",
+            "values": [
+              {
+                "id": "left",
+                "name": "Left"
+              },
+              {
+                "id": "right",
+                "name": "Right"
+              }
+            ],
+            "default": "right"
+          }
+        ],
+        "states": []
+      },
+      {
+        "id": "language",
+        "name": "Language",
+        "settings": [
+          {
+            "id": "appLanguage",
+            "name": "App Language",
+            "type": "combo",
+            "values": [
+              {
+                "id": "en",
+                "name": "English"
+              },
+              {
+                "id": "es",
+                "name": "Español"
+              },
+              {
+                "id": "fr",
+                "name": "Français"
+              },
+              {
+                "id": "ja-jp",
+                "name": "日本語"
+              },
+              {
+                "id": "nl",
+                "name": "Nederlands"
+              },
+              {
+                "id": "pl",
+                "name": "Polski"
+              },
+              {
+                "id": "pt-br",
+                "name": "Português (Brasil)"
+              },
+              {
+                "id": "zh",
+                "name": "简体中文"
+              }
+            ],
+            "default": "en"
+          },
+          {
+            "id": "callsLanguage",
+            "name": "Calls Language",
+            "type": "combo",
+            "values": [
+              {
+                "id": "en",
+                "name": "English"
+              },
+              {
+                "id": "es",
+                "name": "Español"
+              },
+              {
+                "id": "fr",
+                "name": "Français"
+              },
+              {
+                "id": "ja-jp",
+                "name": "日本語"
+              },
+              {
+                "id": "nl",
+                "name": "Nederlands"
+              },
+              {
+                "id": "pl",
+                "name": "Polski"
+              },
+              {
+                "id": "pt-br",
+                "name": "Português (Brasil)"
+              },
+              {
+                "id": "zh",
+                "name": "简体中文"
+              }
+            ],
+            "default": "en"
+          }
+        ],
+        "states": []
+      },
+      {
+        "id": "map",
+        "name": "Map",
+        "settings": [
+          {
+            "id": "mapDisplayMode",
+            "name": "Display Mode",
+            "type": "combo",
+            "values": [
+              {
+                "id": "full",
+                "name": "Full"
+              },
+              {
+                "id": "split",
+                "name": "Split"
+              },
+              {
+                "id": "grid",
+                "name": "Grid"
+              }
+            ],
+            "default": "full"
+          },
+          {
+            "id": "lockFloorAlignement",
+            "name": "Lock floor alignment",
+            "type": "checkbox",
+            "default": true
+          },
+          {
+            "id": "elementsToDisplay",
+            "name": "Elements to display",
+            "type": "checkboxList",
+            "subSettings": [
+              {
+                "id": "bmb",
+                "name": "Bomb",
+                "default": true
+              },
+              {
+                "id": "sec",
+                "name": "Secure",
+                "default": false
+              },
+              {
+                "id": "hst",
+                "name": "Hostage",
+                "default": false
+              },
+              {
+                "id": "fh",
+                "name": "Floor hatch",
+                "default": true
+              },
+              {
+                "id": "ch",
+                "name": "Ceiling hatch",
+                "default": true
+              },
+              {
+                "id": "bw",
+                "name": "Breakable wall",
+                "default": true
+              },
+              {
+                "id": "losw",
+                "name": "Line of sight wall",
+                "default": true
+              },
+              {
+                "id": "losf",
+                "name": "Line of sight floor",
+                "default": true
+              },
+              {
+                "id": "sl",
+                "name": "Skylight",
+                "default": true
+              },
+              {
+                "id": "dt",
+                "name": "Drone tunnel",
+                "default": true
+              },
+              {
+                "id": "cam",
+                "name": "Security camera",
+                "default": true
+              },
+              {
+                "id": "ld",
+                "name": "Ladder",
+                "default": true
+              },
+              {
+                "id": "fe",
+                "name": "Fire extinguisher",
+                "default": true
+              },
+              {
+                "id": "gp",
+                "name": "Gas pipe",
+                "default": true
+              },
+              {
+                "id": "ip",
+                "name": "Insertion point",
+                "default": true
+              },
+              {
+                "id": "txt",
+                "name": "Label",
+                "default": true
+              },
+              {
+                "id": "cmp",
+                "name": "Compass",
+                "default": true
+              },
+              {
+                "id": "lg",
+                "name": "Legend",
+                "default": true
+              }
+            ]
+          }
+        ],
+        "states": [
+          {
+            "id": "currentStratTool",
+            "name": "Current Strat Tool",
+            "default": "toolzoom"
+          },
+          {
+            "id": "currentFloorNumber",
+            "name": "Current Floor Number",
+            "default": 1
+          }
+        ]
+      },
+      {
+        "id": "miniMap",
+        "name": "Mini Map",
+        "settings": [
+          {
+            "id": "autoCentering",
+            "name": "Auto Centering",
+            "type": "checkbox",
+            "default": false
+          },
+          {
+            "id": "autoZoom",
+            "name": "Auto Zoom",
+            "type": "checkbox",
+            "default": false
+          },
+          {
+            "id": "smoothTransition",
+            "name": "Smooth Transition",
+            "type": "checkbox",
+            "default": false
+          }
+        ],
+        "states": [
+          {
+            "id": "lookDirection",
+            "name": "Look Direction",
+            "default": "up"
+          }
+        ]
+      },
+      {
+        "id": "operators",
+        "name": "Operators",
+        "settings": [
+          {
+            "id": "showBiography",
+            "name": "Show Biography",
+            "type": "checkbox",
+            "default": true
+          },
+          {
+            "id": "showPsychologicalReport",
+            "name": "Show Psychological Report",
+            "type": "checkbox",
+            "default": true
+          }
+        ],
+        "states": []
+      },
+      {
+        "id": "weapons",
+        "name": "Weapons",
+        "settings": [
+          {
+            "id": "showWeaponsDescription",
+            "name": "Show Description",
+            "type": "checkbox",
+            "default": true
+          }
+        ],
+        "states": []
+      },
+      {
+        "id": "locations",
+        "name": "Locations",
+        "settings": [
+          {
+            "id": "showLocationsDescription",
+            "name": "Show Description",
+            "type": "checkbox",
+            "default": true
+          }
+        ],
+        "states": []
+      },
+      {
+        "id": "sounds",
+        "name": "Sound Alerts",
+        "settings": [
+          {
+            "id": "playAlertWhenGameIsInFocus",
+            "name": "Play Alert When Game Is In Focus",
+            "type": "checkbox",
+            "default": true
+          },
+          {
+            "id": "playAlertWhenGameIsOutOfFocus",
+            "name": "Play Alert When Game Is Out Of Focus",
+            "type": "checkbox",
+            "default": true
+          },
+          {
+            "id": "matchStartAlert",
+            "name": "Match Start",
+            "type": "checkbox",
+            "default": true
+          },
+          {
+            "id": "matchEndAlert",
+            "name": "Match End",
+            "type": "checkbox",
+            "default": true
+          },
+          {
+            "id": "roundStartAlert",
+            "name": "Round Start",
+            "type": "checkbox",
+            "default": true
+          },
+          {
+            "id": "roundEndAlert",
+            "name": "Round End",
+            "type": "checkbox",
+            "default": true
+          }
+        ],
+        "states": []
+      }
+    ]
+  }

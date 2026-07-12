@@ -1,0 +1,1027 @@
+{
+  "pageElements": [
+    {
+      "type": "h2",
+      "innerHTML": "Map Loading time"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "The maps on this site are in high resolutio.<br>"
+        },
+        {
+          "type": "text",
+          "innerHTML": "Depending on where you live or on your internet quality this can make the loading long.<br>"
+        },
+        {
+          "type": "text",
+          "innerHTML": "The site use a cache system so that the maps are only long to load the first time.<br>"
+        },
+        {
+          "type": "text",
+          "innerHTML": "Also when an update is made on the map.<br>"
+        },
+        {
+          "type": "br"
+        },
+        {
+          "type": "text",
+          "innerHTML": "The \"Map\" section of the menu provides two options regarding this:<br>"
+        },
+        {
+          "type": "br"
+        },
+        {
+          "type": "text",
+          "innerHTML": "Check maps: will give you a report of your cache state.<br>"
+        },
+        {
+          "type": "br"
+        },
+        {
+          "type": "text",
+          "innerHTML": "Preload maps: will download missing maps and update out dated ones. It can take several minutes.<br>"
+        },
+        {
+          "type": "text",
+          "innerHTML": "You can still use the site during preload.<br>"
+        },
+        {
+          "type": "text",
+          "innerHTML": "You can close your browser and restart later.<br>"
+        },
+        {
+          "type": "text",
+          "innerHTML": "You can click on \"Check maps\" to see the progress.<br>"
+        },
+        {
+          "type": "text",
+          "innerHTML": "It will give you a report at the end.<br>"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "innerHTML": "Explore Mode"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "This mode allows you to explore the maps in deep.<br>"
+        },
+        {
+          "type": "text",
+          "innerHTML": "It is possible to hide or show layers of information from the menu.<br>"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "innerHTML": "Learn Mode"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "This mode allows you to learn and test your knowledge of calls.<br>"
+        },
+        {
+          "type": "text",
+          "innerHTML": "Move your mouse over the ?????? to reveal the calls.<br>"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "innerHTML": "Strat Mode"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "This mode allows you to draw a strategy on a map.<br>"
+        },
+        {
+          "type": "text",
+          "innerHTML": "It is possible export/import those to share them with other users.<br>"
+        },
+        {
+          "type": "br"
+        },
+        {
+          "type": "text",
+          "innerHTML": "1 - Select your team operators by clicking on the \"?\" in the top middle of the screen.<br>"
+        },
+        {
+          "type": "text",
+          "innerHTML": "&emsp;This will update the team items on the left and right of the screen.<br>"
+        },
+        {
+          "type": "text",
+          "innerHTML": "&emsp;If two operators have the same color, change it by clicking on the color picker bellow the \"?\".<br>"
+        },
+        {
+          "type": "br"
+        },
+        {
+          "type": "text",
+          "innerHTML": "2 - Select your start side, mode and site by clicking on the \"?\" in the top right of the screen.<br>"
+        },
+        {
+          "type": "text",
+          "innerHTML": "&emsp;This will update the site locations on the map.<br>"
+        },
+        {
+          "type": "br"
+        },
+        {
+          "type": "text",
+          "innerHTML": "3 - Select icons to drop or pen for a specific operator in the teams' items on the left and right of the screen.<br>"
+        },
+        {
+          "type": "text",
+          "innerHTML": "&emsp;Use the mouse to drop icons or draw with the pen.<br>"
+        },
+        {
+          "type": "br"
+        },
+        {
+          "type": "text",
+          "innerHTML": "4 - Click on the \"Info\" button and write something about your strategy.<br>"
+        },
+        {
+          "type": "br"
+        },
+        {
+          "type": "text",
+          "innerHTML": "5 - Click on the \"Export\" button to save the strategy on your device.<br>"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "innerHTML": "Keyboard Shortcuts"
+    },
+    {
+      "type": "ul",
+      "class": "noBullet",
+      "children": [
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "span",
+              "class": "highlight",
+              "innerHTML": "Arrows"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Move the map"
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "span",
+              "class": "highlight",
+              "innerHTML": "Page Up"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Move one floor up."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "span",
+              "class": "highlight",
+              "innerHTML": "Page Down"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Move one floor down."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "span",
+              "class": "highlight",
+              "innerHTML": "Home"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Zoom In"
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "span",
+              "class": "highlight",
+              "innerHTML": "End"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Zoom Out"
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "span",
+              "class": "highlight",
+              "innerHTML": "Ctrl+Z"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Undo (Strat Mode)."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "span",
+              "class": "highlight",
+              "innerHTML": "Ctrl+Y"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Redo (Strat Mode)."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "span",
+              "class": "highlight",
+              "innerHTML": "Escape"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Remove Markers."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "br"
+    },
+    {
+      "type": "h2",
+      "innerHTML": "Mouse Shortcuts"
+    },
+    {
+      "type": "ul",
+      "class": "noBullet",
+      "children": [
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "span",
+              "class": "highlight",
+              "innerHTML": "Mouse wheel"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Change zoom."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "span",
+              "class": "highlight",
+              "innerHTML": "Mouse drag"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Draw circles in Ellipse mode. Draw squares in Rectangle mode."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "span",
+              "class": "highlight",
+              "innerHTML": "Ctrl + Mouse drag"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Move map."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "span",
+              "class": "highlight",
+              "innerHTML": "Z + Mouse wheel"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Change zoom (Strat Mode)."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "span",
+              "class": "highlight",
+              "innerHTML": "Z + Mouse drag"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Move map (Strat Mode)."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "span",
+              "class": "highlight",
+              "innerHTML": "Mouse wheel"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Change tool size (Strat Mode)."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "span",
+              "class": "highlight",
+              "innerHTML": "Shift + Mouse wheel"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Change tool angle (Strat Mode)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "innerHTML": "Main Toolbar"
+    },
+    {
+      "type": "ul",
+      "class": "noBullet",
+      "children": [
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "span",
+              "class": "highlight",
+              "innerHTML": "Action Phase Selector"
+            },
+            {
+              "type": "text",
+              "innerHTML": "used to switch between action phases of the strat."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/tools/edit.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Rename the current action phase."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/tools/copy.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Copy the current action phase."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/tools/paste.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Paste the copied action phase on the current the action phase."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/tools/wand.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Allows user to select a strat element, to modify or delete it (press delete)."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/tools/zoom.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Allows user to navigate, zoom in and out the picture."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/deleting/clear.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Clear the current floor."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/tools/undo.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Reverse the last action (draw, erase, import, clear, ...)."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/tools/redo.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Rreplay the last reversed action."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/tools/screenshot.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Save the strategy on your disk as a PNG image."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/tools/info.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Open a form to set strategy details."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/tools/save.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Save the strategy."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/tools/load.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Load last saved strategy."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/tools/export.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Save the strategy on your disk as a R6S strategy file."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/tools/import.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Load a R6S strategy file from your disk."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/tools/check.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Check if the strategy is not obsolete."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "br"
+    },
+    {
+      "type": "h2",
+      "innerHTML": "Operator Toolbar"
+    },
+    {
+      "type": "ul",
+      "class": "noBullet",
+      "children": [
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "span",
+              "class": "highlight",
+              "innerHTML": "Change Visibility"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Cchange hide or show the selected operator."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "span",
+              "class": "highlight",
+              "innerHTML": "Color Picke"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Change the color of the selected operator."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/drawing/pen.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Draw on the map for selected operator."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/drawing/line.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Draw lines on the map for selected operator."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/drawing/arrow.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Draw arrows on the map for selected operator."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/drawing/rectangle.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Draw rectangles on the map for selected operator."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/drawing/ellipse.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Draw ellipses on the map for selected operator."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/deleting/eraser.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Erase elements of the strategy for selected operator."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/drawing/text.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Write text on the map for selected operator."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/deleting/clear.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Clear the current floor for selected operator."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/avatars/Castle.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Draw selected icon on the map for selected operator"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "br"
+    },
+    {
+      "type": "h2",
+      "innerHTML": "Landscape Toolbar"
+    },
+    {
+      "type": "ul",
+      "class": "noBullet",
+      "children": [
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "span",
+              "class": "highlight",
+              "innerHTML": "Change Visibility"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Change hide or show the landscape."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "span",
+              "class": "highlight",
+              "innerHTML": "Color Picker"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Change the color of the landscape."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/drawing/pen.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Draw on the map for landscape."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/drawing/line.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Draw lines on the map for landscape."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/drawing/arrow.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Draw arrows on the map for landscape."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/drawing/rectangle.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Draw rectangles on the map for landscape."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/drawing/ellipse.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Draw ellipses on the map for landscape."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/deleting/eraser.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Erase elements of the strategy for landscape."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/drawing/text.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Write text on the map for landscape."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "img",
+              "src": "img/strats/deleting/clear.png",
+              "class": "helpIcon"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Clear the current floor for landscape."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "br"
+    },
+    {
+      "type": "h2",
+      "innerHTML": "Tool Toolbar"
+    },
+    {
+      "type": "ul",
+      "class": "noBullet",
+      "children": [
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "span",
+              "class": "highlight",
+              "innerHTML": "Size Selector"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Change the size of the current tool."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "span",
+              "class": "highlight",
+              "innerHTML": "Angle Selector"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Change the angle of the current tool"
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "span",
+              "class": "highlight",
+              "innerHTML": "Horizontal Flip"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Flip the icon horizontaly."
+            }
+          ]
+        },
+        {
+          "type": "li",
+          "children": [
+            {
+              "type": "span",
+              "class": "highlight",
+              "innerHTML": "Vertical Flip"
+            },
+            {
+              "type": "text",
+              "innerHTML": "Flip the icon verticaly."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "br"
+    }
+  ]
+}

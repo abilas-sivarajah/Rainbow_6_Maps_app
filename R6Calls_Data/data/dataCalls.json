@@ -1,0 +1,809 @@
+{
+  "pageElements": [
+    {
+      "type": "h2",
+      "innerHTML": "Why making calls?"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "Siege is a team game. Therefore, you have to play and think as a team, not as a soloist. Calls give a wider vision of the situation to your teammates. They help to take the right decisions and do the right moves. In some case, you can follow them blindly and get the kill.<br>"
+        },
+        {
+          "type": "text",
+          "innerHTML": "There are two types of calls:<br>"
+        },
+        {
+          "type": "ul",
+          "children": [
+            {
+              "type": "li",
+              "innerHTML": "Information calls"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Directive calls"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "innerHTML": "When you make a call, you are taking the attention of your teammates and blocking their sound. Two precious things, so do it wisely or this will be counterproductive.<br>"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "innerHTML": "Necessary knowledge"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "Knowledge is power.<br>"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "innerHTML": "English"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "Make the call in English. This is good way to improve your English, to learn new vocabulary and to be more fluent. Speaking English allows you to communicate with any public and to get their calls. Playing with pubs is more complicated, you have to make the best of it. In addition, English tends to have short words, which is practical to make quick calls.<br>"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "innerHTML": "Map"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "Map knowledge is ultra-important. It is something you learn with time. Start with the ranked pool maps. Then learn as many room name as you can. Focus on the room where people play the most first. Use the compass in game and on kill cams as well. Use <a href=\"http://www.r6calls.com\">www.r6calls.com</a> to learn the easier and shorter calls.<br>"
+        },
+        {
+          "type": "br"
+        },
+        {
+          "type": "text",
+          "innerHTML": "After a match always look for any call you could not locate or room you could not name.<br>"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "innerHTML": "Operators"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "Operators' knowledge is also important. You have to recognize and be able to name them instantly. Train for that. Some more advance player can recognize their gun sounds and Id them this way.<br>"
+        },
+        {
+          "type": "br"
+        },
+        {
+          "type": "text",
+          "innerHTML": "Generally, try to make calls and pay attention to the one made and you will progress on all of the previous knowledge.<br>"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "innerHTML": "Things to ban from your game"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "These are not calls:.<br>"
+        },
+        {
+          "type": "ul",
+          "children": [
+            {
+              "type": "li",
+              "innerHTML": "Here"
+            },
+            {
+              "type": "li",
+              "innerHTML": "There"
+            },
+            {
+              "type": "li",
+              "innerHTML": "On me"
+            },
+            {
+              "type": "li",
+              "innerHTML": "On site"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Behind"
+            },
+            {
+              "type": "li",
+              "innerHTML": "They are in"
+            },
+            {
+              "type": "li",
+              "innerHTML": "On ping"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Stairs"
+            },
+            {
+              "type": "li",
+              "innerHTML": "1 HP"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "innerHTML": "Repeatedly shoot them is even worse. You stress your teammate, give no valuable information and ruin the sound.<br>"
+        },
+        {
+          "type": "text",
+          "innerHTML": "Many players think that pinging is enough of a call. It only is if the player you are helping is close to that ping and looking in that direction. Otherwise, he has to turn his head and guess what room it is in from the distance indicator. In addition, he is no longer holding a proper line in the meantime.<br>"
+        },
+        {
+          "type": "br"
+        },
+        {
+          "type": "text",
+          "innerHTML": "Noise to avoid during and between rounds:<br>"
+        },
+        {
+          "type": "ul",
+          "children": [
+            {
+              "type": "li",
+              "innerHTML": "Swearing"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Raging"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Crying"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Complains"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Questions like \"Why did you do that?\""
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "innerHTML": "Leave the chat with the opposite team alone. Deactivate it is even better. Especially if you are sensitive to bad comments.<br>"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "innerHTML": "Behavior"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "During a round, you speak to help win the round or you be quiet.<br>"
+        },
+        {
+          "type": "text",
+          "innerHTML": "Between rounds, you speak about the next round only. If you play the same site, you can only speak of the previous round to say, \"This did not work, let's do that another way\".<br>"
+        },
+        {
+          "type": "text",
+          "innerHTML": "When you die get the cams or use your teammates as cams. You can still make some calls for:<br>"
+        },
+        {
+          "type": "ul",
+          "children": [
+            {
+              "type": "li",
+              "innerHTML": "a pub that is not making any."
+            },
+            {
+              "type": "li",
+              "innerHTML": "a teammate that is not comfortable with making calls."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "innerHTML": "After the match, you can discuss what went right and what went well.<br>"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "innerHTML": "Team spirit"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "It is very important to have a good team spirit. You are here to support them and they are here to support you. In the most desperate situation, you will do your best if you feel that your mates trust you.<br>"
+        },
+        {
+          "type": "text",
+          "innerHTML": "Cheering is noise, but reasonably done it can boost your teammate:<br>"
+        },
+        {
+          "type": "ul",
+          "children": [
+            {
+              "type": "li",
+              "innerHTML": "Good job!"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Nice!"
+            },
+            {
+              "type": "li",
+              "innerHTML": "You can do it!"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "innerHTML": "On the opposite, rubbing your teammate's nose in some obvious mistake he has made is pointless. He knows he failed. He need support or at least no comments.<br>"
+        },
+        {
+          "type": "text",
+          "innerHTML": "If you are more confident you will be more daring, and that will pay in the end.<br>"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "innerHTML": "How to make calls"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "Most important things about calls:<br>"
+        },
+        {
+          "type": "ul",
+          "children": [
+            {
+              "type": "li",
+              "innerHTML": "Short, it is not a sentence, just pure information. Making it one, two or three words is the goal."
+            },
+            {
+              "type": "li",
+              "innerHTML": "As accurate as possible."
+            },
+            {
+              "type": "li",
+              "innerHTML": "Useful, there is no need to calls every single move that the opponent makes."
+            },
+            {
+              "type": "li",
+              "innerHTML": "Without hesitation. Do not start calling if you do not know the end of the call. We don't need calls like \"huum... huuuuum... Frost!\"."
+            },
+            {
+              "type": "li",
+              "innerHTML": "Once your teammates know which room you are talking about, you can make more accurate calls like \"behind the desk\""
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "innerHTML": "Call elements and order:<br>"
+        },
+        {
+          "type": "ul",
+          "children": [
+            {
+              "type": "li",
+              "innerHTML": "Where"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Where complements"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Who"
+            },
+            {
+              "type": "li",
+              "innerHTML": "What he is doing"
+            },
+            {
+              "type": "li",
+              "innerHTML": "HP"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "innerHTML": "Where"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "This is the location part. It can be:<br>"
+        },
+        {
+          "type": "ul",
+          "children": [
+            {
+              "type": "li",
+              "innerHTML": "a room"
+            },
+            {
+              "type": "li",
+              "innerHTML": "a hallway"
+            },
+            {
+              "type": "li",
+              "innerHTML": "a stair"
+            },
+            {
+              "type": "li",
+              "innerHTML": "a balcony"
+            },
+            {
+              "type": "li",
+              "innerHTML": "a hatch"
+            },
+            {
+              "type": "li",
+              "innerHTML": "a roof"
+            },
+            {
+              "type": "li",
+              "innerHTML": "a skylight"
+            },
+            {
+              "type": "li",
+              "innerHTML": "a ladder"
+            },
+            {
+              "type": "li",
+              "innerHTML": "a connector"
+            },
+            {
+              "type": "li",
+              "innerHTML": "a spawn"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Etc..."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "innerHTML": "Each of those have a name. Room names are important to know because you can use them to call a hallway, a door, a window or a stair.<br>"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "innerHTML": "Where complements"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "You can complete the location with extra information:<br>"
+        },
+        {
+          "type": "ul",
+          "children": [
+            {
+              "type": "li",
+              "innerHTML": "Window"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Double window"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Door"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Double door"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Rotation"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Connector"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Top"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Middle"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Bottom"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Behind bomb A"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Behind desk"
+            },
+            {
+              "type": "li",
+              "innerHTML": "T1"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "innerHTML": "If there are multiple door in the same room, you can say \"door to...\".<br>"
+        },
+        {
+          "type": "text",
+          "innerHTML": "If there are multiple window in the same room, you can say the direction (north, south, Etc...). However, if there is only a simple and a double window in the room, then it is enough to say \"window\" or \"double window\".<br>"
+        },
+        {
+          "type": "text",
+          "innerHTML": "If it is a stair, you can say \"top\" or \"bottom\".<br>"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "innerHTML": "Who"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "Give the name of the operator if you have identified him. If they have one, use the operator short names like:<br>"
+        },
+        {
+          "type": "ul",
+          "children": [
+            {
+              "type": "li",
+              "innerHTML": "Cav"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Valk"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Monty"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Thunder"
+            },
+            {
+              "type": "li",
+              "innerHTML": "B.B."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "innerHTML": "If you do not know the operator, skip to the next part of the call.<br>"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "innerHTML": "What he is doing"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "This is optional. It is only to give an extra useful information. It can be:<br>"
+        },
+        {
+          "type": "ul",
+          "children": [
+            {
+              "type": "li",
+              "innerHTML": "Pushing"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Going up"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Going down"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Crouch"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Prone"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Dropped"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Repelling"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Repelling upside down"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Downed"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Peeking"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Looking at you"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "innerHTML": "HP"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "HP is a useful information if and only if it is low. If it is high just do not mention it.<br>"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "innerHTML": "Vague calls"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "Sometimes calls cannot be very accurate because you do not really see the enemy. Here are some examples:<br>"
+        },
+        {
+          "type": "ul",
+          "children": [
+            {
+              "type": "li",
+              "innerHTML": "Beginning of defense round you can call \"outside north\"."
+            },
+            {
+              "type": "li",
+              "innerHTML": "When hear noise above you can say \"upstairs\" or \"roof\"."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "innerHTML": "These are more hints than calls but they can help to visualize the situation. Like the fact that there is some on site and some roaming.<br>"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "innerHTML": "Directive calls"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "In most situations, it is better to let your teammate make his own decisions with the informative calls you made and with the sound he has. In some case though, you can feel that you could help. Be reasonable with that because a call is always noise. You can make calls like:<br>"
+        },
+        {
+          "type": "ul",
+          "children": [
+            {
+              "type": "li",
+              "innerHTML": "Push hard right"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Pre-fire at the door"
+            },
+            {
+              "type": "li",
+              "innerHTML": "I ping him, shoot through the wall"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "innerHTML": "If you are working with a Montagne, give him directive so that he get a better position for you. Do not assume that he knows where you are behind him.<br>"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "innerHTML": "Using the ping"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "The pings are very useful tools that you can use in various situations. Remember that pinging something on the other side of the map with no extra information is not a call. It is useful with a context and often in close quarters.<br>"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "innerHTML": "Yellow ping"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "This ping is very good because the enemy is not aware of it.<br>"
+        },
+        {
+          "type": "text",
+          "innerHTML": "It can mark a spawn kill window.<br>"
+        },
+        {
+          "type": "text",
+          "innerHTML": "It can be repeatedly used to mark and opponent close to a teammate to help him make the kill.<br>"
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "innerHTML": "Red ping"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "This ping should be used as little as possible.<br>"
+        },
+        {
+          "type": "ul",
+          "children": [
+            {
+              "type": "li",
+              "innerHTML": "The drones use it in prep phase to Id enemies. This often mean that the drone will be shot."
+            },
+            {
+              "type": "li",
+              "innerHTML": "Default cam used it on the outside to Id enemies, right before they are destroyed."
+            },
+            {
+              "type": "li",
+              "innerHTML": "Finally, it can be use in the case of a fight between your teammate and the enemy to put pressure on the enemy. However, be sure that the enemy cannot hide safely to destroy the cam."
+            },
+            {
+              "type": "li",
+              "innerHTML": "Use it a lot with bullet proof cameras that are too far from the enemy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "innerHTML": "Object ping"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "This ping can Id enemies, signal traps or indicate the location of the diffuser.<br>"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "innerHTML": "Examples of call"
+    },
+    {
+      "type": "p",
+      "children": [
+        {
+          "type": "text",
+          "innerHTML": "Here is a list a calls following the previous principles.<br>"
+        },
+        {
+          "type": "ul",
+          "children": [
+            {
+              "type": "li",
+              "innerHTML": "Bottom red stairs, Cav"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Kitchen, B.B., low HP"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Hooka window, Fuse repelling upside down"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Master balcony. Buck, Osa"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Green stairs, Going up"
+            },
+            {
+              "type": "li",
+              "innerHTML": "T1 pushing, Monthy, Ash"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Fusing CCTV hatch"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Tunnel"
+            },
+            {
+              "type": "li",
+              "innerHTML": "Blue"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
