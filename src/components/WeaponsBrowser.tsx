@@ -2,13 +2,16 @@
 
 import { useState, useMemo, useEffect } from "react";
 import type { Weapon, Operator } from "@/data/types";
-import { weapons, operators, asset } from "@/data/r6";
+import { useLanguage } from "@/context/LanguageContext";
 import { AssetImage } from "@/components/AssetImage";
 import { StatBar, Tag } from "@/components/ui";
 import { OperatorCard } from "@/components/OperatorCard";
+import { asset } from "@/data/r6";
 
 export function WeaponsBrowser() {
-  const [selectedWeapon, setSelectedWeapon] = useState<Weapon | null>(null);
+  const { weapons, operators, t } = useLanguage();
+  
+  const [selectedWeaponName, setSelectedWeaponName] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeType, setActiveType] = useState<string | null>(null);
 
@@ -22,27 +25,32 @@ export function WeaponsBrowser() {
           (wp) => wp.name.toLowerCase() === name.toLowerCase()
         );
         if (w) {
-          setSelectedWeapon(w);
+          setSelectedWeaponName(w.name);
           return;
         }
       }
-      setSelectedWeapon(null);
+      setSelectedWeaponName(null);
     };
 
     checkUrl();
     window.addEventListener("popstate", checkUrl);
     return () => window.removeEventListener("popstate", checkUrl);
-  }, []);
+  }, [weapons]);
 
   const handleSelectWeapon = (w: Weapon) => {
-    setSelectedWeapon(w);
+    setSelectedWeaponName(w.name);
     window.history.pushState(null, "", `?name=${encodeURIComponent(w.name)}`);
   };
 
   const handleBack = () => {
-    setSelectedWeapon(null);
+    setSelectedWeaponName(null);
     window.history.pushState(null, "", window.location.pathname);
   };
+
+  const selectedWeapon = useMemo(() => {
+    if (!selectedWeaponName) return null;
+    return weapons.find(w => w.name.toLowerCase() === selectedWeaponName.toLowerCase()) || null;
+  }, [selectedWeaponName, weapons]);
 
   // Extract all available weapon types for the filter tabs
   const weaponTypes = useMemo(() => {
@@ -51,7 +59,7 @@ export function WeaponsBrowser() {
       if (w.type) types.add(w.type);
     });
     return Array.from(types).sort();
-  }, []);
+  }, [weapons]);
 
   // Filter weapons based on search query and active type filter
   const filteredWeapons = useMemo(() => {
@@ -64,7 +72,7 @@ export function WeaponsBrowser() {
 
       return matchesSearch && matchesType;
     });
-  }, [searchQuery, activeType]);
+  }, [weapons, searchQuery, activeType]);
 
   // Group filtered weapons by type
   const weaponsByType = useMemo(() => {
@@ -89,13 +97,13 @@ export function WeaponsBrowser() {
         (name) => name.toLowerCase() === op.name.toLowerCase()
       )
     );
-  }, [selectedWeapon]);
+  }, [selectedWeapon, operators]);
 
   // Format weapon slot name to German
   const formatSlot = (slot?: string) => {
     if (!slot) return null;
-    if (slot === "primary") return "Primärwaffe";
-    if (slot === "secondary") return "Sekundärwaffe";
+    if (slot === "primary") return t("wp.slot.primary");
+    if (slot === "secondary") return t("wp.slot.secondary");
     return slot.charAt(0).toUpperCase() + slot.slice(1);
   };
 
@@ -121,7 +129,7 @@ export function WeaponsBrowser() {
               d="M10 19l-7-7m0 0l7-7m-7 7h18"
             />
           </svg>
-          Zurück zur Übersicht
+          {t("ui.back")}
         </button>
 
         {/* Detail Card Grid */}
@@ -141,28 +149,28 @@ export function WeaponsBrowser() {
             {/* Quick Metadata Box */}
             <div className="rounded-xl border border-border bg-surface p-5">
               <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-muted">
-                Waffendetails
+                {t("wp.details")}
               </h4>
               <div className="flex flex-col gap-3 text-sm">
                 <div className="flex justify-between border-b border-border/50 pb-2">
-                  <span className="text-muted">Kategorie</span>
+                  <span className="text-muted">{t("wp.category")}</span>
                   <span className="font-semibold text-text">{w.type ?? "Sonstige"}</span>
                 </div>
                 {w.slot && (
                   <div className="flex justify-between border-b border-border/50 pb-2">
-                    <span className="text-muted">Ausrüstungsslot</span>
+                    <span className="text-muted">{t("wp.slot")}</span>
                     <span className="font-semibold text-text">{formatSlot(w.slot)}</span>
                   </div>
                 )}
                 {w.magazine != null && (
                   <div className="flex justify-between border-b border-border/50 pb-2">
-                    <span className="text-muted">Magazingröße</span>
+                    <span className="text-muted">{t("wp.magazine")}</span>
                     <span className="font-semibold text-text">{w.magazine}</span>
                   </div>
                 )}
                 {w.fireModes && (
                   <div className="flex justify-between pb-1">
-                    <span className="text-muted">Feuermodus</span>
+                    <span className="text-muted">{t("wp.fireModes")}</span>
                     <span className="font-semibold text-text">{w.fireModes}</span>
                   </div>
                 )}
@@ -188,27 +196,27 @@ export function WeaponsBrowser() {
 
               {/* Stats Section */}
               <div className="border-t border-border/50 pt-6">
-                <h3 className="mb-5 text-lg font-bold">Leistungsdaten</h3>
+                <h3 className="mb-5 text-lg font-bold">{t("wp.performance")}</h3>
 
                 {w.damage == null && w.rpm == null ? (
-                  <p className="text-sm text-muted">Keine Leistungsdaten vorhanden.</p>
+                  <p className="text-sm text-muted">{t("wp.noPerformance")}</p>
                 ) : (
                   <div className="flex flex-col gap-5">
                     {/* Performance Sliders */}
                     <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                       {typeof w.damage === "number" && (
-                        <StatBar label="Schaden" value={w.damage} max={80} />
+                        <StatBar label={t("wp.damage")} value={w.damage} max={80} />
                       )}
                       {typeof w.rpm === "number" && (
                         <StatBar
-                          label="Feuerrate"
+                          label={t("wp.rpm")}
                           value={w.rpm}
                           max={1300}
                           suffix="RPM"
                         />
                       )}
                       {typeof w.mobility === "number" && (
-                        <StatBar label="Mobilität" value={w.mobility} max={100} />
+                        <StatBar label={t("wp.mobility")} value={w.mobility} max={100} />
                       )}
                     </div>
 
@@ -217,19 +225,19 @@ export function WeaponsBrowser() {
                       <div className="mt-2 grid grid-cols-1 gap-3 rounded-lg bg-surface-2 p-4 text-sm sm:grid-cols-2">
                         {w.ammoType && (
                           <div className="flex flex-col gap-0.5">
-                            <span className="text-xs text-muted">Kaliber</span>
+                            <span className="text-xs text-muted">{t("wp.caliber")}</span>
                             <span className="font-semibold text-text">{w.ammoType}</span>
                           </div>
                         )}
                         {w.maxAmmo && (
                           <div className="flex flex-col gap-0.5">
-                            <span className="text-xs text-muted">Maximale Munition</span>
+                            <span className="text-xs text-muted">{t("wp.maxAmmo")}</span>
                             <span className="font-semibold text-text">{w.maxAmmo}</span>
                           </div>
                         )}
                         {w.damageDetail && (
                           <div className="sm:col-span-2 flex flex-col gap-0.5 border-t border-border/50 pt-2 mt-1">
-                            <span className="text-xs text-muted">Schadensverlauf (Distanz)</span>
+                            <span className="text-xs text-muted">{t("wp.damageDropoff")}</span>
                             <span className="font-semibold text-text">{w.damageDetail}</span>
                           </div>
                         )}
@@ -245,9 +253,9 @@ export function WeaponsBrowser() {
         {/* Operators Section */}
         <div className="mt-8">
           <h3 className="mb-4 text-xl font-bold">
-            Verwendet von{" "}
+            {t("wp.usedBy")}{" "}
             <span className="text-sm font-normal text-muted">
-              ({weaponOperators.length} Operator)
+              {t("wp.usedByCount", { count: weaponOperators.length })}
             </span>
           </h3>
           {weaponOperators.length > 0 ? (
@@ -258,7 +266,7 @@ export function WeaponsBrowser() {
             </div>
           ) : (
             <div className="rounded-xl border border-border bg-surface p-8 text-center text-muted">
-              Kein spielbarer Operator in der Datenbank verwendet diese Waffe direkt als Standardausrüstung.
+              {t("wp.noOperators")}
             </div>
           )}
         </div>
@@ -271,9 +279,9 @@ export function WeaponsBrowser() {
     <div className="mx-auto max-w-6xl px-4 py-10">
       <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
         <div>
-          <h1 className="mb-2 text-3xl font-black">Waffen</h1>
+          <h1 className="mb-2 text-3xl font-black">{t("wp.title")}</h1>
           <p className="text-muted">
-            Stats aller {weapons.length} Waffen, gruppiert nach Typ. Klicke auf eine Waffe für Details.
+            {t("wp.subtitle", { count: weapons.length })}
           </p>
         </div>
 
@@ -281,7 +289,7 @@ export function WeaponsBrowser() {
         <div className="relative w-full max-w-md">
           <input
             type="text"
-            placeholder="Waffe suchen..."
+            placeholder={t("wp.search.placeholder")}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full rounded-lg border border-border bg-surface px-4 py-2 pl-10 text-sm text-text placeholder-muted transition-all focus:border-accent focus:outline-none"
@@ -312,7 +320,7 @@ export function WeaponsBrowser() {
               : "bg-surface border border-border hover:border-accent/40"
           }`}
         >
-          Alle
+          {t("ui.all")}
         </button>
         {weaponTypes.map((type) => (
           <button
@@ -362,15 +370,15 @@ export function WeaponsBrowser() {
                     </div>
 
                     {w.damage == null && w.rpm == null ? (
-                      <p className="text-sm text-muted">Keine Stats hinterlegt.</p>
+                      <p className="text-sm text-muted">{t("ui.noStats")}</p>
                     ) : (
                       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                         {typeof w.damage === "number" && (
-                          <StatBar label="Schaden" value={w.damage} max={80} />
+                          <StatBar label={t("wp.damage")} value={w.damage} max={80} />
                         )}
                         {typeof w.rpm === "number" && (
                           <StatBar
-                            label="Feuerrate"
+                            label={t("wp.rpm")}
                             value={w.rpm}
                             max={1300}
                             suffix="RPM"
@@ -386,9 +394,10 @@ export function WeaponsBrowser() {
         </div>
       ) : (
         <div className="rounded-xl border border-border bg-surface p-12 text-center text-muted">
-          Keine Waffen gefunden, die den Kriterien entsprechen.
+          {t("wp.notFound")}
         </div>
       )}
     </div>
   );
 }
+export default WeaponsBrowser;

@@ -1,9 +1,13 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import type { GameMap } from "@/data/types";
 import { Tag } from "./ui";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function MapCard({ map }: { map: GameMap }) {
+  const { t } = useLanguage();
   const accent = map.accent ?? "var(--color-accent)";
   // Offizielles Vorschaubild bevorzugen, sonst erste Etage als Fallback.
   const thumb = map.thumbnail ?? map.floors[0]?.image;
@@ -42,7 +46,7 @@ export function MapCard({ map }: { map: GameMap }) {
           style={{ background: accent }}
         />
         <span className="absolute bottom-2 left-2 rounded-md bg-bg/70 px-2 py-1 text-xs font-medium text-text backdrop-blur">
-          {map.floors.length} Etagen
+          {t("maps.floorsBadge", { count: map.floors.length })}
         </span>
       </div>
       <div className="p-4">

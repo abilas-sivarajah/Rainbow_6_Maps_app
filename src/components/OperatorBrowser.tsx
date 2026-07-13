@@ -1,21 +1,26 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { Operator, Side } from "@/data/types";
+import type { Side } from "@/data/types";
 import { OperatorCard } from "./OperatorCard";
+import { useLanguage } from "@/context/LanguageContext";
 
 type SideFilter = "all" | Side;
 
-export function OperatorBrowser({
-  operators,
-  roles,
-}: {
-  operators: Operator[];
-  roles: string[];
-}) {
+export function OperatorBrowser() {
+  const { operators, t } = useLanguage();
   const [query, setQuery] = useState("");
   const [side, setSide] = useState<SideFilter>("all");
   const [role, setRole] = useState<string>("all");
+
+  // Dynamically extract all available roles based on current localized operators
+  const roles = useMemo(() => {
+    const set = new Set<string>();
+    operators.forEach((o) => {
+      o.roles.forEach((r) => set.add(r));
+    });
+    return Array.from(set).sort();
+  }, [operators]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -32,10 +37,10 @@ export function OperatorBrowser({
     });
   }, [operators, query, side, role]);
 
-  const sideOptions: { value: SideFilter; label: string }[] = [
-    { value: "all", label: "Alle" },
-    { value: "attacker", label: "Angreifer" },
-    { value: "defender", label: "Verteidiger" },
+  const sideOptions: { value: SideFilter; labelKey: "ui.all" | "home.attackers" | "home.defenders" }[] = [
+    { value: "all", labelKey: "ui.all" },
+    { value: "attacker", labelKey: "home.attackers" },
+    { value: "defender", labelKey: "home.defenders" },
   ];
 
   return (
@@ -45,7 +50,7 @@ export function OperatorBrowser({
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Operator, Einheit oder Gadget suchen…"
+          placeholder={t("ops.search.placeholder")}
           className="w-full rounded-lg border border-border bg-bg px-3 py-2 text-sm outline-none placeholder:text-muted focus:border-accent md:max-w-xs"
         />
         <div className="flex flex-wrap items-center gap-3">
@@ -60,7 +65,7 @@ export function OperatorBrowser({
                     : "text-muted hover:text-text"
                 }`}
               >
-                {opt.label}
+                {t(opt.labelKey)}
               </button>
             ))}
           </div>
@@ -69,7 +74,7 @@ export function OperatorBrowser({
             onChange={(e) => setRole(e.target.value)}
             className="rounded-lg border border-border bg-bg px-3 py-2 text-sm outline-none focus:border-accent"
           >
-            <option value="all">Alle Rollen</option>
+            <option value="all">{t("ops.allRoles")}</option>
             {roles.map((r) => (
               <option key={r} value={r}>
                 {r}
@@ -80,12 +85,12 @@ export function OperatorBrowser({
       </div>
 
       <p className="mb-4 text-sm text-muted">
-        {filtered.length} von {operators.length} Operatorn
+        {t("ops.count", { filtered: filtered.length, total: operators.length })}
       </p>
 
       {filtered.length === 0 ? (
         <div className="rounded-xl border border-dashed border-border p-10 text-center text-muted">
-          Keine Operator gefunden. Filter zurücksetzen und erneut versuchen.
+          {t("ops.notFound")}
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

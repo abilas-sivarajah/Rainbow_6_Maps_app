@@ -2,11 +2,13 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { GameMap } from "@/data/types";
+import { useLanguage } from "@/context/LanguageContext";
 
 const MIN = 0.1;
 const MAX = 12;
 
 export function MapFloorViewer({ map }: { map: GameMap }) {
+  const { t: translate } = useLanguage();
   const floors = map.floors;
   const [active, setActive] = useState(0);
 
@@ -134,14 +136,14 @@ export function MapFloorViewer({ map }: { map: GameMap }) {
         <div className="flex shrink-0 items-center gap-1">
           <button
             onClick={() => zoomButton(1.25)}
-            aria-label="Vergrößern"
+            aria-label={translate("maps.zoomIn")}
             className="grid h-8 w-8 place-items-center rounded-md bg-surface-2 text-lg font-bold text-muted hover:text-text"
           >
             +
           </button>
           <button
             onClick={() => zoomButton(1 / 1.25)}
-            aria-label="Verkleinern"
+            aria-label={translate("maps.zoomOut")}
             className="grid h-8 w-8 place-items-center rounded-md bg-surface-2 text-lg font-bold text-muted hover:text-text"
           >
             −
@@ -190,7 +192,7 @@ export function MapFloorViewer({ map }: { map: GameMap }) {
           className="absolute left-0 top-0 max-w-none origin-top-left select-none will-change-transform"
         />
         <div className="pointer-events-none absolute bottom-3 left-3 rounded-md bg-bg/70 px-2 py-1 text-xs text-muted">
-          Mausrad = Zoom · Ziehen = Verschieben · Doppelklick = Reinzoomen
+          {translate("maps.viewerLegend")}
         </div>
       </div>
     </div>
