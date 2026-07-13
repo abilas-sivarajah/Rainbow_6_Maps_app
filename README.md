@@ -1,76 +1,81 @@
 # R6 Codex – Rainbow Six Daten- & Map-App
 
-Eine Web-App (Next.js + React + TypeScript + Tailwind), in der man Rainbow-Six-Daten
-durchstöbern kann: **Operator** mit Fähigkeiten, Stats und Loadouts, eine
-**Waffen**-Übersicht und **Maps** mit einem interaktiven Etagen-Viewer (Zoom,
-Pan, anklickbare Bereiche).
+Eine Web-App (Next.js + React + TypeScript + Tailwind), in der man Rainbow-Six-Daten durchstöbern kann: **Operator** mit Fähigkeiten, Stats und Loadouts, eine **Waffen**-Übersicht und **Maps** mit einem interaktiven Etagen-Viewer (Zoom, Pan, Reset und Etagen-Umschalter).
 
 > Inoffizielle Fan-Datenbank. Rainbow Six ist eine Marke von Ubisoft.
 
-## Entwicklung
+---
+
+## 🚀 Features & Fortschritt
+
+1. **Interaktiver Map-Viewer:**
+   * 18 Maps mit Vorschaubildern (AVIF) registriert.
+   * **Etage -1** wurde für alle Maps entfernt, um ein konsistentes Erlebnis ab Erdgeschoss (Etage 0) zu gewährleisten.
+   * Zoombar (Mausrad / Doppelklick / Buttons) und verschiebbar (Drag).
+2. **Interaktive Waffen-Datenbank (`/weapons`):**
+   * Vollwertiger Browser für alle 118 Waffen, sortiert nach Typ (Sturmgewehre, SMGs etc.) und filterbar.
+   * Zeigt detaillierte Stats: Schaden, Feuerrate, Mobilität, Magazin, Kaliber, Schadensverlauf und alle Operator, die diese Waffe nutzen.
+   * **URL-Synchronisierung:** Die Detailansicht synchronisiert sich mit dem URL-Parameter `?name=...`. Links können direkt geteilt werden.
+3. **Operator Loadouts:**
+   * Alle Waffen in den Operator-Steckbriefen (`/operators/[id]`) sind verlinkt. Ein Klick führt direkt zur Waffen-Detailansicht.
+4. **Mehrsprachigkeit (DE, EN, FR):**
+   * Die Benutzeroberfläche und die Spieldatenbank (Operators, Waffen und Gadgets) unterstützen **Deutsch, Englisch und Französisch**.
+   * Die Sprache kann flüssig über einen Switcher in der Navbar gewechselt werden und wird im `localStorage` persistiert.
+
+---
+
+## 🛠️ Entwicklung
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000
-npm run build    # Production-Build
-npm run start    # Production-Server
-npm run lint
+npm run dev                  # Startet den dev-Server (http://localhost:3000)
+npm run build                # Erstellt den optimierten Production-Build
+npm run start                # Startet den Production-Server
+node scripts/translate-db.mjs # Übersetzt die Datenbank (R6_complete.json) in DE und FR
 ```
 
-## Projektstruktur
+---
+
+## 📂 Projektstruktur
 
 ```
 src/
   app/                     # Routen (App Router)
-    page.tsx               # Startseite
-    operators/             # Übersicht + [id]-Detailseite
-    maps/                  # Übersicht + [id]-Etagen-Viewer
-    weapons/               # Waffenliste
-  components/              # UI-Komponenten (u.a. MapFloorViewer, OperatorBrowser)
+    page.tsx               # Startseite (Client-seitig übersetzt)
+    operators/             # Übersicht + statische [id]-Detailseiten
+    maps/                  # Übersicht + statische [id]-Etagen-Viewer
+    weapons/               # Interaktive Waffenliste (WeaponsBrowser)
+  components/              # UI-Komponenten (MapFloorViewer, OperatorBrowser, WeaponsBrowser)
+  context/
+    LanguageContext.tsx    # Globaler LanguageProvider & t()-Übersetzungs-Hook
   data/
-    types.ts               # zentrale Typen
-    r6.ts                  # Operator/Waffen/Gadgets aus R6_bundle/R6_complete.json
+    types.ts               # Zentrale TypeScript-Typdefinitionen
+    i18n.ts                # Wörterbuch für statische UI-Texte (DE, EN, FR)
+    r6.ts                  # Statische Ladehilfen
     maps.ts                # Map-Metadaten + Etagen aus dem Manifest
 R6_bundle/
-  R6_complete.json         # Datenquelle: Operator, Waffen, Gadgets, Fähigkeiten
+  R6_complete.json         # Datenquelle (Englisch)
+  R6_complete_de.json      # Datenquelle (Deutsch, automatisch generiert)
+  R6_complete_en.json      # Datenquelle (Kopie des Originals für i18n)
+  R6_complete_fr.json      # Datenquelle (Französisch, automatisch generiert)
+scripts/
+  translate-db.mjs         # Skript zur Übersetzung der Spieldatenbank (Google Translate API)
+  render-new-maps.mjs      # Render-Skript für neue Maps
+  copy-thumbnails.mjs      # Kopiert Map-Thumbnails aus dem Template
 public/
-  img/operators|loadout/   # Operator-Portraits/-Icons und Loadout-Icons
-  maps-img/<mapId>/        # gerenderte Etagen-Bilder (WebP)
+  img/operators|loadout/   # Operator-Portraits und Loadout-Icons
+  maps-img/<mapId>/        # Gerenderte Etagen-Bilder (WebP) + thumbnail.avif
   maps-img/manifest.json   # Etagen je Map (Name, Bildpfad, Maße)
 ```
 
-Operator, Waffen und Gadgets kommen aus **`R6_bundle/R6_complete.json`** (siehe
-`src/data/r6.ts`). Die Maps werden als **einzelne, optimierte Etagen-Bilder**
-(WebP) im Viewer angezeigt – mit Zoom (Mausrad), Pan (Ziehen) und Etagen-Umschalter.
+---
 
-## Operator & Waffen ergänzen
+## 🌐 Datenbank-Lokalisierung (i18n)
 
-Alles läuft über `R6_bundle/R6_complete.json`:
-
-- **Operator**: Objekt im `operators`-Array (Felder in `src/data/types.ts`).
-  Health folgt Speed/Armor (3/1 = 100 HP, 2/2 = 110 HP, 1/3 = 125 HP).
-- **Waffe/Gadget**: Objekt im `weapons`- bzw. `gadgets`-Array; im Loadout per
-  Name referenziert.
-- **Bilder**: unter `public/img/operators/…` bzw. `public/img/loadout/…` ablegen
-  (Pfade wie im JSON, nur unter `public/`). Ohne Bild greift ein Initialen-Avatar.
-
-## Maps / Etagen ergänzen
-
-Jede Map besteht aus einem Ordner `public/maps-img/<mapId>/` mit je einem WebP
-pro Etage plus einem Eintrag im `public/maps-img/manifest.json`:
-
-```json
-"clubhouse": [
-  { "id": "floor-1", "name": "Untergeschoss", "image": "/maps-img/clubhouse/floor-1.webp", "w": 2600, "h": 1462 },
-  { "id": "floor-2", "name": "Erdgeschoss",   "image": "/maps-img/clubhouse/floor-2.webp", "w": 2600, "h": 1462 }
-]
+Um die Operators, Gadgets und Waffen zu lokalisieren, nutzen wir das Skript `scripts/translate-db.mjs`. 
+Sollten neue Operators oder Waffen zur englischen `R6_bundle/R6_complete.json` hinzugefügt werden, führen Sie einfach:
+```bash
+node scripts/translate-db.mjs
 ```
-
-Dazu die Map-Metadaten (Name, Ort, Playlists, Akzentfarbe) in `src/data/maps.ts`
-im Array `META` ergänzen. Empfehlung: alle Etagen einer Map mit gleichen Maßen,
-damit Zoom/Ausschnitt beim Etagenwechsel exakt übereinander liegen.
-
-Die aktuellen Etagen-Bilder wurden aus den ursprünglichen SVG-Viewern gerendert
-(`scripts/rasterize-maps.mjs`, benötigt `playwright-core` + `sharp`).
-
-Alle Felder sind in `src/data/types.ts` dokumentiert.
+aus. Das Skript übersetzt alle neuen Einträge ins Deutsche und Französische und speichert die jeweiligen lokalisierten JSON-Dateien im Ordner `R6_bundle/` ab.
+Die Web-App liest diese Dateien basierend auf der aktiven Sprache im `LanguageContext` aus.
