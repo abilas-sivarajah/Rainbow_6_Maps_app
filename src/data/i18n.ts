@@ -508,3 +508,116 @@ export type Language = "de" | "en" | "fr";
 export function getTranslation(key: keyof typeof UI_TRANSLATIONS, lang: Language): string {
   return UI_TRANSLATIONS[key]?.[lang] || key;
 }
+
+export const FLOOR_TRANSLATIONS: Record<string, Record<string, { de: string; en: string; fr: string }>> = {
+  oregon: {
+    "floor-1": { de: "Keller", en: "Basement", fr: "Sous-sol" },
+    "floor-2": { de: "Erdgeschoss", en: "1st Floor", fr: "Rez-de-chaussée" },
+    "floor-3": { de: "1. Obergeschoss", en: "2nd Floor", fr: "1er étage" },
+    "floor-4": { de: "2. Obergeschoss", en: "3rd Floor", fr: "2ème étage" },
+    "floor-5": { de: "Dach", en: "Roof", fr: "Toit" }
+  },
+  bank: {
+    "floor-1": { de: "Keller", en: "Basement", fr: "Sous-sol" },
+    "floor-2": { de: "Erdgeschoss", en: "1st Floor", fr: "Rez-de-chaussée" },
+    "floor-3": { de: "1. Obergeschoss", en: "2nd Floor", fr: "1er étage" },
+    "floor-4": { de: "Dach", en: "Roof", fr: "Toit" }
+  },
+  villa: {
+    "floor-1": { de: "Erdgeschoss", en: "1st Floor", fr: "Rez-de-chaussée" },
+    "floor-2": { de: "1. Obergeschoss", en: "2nd Floor", fr: "1er étage" },
+    "floor-3": { de: "Dach", en: "Roof", fr: "Toit" },
+    "floor-4": { de: "Dach (oben)", en: "Roof (high)", fr: "Toit (haut)" }
+  },
+  club: {
+    "floor-1": { de: "Keller", en: "Basement", fr: "Sous-sol" },
+    "floor-2": { de: "Erdgeschoss", en: "1st Floor", fr: "Rez-de-chaussée" },
+    "floor-3": { de: "1. Obergeschoss", en: "2nd Floor", fr: "1er étage" },
+    "floor-4": { de: "Dach", en: "Roof", fr: "Toit" }
+  },
+  kafe: {
+    "floor-1": { de: "Erdgeschoss", en: "1st Floor", fr: "Rez-de-chaussée" },
+    "floor-2": { de: "1. Obergeschoss", en: "2nd Floor", fr: "1er étage" },
+    "floor-3": { de: "2. Obergeschoss", en: "3rd Floor", fr: "2ème étage" },
+    "floor-4": { de: "Dach", en: "Roof", fr: "Toit" }
+  },
+  border: {
+    "floor-1": { de: "Erdgeschoss", en: "1st Floor", fr: "Rez-de-chaussée" },
+    "floor-2": { de: "1. Obergeschoss", en: "2nd Floor", fr: "1er étage" },
+    "floor-3": { de: "Dach", en: "Roof", fr: "Toit" }
+  },
+  chalet: {
+    "floor-1": { de: "Keller", en: "Basement", fr: "Sous-sol" },
+    "floor-2": { de: "Erdgeschoss", en: "1st Floor", fr: "Rez-de-chaussée" },
+    "floor-3": { de: "1. Obergeschoss", en: "2nd Floor", fr: "1er étage" },
+    "floor-4": { de: "Dach", en: "Roof", fr: "Toit" }
+  },
+  coastline: {
+    "floor-1": { de: "Erdgeschoss", en: "1st Floor", fr: "Rez-de-chaussée" },
+    "floor-2": { de: "1. Obergeschoss", en: "2nd Floor", fr: "1er étage" },
+    "floor-3": { de: "Dach", en: "Roof", fr: "Toit" }
+  },
+  consulate: {
+    "floor-1": { de: "Keller", en: "Basement", fr: "Sous-sol" },
+    "floor-2": { de: "Erdgeschoss", en: "1st Floor", fr: "Rez-de-chaussée" },
+    "floor-3": { de: "1. Obergeschoss", en: "2nd Floor", fr: "1er étage" },
+    "floor-4": { de: "Dach", en: "Roof", fr: "Toit" }
+  },
+  emerald: {
+    "floor-1": { de: "Erdgeschoss", en: "1st Floor", fr: "Rez-de-chaussée" },
+    "floor-2": { de: "1. Obergeschoss", en: "2nd Floor", fr: "1er étage" },
+    "floor-3": { de: "Dach", en: "Roof", fr: "Toit" }
+  },
+  labs: {
+    "floor-1": { de: "Keller", en: "Basement", fr: "Sous-sol" },
+    "floor-2": { de: "Erdgeschoss", en: "1st Floor", fr: "Rez-de-chaussée" },
+    "floor-3": { de: "1. Obergeschoss", en: "2nd Floor", fr: "1er étage" },
+    "floor-4": { de: "Dach", en: "Roof", fr: "Toit" }
+  },
+  lair: {
+    "floor-1": { de: "Keller", en: "Basement", fr: "Sous-sol" },
+    "floor-2": { de: "Erdgeschoss", en: "1st Floor", fr: "Rez-de-chaussée" },
+    "floor-3": { de: "1. Obergeschoss", en: "2nd Floor", fr: "1er étage" },
+    "floor-4": { de: "Dach", en: "Roof", fr: "Toit" }
+  },
+  skyscraper: {
+    "floor-1": { de: "Erdgeschoss", en: "1st Floor", fr: "Rez-de-chaussée" },
+    "floor-2": { de: "1. Obergeschoss", en: "2nd Floor", fr: "1er étage" },
+    "floor-3": { de: "Dach", en: "Roof", fr: "Toit" }
+  },
+  casino: {
+    "floor-1": { de: "Keller", en: "Basement", fr: "Sous-sol" },
+    "floor-2": { de: "Erdgeschoss", en: "1st Floor", fr: "Rez-de-chaussée" },
+    "floor-3": { de: "1. Obergeschoss", en: "2nd Floor", fr: "1er étage" },
+    "floor-4": { de: "2. Obergeschoss", en: "3rd Floor", fr: "2ème étage" },
+    "floor-5": { de: "3. Obergeschoss", en: "4th Floor", fr: "3ème étage" },
+    "floor-6": { de: "Dach", en: "Roof", fr: "Toit" }
+  },
+  fortress: {
+    "floor-1": { de: "Erdgeschoss", en: "1st Floor", fr: "Rez-de-chaussée" },
+    "floor-2": { de: "1. Obergeschoss", en: "2nd Floor", fr: "1er étage" },
+    "floor-3": { de: "2. Obergeschoss", en: "3rd Floor", fr: "2ème étage" },
+    "floor-4": { de: "3. Obergeschoss", en: "4th Floor", fr: "3ème étage" },
+    "floor-5": { de: "Dach", en: "Roof", fr: "Toit" }
+  },
+  kanal: {
+    "floor-1": { de: "Keller", en: "Basement", fr: "Sous-sol" },
+    "floor-2": { de: "Erdgeschoss", en: "1st Floor", fr: "Rez-de-chaussée" },
+    "floor-3": { de: "1. Obergeschoss", en: "2nd Floor", fr: "1er étage" },
+    "floor-4": { de: "Dach", en: "Roof", fr: "Toit" }
+  },
+  outback: {
+    "floor-1": { de: "Erdgeschoss", en: "1st Floor", fr: "Rez-de-chaussée" },
+    "floor-2": { de: "1. Obergeschoss", en: "2nd Floor", fr: "1er étage" },
+    "floor-3": { de: "Dach", en: "Roof", fr: "Toit" }
+  },
+  themepark: {
+    "floor-1": { de: "Erdgeschoss", en: "1st Floor", fr: "Rez-de-chaussée" },
+    "floor-2": { de: "1. Obergeschoss", en: "2nd Floor", fr: "1er étage" },
+    "floor-3": { de: "Dach", en: "Roof", fr: "Toit" }
+  }
+};
+
+export function getLocalizedFloorName(mapId: string, floorId: string, lang: Language, fallback: string): string {
+  return FLOOR_TRANSLATIONS[mapId]?.[floorId]?.[lang] || fallback;
+}

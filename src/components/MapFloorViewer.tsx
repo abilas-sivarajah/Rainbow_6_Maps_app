@@ -3,24 +3,13 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { GameMap } from "@/data/types";
 import { useLanguage } from "@/context/LanguageContext";
+import { getLocalizedFloorName } from "@/data/i18n";
 
 const MIN = 0.1;
 const MAX = 12;
 
-/** Wandelt "Floor 0"/"Floor 1" in einen lokalisierten Etagennamen um. */
-function floorLabel(
-  name: string,
-  t: ReturnType<typeof useLanguage>["t"],
-): string {
-  const m = name.match(/-?\d+/);
-  if (!m) return name;
-  const n = parseInt(m[0], 10);
-  if (n <= 0) return t("maps.floorGround");
-  return t("maps.floorUpper", { n });
-}
-
 export function MapFloorViewer({ map }: { map: GameMap }) {
-  const { t: translate } = useLanguage();
+  const { language, t: translate } = useLanguage();
   const floors = map.floors;
 
   // Startetage optional aus der URL (?floor=<id>).
@@ -181,7 +170,7 @@ export function MapFloorViewer({ map }: { map: GameMap }) {
                   : "bg-surface-2 text-muted hover:text-text"
               }`}
             >
-              {floorLabel(f.name, translate)}
+              {getLocalizedFloorName(map.id, f.id, language, f.name)}
             </button>
           ))}
         </div>
@@ -236,7 +225,7 @@ export function MapFloorViewer({ map }: { map: GameMap }) {
         <img
           ref={imgRef}
           src={current.image}
-          alt={`${map.name} – ${current.name}`}
+          alt={`${map.name} – ${getLocalizedFloorName(map.id, current.id, language, current.name)}`}
           draggable={false}
           onLoad={() => {
             if (!fitted.current) {
