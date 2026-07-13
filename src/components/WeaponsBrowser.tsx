@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import type { Weapon, Operator } from "@/data/types";
 import { weapons, operators, asset } from "@/data/r6";
 import { AssetImage } from "@/components/AssetImage";
@@ -11,6 +11,38 @@ export function WeaponsBrowser() {
   const [selectedWeapon, setSelectedWeapon] = useState<Weapon | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeType, setActiveType] = useState<string | null>(null);
+
+  // Sync selected weapon with URL 'name' query parameter
+  useEffect(() => {
+    const checkUrl = () => {
+      const params = new URLSearchParams(window.location.search);
+      const name = params.get("name");
+      if (name) {
+        const w = weapons.find(
+          (wp) => wp.name.toLowerCase() === name.toLowerCase()
+        );
+        if (w) {
+          setSelectedWeapon(w);
+          return;
+        }
+      }
+      setSelectedWeapon(null);
+    };
+
+    checkUrl();
+    window.addEventListener("popstate", checkUrl);
+    return () => window.removeEventListener("popstate", checkUrl);
+  }, []);
+
+  const handleSelectWeapon = (w: Weapon) => {
+    setSelectedWeapon(w);
+    window.history.pushState(null, "", `?name=${encodeURIComponent(w.name)}`);
+  };
+
+  const handleBack = () => {
+    setSelectedWeapon(null);
+    window.history.pushState(null, "", window.location.pathname);
+  };
 
   // Extract all available weapon types for the filter tabs
   const weaponTypes = useMemo(() => {
@@ -73,7 +105,7 @@ export function WeaponsBrowser() {
       <div className="mx-auto max-w-5xl px-4 py-8">
         {/* Back Button */}
         <button
-          onClick={() => setSelectedWeapon(null)}
+          onClick={handleBack}
           className="group mb-6 flex items-center gap-2 rounded-lg border border-border bg-surface px-4 py-2 text-sm font-semibold text-text transition-all hover:border-accent hover:bg-surface-2"
         >
           <svg
@@ -312,7 +344,7 @@ export function WeaponsBrowser() {
                 {weaponsByType[type].map((w) => (
                   <div
                     key={w.name}
-                    onClick={() => setSelectedWeapon(w)}
+                    onClick={() => handleSelectWeapon(w)}
                     className="group cursor-pointer rounded-xl border border-border bg-surface p-4 transition-all hover:-translate-y-0.5 hover:border-accent/60 hover:bg-surface-2"
                   >
                     <div className="mb-3 flex items-center justify-between gap-2">

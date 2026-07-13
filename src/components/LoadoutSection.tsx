@@ -1,4 +1,5 @@
 import type { LoadoutItem } from "@/data/types";
+import Link from "next/link";
 import { getWeapon, getGadget, asset } from "@/data/r6";
 import { AssetImage } from "./AssetImage";
 import { StatBar, Tag } from "./ui";
@@ -19,15 +20,18 @@ function WeaponRow({ item }: { item: LoadoutItem }) {
     );
   }
   return (
-    <div className="rounded-lg border border-border bg-surface p-4">
+    <Link
+      href={`/weapons?name=${encodeURIComponent(w.name)}`}
+      className="group block rounded-lg border border-border bg-surface p-4 transition-all hover:-translate-y-0.5 hover:border-accent/60 hover:bg-surface-2"
+    >
       <div className="mb-3 flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <AssetImage
             src={asset(item.image ?? w.image)}
             alt={w.name}
-            className="h-8 w-16 shrink-0 object-contain"
+            className="h-8 w-16 shrink-0 object-contain drop-shadow-sm transition-transform duration-200 group-hover:scale-105"
           />
-          <span className="font-semibold">{w.name}</span>
+          <span className="font-semibold group-hover:text-accent transition-colors">{w.name}</span>
         </div>
         {w.type && <Tag>{w.type}</Tag>}
       </div>
@@ -44,14 +48,14 @@ function WeaponRow({ item }: { item: LoadoutItem }) {
         {w.magazine != null && (
           <div className="flex items-end justify-between text-sm">
             <span className="text-muted">Magazin</span>
-            <span className="font-semibold tabular-nums">{w.magazine}</span>
+            <span className="font-semibold tabular-nums text-text">{w.magazine}</span>
           </div>
         )}
       </div>
       {w.fireModes && (
         <p className="mt-3 text-xs text-muted">Feuermodi: {w.fireModes}</p>
       )}
-    </div>
+    </Link>
   );
 }
 
