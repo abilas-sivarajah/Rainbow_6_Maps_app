@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
-import type { Weapon, Operator } from "@/data/types";
+import type { Weapon } from "@/data/types";
 import { useLanguage } from "@/context/LanguageContext";
 import { AssetImage } from "@/components/AssetImage";
 import { StatBar, Tag } from "@/components/ui";

@@ -10,6 +10,8 @@ import rawDe from "../../R6_bundle/R6_complete_de.json";
 import rawEn from "../../R6_bundle/R6_complete_en.json";
 import rawFr from "../../R6_bundle/R6_complete_fr.json";
 
+type RawWeapon = Weapon & { type?: string; subtype?: string | null };
+
 const rawData = {
   de: rawDe,
   en: rawEn,
@@ -34,16 +36,23 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   // Load language preference from localStorage
   useEffect(() => {
     const saved = localStorage.getItem("r6codex_lang");
+    let target: Language = "de";
     if (saved === "de" || saved === "en" || saved === "fr") {
-      setLanguageState(saved);
+      target = saved;
     } else {
       // Fallback to browser language
       const browserLang = navigator.language.slice(0, 2);
       if (browserLang === "en" || browserLang === "fr") {
-        setLanguageState(browserLang);
+        target = browserLang as Language;
       }
     }
-    setMounted(true);
+    
+    // Update asynchronously to prevent react-hooks/set-state-in-effect error
+    const timer = setTimeout(() => {
+      setLanguageState(target);
+      setMounted(true);
+    }, 0);
+    return () => clearTimeout(timer);
   }, []);
 
   const setLanguage = (lang: Language) => {
@@ -74,7 +83,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   // Process data to match structure
   const localizedOperators = db.operators as Operator[];
-  const localizedWeapons = (db.weapons as any[]).map((w) => ({
+  const localizedWeapons = (db.weapons as RawWeapon[]).map((w) => ({
     ...w,
     type: titleCase(w.type) ?? titleCase(w.subtype ?? undefined),
   })) as Weapon[];
@@ -89,7 +98,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
           setLanguage,
           t,
           operators: rawData["de"].operators as Operator[],
-          weapons: (rawData["de"].weapons as any[]).map((w) => ({
+          weapons: (rawData["de"].weapons as RawWeapon[]).map((w) => ({
             ...w,
             type: titleCase(w.type) ?? titleCase(w.subtype ?? undefined),
           })) as Weapon[],

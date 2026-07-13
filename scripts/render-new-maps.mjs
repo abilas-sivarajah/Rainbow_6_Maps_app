@@ -158,7 +158,7 @@ async function main() {
         // Clean up temp PNG
         try {
           fs.unlinkSync(tempPngPath);
-        } catch (e) {}
+        } catch {}
       } else {
         console.error(`Temp PNG not found for ${map.id} ${targetFloorId}`);
       }
@@ -173,7 +173,7 @@ async function main() {
     if (fs.existsSync(tempHtmlPath)) {
       fs.unlinkSync(tempHtmlPath);
     }
-  } catch (e) {}
+  } catch {}
 
   // Save manifest
   fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2), 'utf8');
