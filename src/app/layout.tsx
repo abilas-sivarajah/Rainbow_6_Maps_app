@@ -6,6 +6,12 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import { PwaRegister } from "@/components/PwaRegister";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ||
+      (process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : "http://localhost:3000"),
+  ),
   title: "R6 Codex – Operator & Maps",
   description:
     "Datenbank für Rainbow Six: Operator, Fähigkeiten, Stats, Waffen und interaktive Maps Etage für Etage.",
