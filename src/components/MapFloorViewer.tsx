@@ -21,14 +21,19 @@ export function MapFloorViewer({ map }: { map: GameMap }) {
   const { language, t: translate } = useLanguage();
   const floors = map.floors;
 
-  // Startetage optional aus der URL (?floor=<id>).
-  const initialActive = (() => {
-    if (typeof window === "undefined") return 0;
+  const [active, setActive] = useState(0);
+
+  // Read initial floor from URL after mount (prevent hydration mismatch)
+  useEffect(() => {
     const id = new URLSearchParams(window.location.search).get("floor");
     const idx = floors.findIndex((f) => f.id === id);
-    return idx >= 0 ? idx : 0;
-  })();
-  const [active, setActive] = useState(initialActive);
+    if (idx >= 0) {
+      const timer = setTimeout(() => {
+        setActive(idx);
+      }, 0);
+      return () => clearTimeout(timer);
+    }
+  }, [floors]);
   const [fs, setFs] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [ping, setPing] = useState<{ x: number; y: number; id: number } | null>(null);
