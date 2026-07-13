@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
+import { TRACKER_ENABLED } from "@/lib/features";
 
 export function SiteHeader() {
   const { language, setLanguage, t } = useLanguage();
@@ -13,7 +14,7 @@ export function SiteHeader() {
     { href: "/maps", labelKey: "nav.maps" as const },
     { href: "/weapons", labelKey: "nav.weapons" as const },
     { href: "/compare", labelKey: "nav.compare" as const },
-    { href: "/stats", labelKey: "nav.stats" as const },
+    ...(TRACKER_ENABLED ? [{ href: "/stats", labelKey: "nav.stats" as const }] : []),
   ];
 
   const closeMenu = () => setMenuOpen(false);

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 
 import { getDemoPlayer } from '@/lib/demo';
 import { getPlayerData } from '@/lib/r6';
+import { TRACKER_ENABLED } from '@/lib/features';
 import type { Platform } from '@/lib/types';
 
 // r6api.js + node-fetch need the Node.js runtime (not Edge).
@@ -11,6 +12,11 @@ export const dynamic = 'force-dynamic';
 const VALID_PLATFORMS: Platform[] = ['uplay', 'psn', 'xbl'];
 
 export async function GET(request: Request) {
+  // Tracker temporarily offline — don't even attempt a lookup.
+  if (!TRACKER_ENABLED) {
+    return NextResponse.json({ error: 'Not found.' }, { status: 404 });
+  }
+
   const { searchParams } = new URL(request.url);
   const username = searchParams.get('username')?.trim();
   const platform = (searchParams.get('platform') ?? 'uplay') as Platform;
