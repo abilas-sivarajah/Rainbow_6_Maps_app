@@ -7,11 +7,33 @@ import { useLanguage } from "@/context/LanguageContext";
 const MIN = 0.1;
 const MAX = 12;
 
+/** Wandelt "Floor 0"/"Floor 1" in einen lokalisierten Etagennamen um. */
+function floorLabel(
+  name: string,
+  t: ReturnType<typeof useLanguage>["t"],
+): string {
+  const m = name.match(/-?\d+/);
+  if (!m) return name;
+  const n = parseInt(m[0], 10);
+  if (n <= 0) return t("maps.floorGround");
+  return t("maps.floorUpper", { n });
+}
+
 export function MapFloorViewer({ map }: { map: GameMap }) {
   const { t: translate } = useLanguage();
   const floors = map.floors;
-  const [active, setActive] = useState(0);
 
+  // Startetage optional aus der URL (?floor=<id>).
+  const initialActive = (() => {
+    if (typeof window === "undefined") return 0;
+    const id = new URLSearchParams(window.location.search).get("floor");
+    const idx = floors.findIndex((f) => f.id === id);
+    return idx >= 0 ? idx : 0;
+  })();
+  const [active, setActive] = useState(initialActive);
+  const [fs, setFs] = useState(false);
+
+  const rootRef = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   const t = useRef({ scale: 1, tx: 0, ty: 0 });
@@ -79,6 +101,17 @@ export function MapFloorViewer({ map }: { map: GameMap }) {
     return () => window.removeEventListener("resize", onResize);
   }, [fit]);
 
+  // Vollbild-Status verfolgen und danach neu einpassen.
+  useEffect(() => {
+    const onFsChange = () => {
+      const active = document.fullscreenElement === rootRef.current;
+      setFs(active);
+      requestAnimationFrame(() => fit());
+    };
+    document.addEventListener("fullscreenchange", onFsChange);
+    return () => document.removeEventListener("fullscreenchange", onFsChange);
+  }, [fit]);
+
   // Falls das Bild bereits vor der Hydration geladen ist, feuert onLoad nicht –
   // daher hier initial einpassen.
   useEffect(() => {
@@ -88,6 +121,22 @@ export function MapFloorViewer({ map }: { map: GameMap }) {
       fit();
     }
   }, [fit]);
+
+  const selectFloor = (i: number) => {
+    setActive(i);
+    // URL aktualisieren (teilbar), ohne Navigation.
+    const url = new URL(window.location.href);
+    url.searchParams.set("floor", floors[i].id);
+    window.history.replaceState(null, "", url.toString());
+  };
+
+  const toggleFullscreen = () => {
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
+      rootRef.current?.requestFullscreen?.();
+    }
+  };
 
   const onPointerDown = (e: React.PointerEvent) => {
     drag.current = { on: true, sx: e.clientX - t.current.tx, sy: e.clientY - t.current.ty };
@@ -115,21 +164,24 @@ export function MapFloorViewer({ map }: { map: GameMap }) {
   const current = floors[active];
 
   return (
-    <div className="overflow-hidden rounded-xl border border-border bg-surface">
+    <div
+      ref={rootRef}
+      className="overflow-hidden rounded-xl border border-border bg-surface"
+    >
       {/* Etagen-Umschalter + Zoom-Steuerung */}
       <div className="flex items-center justify-between gap-2 border-b border-border p-3">
         <div className="flex flex-wrap gap-1">
           {floors.map((f, i) => (
             <button
               key={f.id}
-              onClick={() => setActive(i)}
+              onClick={() => selectFloor(i)}
               className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
                 i === active
                   ? "bg-accent text-bg"
                   : "bg-surface-2 text-muted hover:text-text"
               }`}
             >
-              {f.name}
+              {floorLabel(f.name, translate)}
             </button>
           ))}
         </div>
@@ -152,7 +204,15 @@ export function MapFloorViewer({ map }: { map: GameMap }) {
             onClick={() => fit()}
             className="rounded-md bg-surface-2 px-2.5 py-1.5 text-xs font-medium text-muted hover:text-text"
           >
-            Reset
+            {translate("maps.reset")}
+          </button>
+          <button
+            onClick={toggleFullscreen}
+            aria-label={fs ? translate("maps.exitFullscreen") : translate("maps.fullscreen")}
+            title={fs ? translate("maps.exitFullscreen") : translate("maps.fullscreen")}
+            className="grid h-8 w-8 place-items-center rounded-md bg-surface-2 text-muted hover:text-text"
+          >
+            {fs ? "🗗" : "⛶"}
           </button>
         </div>
       </div>
@@ -168,7 +228,9 @@ export function MapFloorViewer({ map }: { map: GameMap }) {
           const r = e.currentTarget.getBoundingClientRect();
           zoomAt(1.6, e.clientX - r.left, e.clientY - r.top);
         }}
-        className="relative h-[78vh] min-h-[420px] cursor-grab touch-none select-none overflow-hidden bg-[#0e1118] active:cursor-grabbing"
+        className={`relative cursor-grab touch-none select-none overflow-hidden bg-[#0e1118] active:cursor-grabbing ${
+          fs ? "h-[calc(100vh-3.5rem)]" : "h-[78vh] min-h-[420px]"
+        }`}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -181,7 +243,6 @@ export function MapFloorViewer({ map }: { map: GameMap }) {
               fitted.current = true;
               fit();
             } else {
-              // Beim Etagenwechsel den aktuellen Zoom/Ausschnitt beibehalten.
               const img = imgRef.current;
               const s = t.current;
               if (img) {

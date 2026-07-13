@@ -318,6 +318,143 @@ export const UI_TRANSLATIONS = {
     de: "Mausrad = Zoom · Ziehen = Verschieben · Doppelklick = Reinzoomen",
     en: "Scroll = Zoom · Drag = Pan · Double Click = Zoom In",
     fr: "Molette = Zoom · Glisser = Déplacer · Double-clic = Zoomer"
+  },
+  "maps.reset": {
+    de: "Zurücksetzen",
+    en: "Reset",
+    fr: "Réinitialiser"
+  },
+  "maps.fullscreen": {
+    de: "Vollbild",
+    en: "Fullscreen",
+    fr: "Plein écran"
+  },
+  "maps.exitFullscreen": {
+    de: "Vollbild beenden",
+    en: "Exit fullscreen",
+    fr: "Quitter le plein écran"
+  },
+  "maps.floorGround": {
+    de: "Erdgeschoss",
+    en: "Ground Floor",
+    fr: "Rez-de-chaussée"
+  },
+  "maps.floorUpper": {
+    de: "{n}. OG",
+    en: "Floor {n}",
+    fr: "{n}e étage"
+  },
+
+  // Operator filters
+  "ops.filter.faction": {
+    de: "Alle Einheiten",
+    en: "All units",
+    fr: "Toutes les unités"
+  },
+  "ops.filter.role": {
+    de: "Alle Rollen",
+    en: "All roles",
+    fr: "Tous les rôles"
+  },
+  "ops.sort.label": {
+    de: "Sortierung",
+    en: "Sort",
+    fr: "Trier"
+  },
+  "ops.sort.name": {
+    de: "Name (A–Z)",
+    en: "Name (A–Z)",
+    fr: "Nom (A–Z)"
+  },
+  "ops.sort.speed": {
+    de: "Geschwindigkeit",
+    en: "Speed",
+    fr: "Vitesse"
+  },
+  "ops.sort.difficulty": {
+    de: "Schwierigkeit",
+    en: "Difficulty",
+    fr: "Difficulté"
+  },
+  "ops.side.attacker": {
+    de: "Angreifer",
+    en: "Attackers",
+    fr: "Attaquants"
+  },
+  "ops.side.defender": {
+    de: "Verteidiger",
+    en: "Defenders",
+    fr: "Défenseurs"
+  },
+  // Global search
+  "search.title": {
+    de: "Suche",
+    en: "Search",
+    fr: "Recherche"
+  },
+  "search.placeholder": {
+    de: "Operator, Waffe oder Map suchen…",
+    en: "Search operators, weapons or maps…",
+    fr: "Rechercher opérateurs, armes ou cartes…"
+  },
+  "search.operators": {
+    de: "Operator",
+    en: "Operators",
+    fr: "Opérateurs"
+  },
+  "search.weapons": {
+    de: "Waffen",
+    en: "Weapons",
+    fr: "Armes"
+  },
+  "search.maps": {
+    de: "Maps",
+    en: "Maps",
+    fr: "Cartes"
+  },
+  "search.empty": {
+    de: "Keine Treffer.",
+    en: "No results.",
+    fr: "Aucun résultat."
+  },
+  "search.hint": {
+    de: "Tippe, um Operator, Waffen und Maps zu durchsuchen.",
+    en: "Start typing to search operators, weapons and maps.",
+    fr: "Commencez à taper pour rechercher."
+  },
+
+  // Favorites
+  "fav.add": {
+    de: "Zu Favoriten hinzufügen",
+    en: "Add to favorites",
+    fr: "Ajouter aux favoris"
+  },
+  "fav.remove": {
+    de: "Aus Favoriten entfernen",
+    en: "Remove from favorites",
+    fr: "Retirer des favoris"
+  },
+  "fav.title": {
+    de: "Favoriten",
+    en: "Favorites",
+    fr: "Favoris"
+  },
+  "fav.empty": {
+    de: "Noch keine Favoriten. Markiere Operator oder Maps mit dem Stern.",
+    en: "No favorites yet. Star operators or maps to see them here.",
+    fr: "Aucun favori. Ajoutez des opérateurs ou cartes avec l'étoile."
+  },
+
+  // Weapons extra
+  "wp.side.all": {
+    de: "Alle Seiten",
+    en: "All sides",
+    fr: "Tous les camps"
+  },
+  "wp.damageFalloff": {
+    de: "Schaden über Distanz",
+    en: "Damage over distance",
+    fr: "Dégâts selon la distance"
   }
 };
 
