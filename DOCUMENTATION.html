@@ -469,12 +469,36 @@
               Operators & Waffen
             </a>
           </li>
+          <li class="nav-item" id="nav-player-stats">
+            <a href="#player-stats">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z" />
+              </svg>
+              Spieler-Stats (Tracker)
+            </a>
+          </li>
+          <li class="nav-item" id="nav-search-favorites">
+            <a href="#search-favorites">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+              </svg>
+              Suche & Favoriten
+            </a>
+          </li>
           <li class="nav-item" id="nav-i18n-pipeline">
             <a href="#i18n-pipeline">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 11.37 7.363 16.173 3 18" />
               </svg>
               Lokalisierung & Pipeline
+            </a>
+          </li>
+          <li class="nav-item" id="nav-pwa">
+            <a href="#pwa">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a1 1 0 001-1V4a1 1 0 00-1-1H8a1 1 0 00-1 1v16a1 1 0 001 1z" />
+              </svg>
+              PWA & Offline
             </a>
           </li>
           <li class="nav-item" id="nav-coordinate-solver">
@@ -502,7 +526,7 @@
       
       <!-- WELCOME -->
       <section id="welcome">
-        <span class="highlight-badge">Version 1.2.0</span>
+        <span class="highlight-badge">Version 1.3.0</span>
         <h1>R6 Codex – Technische Dokumentation</h1>
         <p>
           R6 Codex ist eine hochperformante, moderne Web-Applikation zur Visualisierung und Durchsuchung von Spieldaten aus <strong>Tom Clancy's Rainbow Six Siege</strong>. 
@@ -527,7 +551,7 @@
               </svg>
             </div>
             <h3>Operator & Vergleich</h3>
-            <p style="font-size: 0.95rem; margin-bottom: 0;">Umfassende Statistiken zu allen 70+ Operators mit dynamischem Side-by-Side-Vergleich.</p>
+            <p style="font-size: 0.95rem; margin-bottom: 0;">Umfassende Statistiken zu allen 77 Operators mit dynamischem Side-by-Side-Vergleich.</p>
           </div>
 
           <div class="feature-card">
@@ -538,6 +562,16 @@
             </div>
             <h3>Waffen-Schadenskurven</h3>
             <p style="font-size: 0.95rem; margin-bottom: 0;">Visualisierung des Schadensabfalls (Damage Drop-off) über Distanzdiagramme für alle 118 Waffen.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z" />
+              </svg>
+            </div>
+            <h3>Live Spieler-Stats</h3>
+            <p style="font-size: 0.95rem; margin-bottom: 0;">R6-Tracker (<code>/stats</code>): ruft Ränge, Saison-Verlauf und K/D live über die Ubisoft-API ab – mit Demo-Modus.</p>
           </div>
         </div>
       </section>
@@ -557,21 +591,29 @@
           <div class="tech-pill">Lucide Icons</div>
           <div class="tech-pill">Sharp (Bildkompression)</div>
           <div class="tech-pill">PWA (Offline Service Worker)</div>
+          <div class="tech-pill">Ubisoft API (Server Route)</div>
         </div>
 
         <h3>Ordnerstruktur</h3>
         <pre><code>src/
-  app/                    # Routen (Operators, Maps, Weapons, Compare, Search, Favs)
-  components/             # UI-Komponenten (MapFloorViewer, WeaponsBrowser, Header, etc.)
-  context/                # Context Provider (LanguageContext)
-  data/                   # Statische Datenbanken (i18n.ts, maps.ts, rooms.json)
+  app/                    # Routen: operators, maps, weapons, compare,
+    api/player/route.ts   #   search, favorites, stats + Player-API-Route
+    manifest.ts           #   PWA-Manifest, opengraph-image.png
+  components/             # UI (MapFloorViewer, WeaponsBrowser, PlayerProfile, Header …)
+  context/                # LanguageContext (i18n Provider)
+  data/                   # Statische Daten (i18n.ts, maps.ts, r6.ts, rooms.json)
+  lib/                    # favorites.ts, useMounted.ts, ubi.ts, demo.ts, r6.ts, types.ts
 R6_bundle/
-  R6_complete.json        # Strukturierte Spieldatenbank (Englisch)
-  R6_complete_de.json     # Spieldatenbank (Deutsch, generiert)
-  R6_complete_fr.json     # Spieldatenbank (Französisch, generiert)
+  R6_complete.json        # Spieldatenbank (Englisch, Quelle)
+  R6_complete_[de|fr].json# Lokalisierte Datenbanken (generiert)
+public/
+  sw.js                   # Service Worker (Offline)
+  icons/  img/  maps-img/ # App-Icons, Operator-/Waffenbilder, Etagenbilder
 scripts/
-  translate-db.mjs        # Lokalisierungsskript (Google Translate API)
-  render-new-maps.mjs     # WebP Renderer für Maps</code></pre>
+  translate-db.mjs        # Lokalisierung (DE/FR)
+  render-new-maps.mjs     # WebP-Renderer für neue Maps
+  rasterize-maps.mjs      # Etagen-Rendering (Playwright + Sharp)
+  copy-thumbnails.mjs     # Map-Thumbnails übernehmen</code></pre>
       </section>
 
       <!-- MAP VIEWER -->
@@ -652,6 +694,81 @@ t.current.ty = cy_current - ((cy_start - ty_start) / scale_start) * nextScale;</
         </div>
       </section>
 
+      <!-- PLAYER STATS / TRACKER -->
+      <section id="player-stats">
+        <h2>Live Spieler-Stats (R6 Tracker)</h2>
+        <span class="highlight-badge">Live-API</span>
+        <p>
+          Die Route <code>/stats</code> ist ein integrierter Spieler-Tracker im stats.cc-Stil. Nutzer geben einen
+          Rainbow-Six-Nutzernamen und eine Plattform (<code>PC / Ubisoft</code>, <code>PlayStation</code>, <code>Xbox</code>) ein
+          und erhalten Ränge (Ranked 2.0), Saison-Verlauf und Kern-Statistiken. Die Anfrage läuft über die serverseitige
+          API-Route <code>/api/player</code> (Node-Runtime), damit Zugangsdaten und Cookies niemals im Browser landen.
+        </p>
+
+        <div class="diagram-flex">
+          <div style="flex: 1.2;">
+            <h3>Authentifizierung & DataDome-Bypass</h3>
+            <p>
+              Der eigenständige Ubisoft-Client (<code>src/lib/ubi.ts</code>) spricht die <em>aktuellen</em> Ubisoft-Endpunkte an
+              (ältere Bibliotheken wie r6api.js laufen auf 2022er-Routen, die heute 404 liefern). Der Login erfolgt zweistufig:
+            </p>
+            <p>
+              Zusätzlich werden bei jeder Anfrage ein Browser-<code>User-Agent</code> und ein <code>datadome</code>-Cookie
+              mitgeschickt, um Ubisofts DataDome-Anti-Bot-Schutz zu passieren.
+            </p>
+          </div>
+          <div style="flex: 0.8; background-color: var(--surface); border: 1px solid var(--border); padding: 1.5rem; border-radius: 8px; font-size: 0.85rem; display: flex; flex-direction: column; gap: 0.75rem;">
+            <div style="text-align: center; font-weight: bold; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 0.25rem;">Auth-Flow</div>
+            <div style="background-color: var(--surface-2); padding: 0.5rem; text-align: center; border-radius: 4px;">1. Basic-Auth-Login → Session-Ticket</div>
+            <div style="text-align: center;">⬇️</div>
+            <div style="background-color: var(--surface-2); padding: 0.5rem; text-align: center; border-radius: 4px; border: 1px solid var(--accent-cyan);">2. 2. Login mit Ticket → „neues" Ticket</div>
+            <div style="text-align: center;">⬇️ <span style="font-size: 0.75rem; color: #ff9e64;">UA + DataDome-Cookie</span></div>
+            <div style="background-color: var(--surface-2); padding: 0.5rem; text-align: center; border-radius: 4px;">3. Ränge / Board-Stats / Level abrufen</div>
+          </div>
+        </div>
+
+        <div class="alert-box">
+          <h4>💡 Demo-Modus ohne Zugangsdaten</h4>
+          <p>
+            Mit <code>R6_DEMO=1</code> liefert die API realistische Mock-Daten (<code>src/lib/demo.ts</code>) – ideal für
+            lokale Entwicklung und Deploy-Vorschauen ohne Ubisoft-Konto oder Netzwerkzugriff.
+          </p>
+        </div>
+
+        <h3>Benötigte Umgebungsvariablen (Live-Modus)</h3>
+        <pre><code># Pflicht für den Live-Abruf:
+UBI_EMAIL=deine-ubisoft-mail
+UBI_PASSWORD=dein-passwort
+R6_DATADOME=&lt;datadome-cookie-wert&gt;
+
+# Optional:
+R6_UBI_APPID=...            # überschreibt die Standard-App-ID
+R6_USER_AGENT=...           # Browser-User-Agent
+R6_LOGIN_COOLDOWN_MS=...    # Drosselung wiederholter Logins
+R6_DEMO=1                   # Demo-Modus (ignoriert die Zugangsdaten)</code></pre>
+        <p style="font-size: 0.95rem;">
+          <strong>Hinweis:</strong> Der Live-Abruf benötigt ausgehenden Netzwerkzugriff auf Ubisoft. In gesperrten
+          Umgebungen (z. B. dieser Sandbox) funktioniert nur der Demo-Modus; auf Vercel greift der Live-Modus, sobald die
+          Variablen gesetzt sind.
+        </p>
+      </section>
+
+      <!-- SEARCH & FAVORITES -->
+      <section id="search-favorites">
+        <h2>Globale Suche & Favoriten</h2>
+        <p>
+          Über das Lupen-Symbol in der Navbar erreicht man die Seite <code>/search</code>. Diese durchsucht in Echtzeit
+          gleichzeitig <strong>Operators, Waffen und Maps</strong> und hält den Suchbegriff im Query-Parameter
+          <code>?q=...</code> (teilbar, browser-history-fähig).
+        </p>
+        <h3>Favoriten (localStorage)</h3>
+        <p>
+          Operator- und Map-Karten besitzen einen Stern-Button. Favoriten werden im <code>localStorage</code> persistiert
+          und auf der Seite <code>/favorites</code> gesammelt. Der Store ist über <code>useSyncExternalStore</code> angebunden –
+          dadurch SSR-sicher und ohne Hydration-Mismatch (keine <code>setState</code>-im-Effect-Nebenwirkungen).
+        </p>
+      </section>
+
       <!-- I18N PIPELINE -->
       <section id="i18n-pipeline">
         <h2>Mehrsprachigkeit & Übersetzungs-Pipeline</h2>
@@ -682,6 +799,27 @@ t.current.ty = cy_current - ((cy_start - ty_start) / scale_start) * nextScale;</
             <div style="background-color: var(--surface-2); padding: 0.5rem; text-align: center; border-radius: 4px;">3. Export: R6_complete_de.json</div>
           </div>
         </div>
+      </section>
+
+      <!-- PWA -->
+      <section id="pwa">
+        <h2>PWA – Installierbar & Offline</h2>
+        <p>
+          R6 Codex ist eine installierbare Progressive Web App. Ein Web-Manifest (<code>src/app/manifest.ts</code>) mit
+          App-Icons (192/512 px, inkl. maskable) und Theme-Farbe erlaubt die Installation auf Desktop und Mobilgeräten
+          („Zum Startbildschirm hinzufügen").
+        </p>
+        <h3>Service-Worker-Strategie</h3>
+        <p>
+          Der Service Worker (<code>public/sw.js</code>) nutzt eine konservative, aktualisierungssichere Strategie:
+        </p>
+        <ul style="color: var(--text-muted); margin: 0 0 1.5rem 1.25rem; line-height: 1.8;">
+          <li><strong>Seiten (Navigationen):</strong> <em>network-first</em> – online immer die frischeste Version, offline der Cache-Fallback.</li>
+          <li><strong>Statische Assets</strong> (<code>/_next/static</code>, <code>/img</code>, <code>/maps-img</code>, Icons): <em>cache-first</em>, da sie unveränderlich (gehasht) sind.</li>
+        </ul>
+        <p>
+          Für schöne Link-Vorschauen liefert die App zudem ein OpenGraph-Bild (<code>src/app/opengraph-image.png</code>).
+        </p>
       </section>
 
       <!-- COORDINATE SOLVER -->
@@ -750,6 +888,10 @@ t.current.ty = cy_current - ((cy_start - ty_start) / scale_start) * nextScale;</
 
         <h3>4. Production Build kompilieren</h3>
         <pre><code>npm run build</code></pre>
+
+        <h3>5. Player-Tracker im Demo-Modus testen</h3>
+        <p>Ohne Ubisoft-Zugangsdaten liefert die <code>/stats</code>-Seite Mock-Daten:</p>
+        <pre><code>R6_DEMO=1 npm run dev</code></pre>
       </section>
 
       <!-- FOOTER -->

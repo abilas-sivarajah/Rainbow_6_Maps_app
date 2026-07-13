@@ -44,8 +44,20 @@ Der Map-Viewer stellt hochauflösende Pläne für alle **18 Maps** bereit und bi
 * **URL-Synchronisierung:** Der Zustand der Detailansicht wird im Query-Parameter `?name=...` gehalten und ist damit direkt teilbar.
 
 ### 4. Globale Suche & Favoriten (`/search` & `/favorites`)
-* **Suche:** Durchsucht die gesamte Spieldatenbank (Operators, Maps, Waffen) gleichzeitig in Echtzeit.
-* **Favoriten:** Ermöglicht das Liken von Maps und Operator. Die Favoriten werden lokal über den `localStorage` des Webbrowsers persistiert.
+* **Suche:** Durchsucht die gesamte Spieldatenbank (Operators, Maps, Waffen) gleichzeitig in Echtzeit (URL-synchron über `?q=`).
+* **Favoriten:** Ermöglicht das Liken von Maps und Operator. Die Favoriten werden lokal über den `localStorage` persistiert (SSR-sicher via `useSyncExternalStore`).
+
+### 5. Live Spieler-Stats / R6 Tracker (`/stats`)
+Ein integrierter Spieler-Tracker, der echte Profildaten über die **Ubisoft-API** abruft:
+* **Ablauf:** Die Seite `/stats` sucht per Nutzername + Plattform (`uplay` / `psn` / `xbl`) über die serverseitige Route `/api/player` (Node-Runtime) – Zugangsdaten bleiben serverseitig.
+* **Ubisoft-Client (`src/lib/ubi.ts`):** Zweistufiger Login (Basic-Auth → Session-Ticket → 2. Login → „neues" Ticket) gegen die aktuellen Endpunkte; Browser-User-Agent + `datadome`-Cookie umgehen den DataDome-Anti-Bot-Schutz.
+* **Demo-Modus:** Mit `R6_DEMO=1` liefert die API realistische Mock-Daten (`src/lib/demo.ts`) – ohne Konto oder Netzwerk.
+* **Env (Live):** `UBI_EMAIL`, `UBI_PASSWORD`, `R6_DATADOME` (optional: `R6_UBI_APPID`, `R6_USER_AGENT`, `R6_LOGIN_COOLDOWN_MS`).
+
+### 6. PWA – Installierbar & Offline
+* **Manifest & Icons:** `src/app/manifest.ts` + App-Icons (192/512/maskable) → installierbar auf Desktop/Mobile.
+* **Service Worker (`public/sw.js`):** network-first für Seiten (immer aktuell), cache-first für unveränderliche Assets (Offline-Fähigkeit).
+* **OpenGraph-Bild:** `src/app/opengraph-image.png` für Link-Vorschauen.
 
 ---
 
