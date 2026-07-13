@@ -35,10 +35,16 @@ const META: MapMeta[] = [
   { id: "labs", name: "Nighthaven Labs", location: "Nighthaven", playlists: ["Ranked", "Standard"], accent: "#9b59b6" },
   { id: "lair", name: "Lair", location: "Nighthaven", playlists: ["Ranked", "Standard"], accent: "#6c5ce7" },
   { id: "skyscraper", name: "Skyscraper", location: "Nagoya, Japan", playlists: ["Ranked", "Standard"], accent: "#e84393" },
+  { id: "casino", name: "Calypso Casino", location: "Las Vegas, USA", playlists: ["Custom"], accent: "#f39c12" },
+  { id: "fortress", name: "Fortress", location: "Marokko", playlists: ["Standard"], accent: "#d35400" },
+  { id: "kanal", name: "Kanal", location: "Hamburg, Deutschland", playlists: ["Ranked", "Standard"], accent: "#2980b9" },
+  { id: "outback", name: "Outback", location: "Australien", playlists: ["Ranked", "Standard"], accent: "#e67e22" },
+  { id: "themepark", name: "Theme Park", location: "Hongkong", playlists: ["Standard"], accent: "#2c3e50" },
 ];
 
 export const maps: GameMap[] = META.map((m) => ({
   ...m,
+  thumbnail: `/maps-img/${m.id}/thumbnail.avif`,
   floors: floorsFor(m.id),
 }));
 

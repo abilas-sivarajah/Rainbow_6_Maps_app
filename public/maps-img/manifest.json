@@ -416,5 +416,183 @@
       "h": 1463,
       "kb": 160
     }
+  ],
+  "casino": [
+    {
+      "id": "floor-1",
+      "name": "Floor 0",
+      "image": "/maps-img/casino/floor-1.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 267
+    },
+    {
+      "id": "floor-2",
+      "name": "Floor 1",
+      "image": "/maps-img/casino/floor-2.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 304
+    },
+    {
+      "id": "floor-3",
+      "name": "Floor 2",
+      "image": "/maps-img/casino/floor-3.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 277
+    },
+    {
+      "id": "floor-4",
+      "name": "Floor 3",
+      "image": "/maps-img/casino/floor-4.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 256
+    },
+    {
+      "id": "floor-5",
+      "name": "Floor 4",
+      "image": "/maps-img/casino/floor-5.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 256
+    },
+    {
+      "id": "floor-6",
+      "name": "Floor 5",
+      "image": "/maps-img/casino/floor-6.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 259
+    }
+  ],
+  "fortress": [
+    {
+      "id": "floor-1",
+      "name": "Floor 1",
+      "image": "/maps-img/fortress/floor-1.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 365
+    },
+    {
+      "id": "floor-2",
+      "name": "Floor 2",
+      "image": "/maps-img/fortress/floor-2.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 358
+    },
+    {
+      "id": "floor-3",
+      "name": "Floor 3",
+      "image": "/maps-img/fortress/floor-3.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 352
+    },
+    {
+      "id": "floor-4",
+      "name": "Floor 4",
+      "image": "/maps-img/fortress/floor-4.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 352
+    },
+    {
+      "id": "floor-5",
+      "name": "Floor 5",
+      "image": "/maps-img/fortress/floor-5.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 352
+    }
+  ],
+  "kanal": [
+    {
+      "id": "floor-1",
+      "name": "Floor 0",
+      "image": "/maps-img/kanal/floor-1.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 259
+    },
+    {
+      "id": "floor-2",
+      "name": "Floor 1",
+      "image": "/maps-img/kanal/floor-2.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 280
+    },
+    {
+      "id": "floor-3",
+      "name": "Floor 2",
+      "image": "/maps-img/kanal/floor-3.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 280
+    },
+    {
+      "id": "floor-4",
+      "name": "Floor 3",
+      "image": "/maps-img/kanal/floor-4.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 272
+    }
+  ],
+  "outback": [
+    {
+      "id": "floor-1",
+      "name": "Floor 1",
+      "image": "/maps-img/outback/floor-1.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 540
+    },
+    {
+      "id": "floor-2",
+      "name": "Floor 2",
+      "image": "/maps-img/outback/floor-2.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 539
+    },
+    {
+      "id": "floor-3",
+      "name": "Floor 3",
+      "image": "/maps-img/outback/floor-3.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 535
+    }
+  ],
+  "themepark": [
+    {
+      "id": "floor-1",
+      "name": "Floor 1",
+      "image": "/maps-img/themepark/floor-1.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 446
+    },
+    {
+      "id": "floor-2",
+      "name": "Floor 2",
+      "image": "/maps-img/themepark/floor-2.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 446
+    },
+    {
+      "id": "floor-3",
+      "name": "Floor 3",
+      "image": "/maps-img/themepark/floor-3.webp",
+      "w": 2600,
+      "h": 1463,
+      "kb": 449
+    }
   ]
 }
