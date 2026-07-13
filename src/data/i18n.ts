@@ -69,6 +69,21 @@ export const UI_TRANSLATIONS = {
     en: "Defenders",
     fr: "Défenseurs"
   },
+  "home.featured": {
+    de: "Operator des Tages",
+    en: "Operator of the day",
+    fr: "Opérateur du jour"
+  },
+  "home.random": {
+    de: "Zufälliger Operator",
+    en: "Random operator",
+    fr: "Opérateur aléatoire"
+  },
+  "home.view": {
+    de: "Ansehen",
+    en: "View",
+    fr: "Voir"
+  },
   "home.dbTitle": {
     de: "Rainbow Six · Datenbank",
     en: "Rainbow Six · Database",

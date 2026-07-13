@@ -14,6 +14,7 @@ export function WeaponsBrowser() {
   const [selectedWeaponName, setSelectedWeaponName] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeType, setActiveType] = useState<string | null>(null);
+  const [activeSide, setActiveSide] = useState<"all" | "attacker" | "defender">("all");
 
   // Sync selected weapon with URL 'name' query parameter
   useEffect(() => {
@@ -61,18 +62,46 @@ export function WeaponsBrowser() {
     return Array.from(types).sort();
   }, [weapons]);
 
-  // Filter weapons based on search query and active type filter
+  // Seiten-Zuordnung: Operatorname (klein) -> Seite
+  const sideByOperator = useMemo(() => {
+    const map = new Map<string, "attacker" | "defender">();
+    operators.forEach((o) => map.set(o.name.trim().toLowerCase(), o.side));
+    return map;
+  }, [operators]);
+
+  const weaponSide = (w: Weapon): "attacker" | "defender" | "both" | "none" => {
+    let atk = false;
+    let def = false;
+    w.usedBy?.forEach((n) => {
+      const s = sideByOperator.get(n.trim().toLowerCase());
+      if (s === "attacker") atk = true;
+      else if (s === "defender") def = true;
+    });
+    if (atk && def) return "both";
+    if (atk) return "attacker";
+    if (def) return "defender";
+    return "none";
+  };
+
+  // Filter weapons based on search query, type and side filter
   const filteredWeapons = useMemo(() => {
     return weapons.filter((w) => {
       const matchesSearch = w.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         (w.description && w.description.toLowerCase().includes(searchQuery.toLowerCase())) ||
         (w.type && w.type.toLowerCase().includes(searchQuery.toLowerCase()));
-      
+
       const matchesType = !activeType || w.type === activeType;
 
-      return matchesSearch && matchesType;
+      let matchesSide = true;
+      if (activeSide !== "all") {
+        const s = weaponSide(w);
+        matchesSide = s === activeSide || s === "both";
+      }
+
+      return matchesSearch && matchesType && matchesSide;
     });
-  }, [weapons, searchQuery, activeType]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [weapons, searchQuery, activeType, activeSide, sideByOperator]);
 
   // Group filtered weapons by type
   const weaponsByType = useMemo(() => {
@@ -308,6 +337,27 @@ export function WeaponsBrowser() {
             />
           </svg>
         </div>
+      </div>
+
+      {/* Side Filter */}
+      <div className="mb-4 flex flex-wrap gap-2">
+        {([
+          { v: "all", label: t("wp.side.all") },
+          { v: "attacker", label: t("ops.side.attacker") },
+          { v: "defender", label: t("ops.side.defender") },
+        ] as const).map((opt) => (
+          <button
+            key={opt.v}
+            onClick={() => setActiveSide(opt.v)}
+            className={`rounded-lg px-3 py-1.5 text-xs font-semibold tracking-wide transition-all ${
+              activeSide === opt.v
+                ? "bg-accent text-bg"
+                : "bg-surface border border-border hover:border-accent/40"
+            }`}
+          >
+            {opt.label}
+          </button>
+        ))}
       </div>
 
       {/* Type Filter Buttons */}
