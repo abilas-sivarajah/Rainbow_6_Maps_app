@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { PwaRegister } from "@/components/PwaRegister";
 
@@ -32,10 +33,7 @@ export default function RootLayout({
           <PwaRegister />
           <SiteHeader />
           <main className="flex-1">{children}</main>
-          <footer className="border-t border-border py-6 text-center text-sm text-muted">
-            R6 Codex · inoffizielle Fan-Datenbank · Rainbow Six ist eine Marke von
-            Ubisoft
-          </footer>
+          <SiteFooter />
         </LanguageProvider>
       </body>
     </html>

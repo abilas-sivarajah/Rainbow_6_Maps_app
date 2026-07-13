@@ -15,6 +15,11 @@ export const UI_TRANSLATIONS = {
     en: "Weapons",
     fr: "Armes"
   },
+  "footer.text": {
+    de: "R6 Codex · inoffizielle Fan-Datenbank · Rainbow Six ist eine Marke von Ubisoft",
+    en: "R6 Codex · unofficial fan database · Rainbow Six is a trademark of Ubisoft",
+    fr: "R6 Codex · base de données de fans non officielle · Rainbow Six est une marque d'Ubisoft"
+  },
 
   // Common UI
   "ui.back": {

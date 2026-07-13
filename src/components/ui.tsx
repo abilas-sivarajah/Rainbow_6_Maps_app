@@ -1,4 +1,7 @@
+"use client";
+
 import type { Side } from "@/data/types";
+import { useLanguage } from "@/context/LanguageContext";
 
 /** Segmentierte Stat-Anzeige (z.B. Speed/Armor/Difficulty von 1–3). */
 export function StatPips({
@@ -61,6 +64,7 @@ export function StatBar({
 }
 
 export function SideBadge({ side }: { side: Side }) {
+  const { t } = useLanguage();
   const isAtk = side === "attacker";
   return (
     <span
@@ -80,7 +84,7 @@ export function SideBadge({ side }: { side: Side }) {
             : "var(--color-defender)",
         }}
       />
-      {isAtk ? "Angreifer" : "Verteidiger"}
+      {isAtk ? t("ops.side.attacker") : t("ops.side.defender")}
     </span>
   );
 }
