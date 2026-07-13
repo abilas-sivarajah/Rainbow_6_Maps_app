@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { GameMap } from "@/data/types";
 import { Tag } from "./ui";
+import { FavButton } from "./FavButton";
 import { useLanguage } from "@/context/LanguageContext";
 
 export function MapCard({ map }: { map: GameMap }) {
@@ -44,6 +45,11 @@ export function MapCard({ map }: { map: GameMap }) {
         <div
           className="pointer-events-none absolute inset-x-0 top-0 h-1"
           style={{ background: accent }}
+        />
+        <FavButton
+          type="map"
+          id={map.id}
+          className="absolute right-1.5 top-1.5 bg-bg/60 backdrop-blur"
         />
         <span className="absolute bottom-2 left-2 rounded-md bg-bg/70 px-2 py-1 text-xs font-medium text-text backdrop-blur">
           {t("maps.floorsBadge", { count: map.floors.length })}

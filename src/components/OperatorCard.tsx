@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Operator } from "@/data/types";
 import { uniqueAbilityName, asset } from "@/data/r6";
 import { AssetImage } from "./AssetImage";
+import { FavButton } from "./FavButton";
 import { OperatorAvatar, SideBadge, Tag } from "./ui";
 
 export function OperatorCard({ operator }: { operator: Operator }) {
@@ -14,9 +15,14 @@ export function OperatorCard({ operator }: { operator: Operator }) {
   return (
     <Link
       href={`/operators/${operator.slug}`}
-      className="group flex flex-col gap-3 rounded-xl border border-border bg-surface p-4 transition-all hover:-translate-y-0.5 hover:border-accent/60 hover:bg-surface-2"
+      className="group relative flex flex-col gap-3 rounded-xl border border-border bg-surface p-4 transition-all hover:-translate-y-0.5 hover:border-accent/60 hover:bg-surface-2"
     >
-      <div className="flex items-center gap-3">
+      <FavButton
+        type="operator"
+        id={operator.slug}
+        className="absolute right-2 top-2"
+      />
+      <div className="flex items-center gap-3 pr-8">
         <AssetImage
           src={asset(operator.icon ?? operator.image)}
           alt={operator.name}
