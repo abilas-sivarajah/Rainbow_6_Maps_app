@@ -196,16 +196,21 @@ export function MapFloorViewer({ map }: { map: GameMap }) {
       const dx = p2.x - p1.x;
       const dy = p2.y - p1.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
-      const cx = (p1.x + p2.x) / 2;
-      const cy = (p1.y + p2.y) / 2;
-      pinch.current = {
-        dist,
-        scale: t.current.scale,
-        tx: t.current.tx,
-        ty: t.current.ty,
-        cx,
-        cy,
-      };
+      
+      const vp = viewportRef.current;
+      if (vp) {
+        const r = vp.getBoundingClientRect();
+        const cx = (p1.x + p2.x) / 2 - r.left;
+        const cy = (p1.y + p2.y) / 2 - r.top;
+        pinch.current = {
+          dist,
+          scale: t.current.scale,
+          tx: t.current.tx,
+          ty: t.current.ty,
+          cx,
+          cy,
+        };
+      }
     }
   };
 
@@ -226,17 +231,22 @@ export function MapFloorViewer({ map }: { map: GameMap }) {
       const dx = p2.x - p1.x;
       const dy = p2.y - p1.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
-      const cx = (p1.x + p2.x) / 2;
-      const cy = (p1.y + p2.y) / 2;
 
-      const p = pinch.current;
-      const factor = dist / p.dist;
-      const nextScale = Math.min(MAX, Math.max(MIN, p.scale * factor));
+      const vp = viewportRef.current;
+      if (vp) {
+        const r = vp.getBoundingClientRect();
+        const cx = (p1.x + p2.x) / 2 - r.left;
+        const cy = (p1.y + p2.y) / 2 - r.top;
 
-      t.current.scale = nextScale;
-      t.current.tx = cx - ((p.cx - p.tx) / p.scale) * nextScale;
-      t.current.ty = cy - ((p.cy - p.ty) / p.scale) * nextScale;
-      paint();
+        const p = pinch.current;
+        const factor = dist / p.dist;
+        const nextScale = Math.min(MAX, Math.max(MIN, p.scale * factor));
+
+        t.current.scale = nextScale;
+        t.current.tx = cx - ((p.cx - p.tx) / p.scale) * nextScale;
+        t.current.ty = cy - ((p.cy - p.ty) / p.scale) * nextScale;
+        paint();
+      }
     }
   };
 
