@@ -47,6 +47,8 @@ export function MapFloorViewer({ map }: { map: GameMap }) {
   const drag = useRef({ on: false, sx: 0, sy: 0 });
   const fitted = useRef(false);
   const pingIdRef = useRef(0);
+  const activePointers = useRef<{ id: number; x: number; y: number }[]>([]);
+  const pinch = useRef<{ dist: number; scale: number; tx: number; ty: number; cx: number; cy: number } | null>(null);
 
   const paint = useCallback(() => {
     if (raf.current) return;
@@ -182,20 +184,82 @@ export function MapFloorViewer({ map }: { map: GameMap }) {
   };
 
   const onPointerDown = (e: React.PointerEvent) => {
-    drag.current = { on: true, sx: e.clientX - t.current.tx, sy: e.clientY - t.current.ty };
+    activePointers.current.push({ id: e.pointerId, x: e.clientX, y: e.clientY });
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+
+    if (activePointers.current.length === 1) {
+      drag.current = { on: true, sx: e.clientX - t.current.tx, sy: e.clientY - t.current.ty };
+    } else if (activePointers.current.length === 2) {
+      drag.current.on = false;
+      const p1 = activePointers.current[0];
+      const p2 = activePointers.current[1];
+      const dx = p2.x - p1.x;
+      const dy = p2.y - p1.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const cx = (p1.x + p2.x) / 2;
+      const cy = (p1.y + p2.y) / 2;
+      pinch.current = {
+        dist,
+        scale: t.current.scale,
+        tx: t.current.tx,
+        ty: t.current.ty,
+        cx,
+        cy,
+      };
+    }
   };
+
   const onPointerMove = (e: React.PointerEvent) => {
-    if (!drag.current.on) return;
-    t.current.tx = e.clientX - drag.current.sx;
-    t.current.ty = e.clientY - drag.current.sy;
-    paint();
+    const idx = activePointers.current.findIndex((p) => p.id === e.pointerId);
+    if (idx >= 0) {
+      activePointers.current[idx].x = e.clientX;
+      activePointers.current[idx].y = e.clientY;
+    }
+
+    if (activePointers.current.length === 1 && drag.current.on) {
+      t.current.tx = e.clientX - drag.current.sx;
+      t.current.ty = e.clientY - drag.current.sy;
+      paint();
+    } else if (activePointers.current.length === 2 && pinch.current) {
+      const p1 = activePointers.current[0];
+      const p2 = activePointers.current[1];
+      const dx = p2.x - p1.x;
+      const dy = p2.y - p1.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const cx = (p1.x + p2.x) / 2;
+      const cy = (p1.y + p2.y) / 2;
+
+      const p = pinch.current;
+      const factor = dist / p.dist;
+      const nextScale = Math.min(MAX, Math.max(MIN, p.scale * factor));
+
+      t.current.scale = nextScale;
+      t.current.tx = cx - ((p.cx - p.tx) / p.scale) * nextScale;
+      t.current.ty = cy - ((p.cy - p.ty) / p.scale) * nextScale;
+      paint();
+    }
   };
+
   const onPointerUp = (e: React.PointerEvent) => {
-    drag.current.on = false;
+    activePointers.current = activePointers.current.filter((p) => p.id !== e.pointerId);
     try {
       (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
     } catch {}
+
+    if (activePointers.current.length < 2) {
+      pinch.current = null;
+    }
+
+    if (activePointers.current.length === 1) {
+      const remaining = activePointers.current[0];
+      drag.current = {
+        on: true,
+        sx: remaining.x - t.current.tx,
+        sy: remaining.y - t.current.ty,
+      };
+    } else if (activePointers.current.length === 0) {
+      drag.current.on = false;
+    }
   };
 
   const zoomButton = (factor: number) => {
