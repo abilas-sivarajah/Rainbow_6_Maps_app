@@ -524,10 +524,10 @@ export const FLOOR_TRANSLATIONS: Record<string, Record<string, { de: string; en:
     "floor-4": { de: "Dach", en: "Roof", fr: "Toit" }
   },
   villa: {
-    "floor-1": { de: "Erdgeschoss", en: "1st Floor", fr: "Rez-de-chaussée" },
-    "floor-2": { de: "1. Obergeschoss", en: "2nd Floor", fr: "1er étage" },
-    "floor-3": { de: "Dach", en: "Roof", fr: "Toit" },
-    "floor-4": { de: "Dach (oben)", en: "Roof (high)", fr: "Toit (haut)" }
+    "floor-1": { de: "Keller", en: "Basement", fr: "Sous-sol" },
+    "floor-2": { de: "Erdgeschoss", en: "1st Floor", fr: "Rez-de-chaussée" },
+    "floor-3": { de: "1. Obergeschoss", en: "2nd Floor", fr: "1er étage" },
+    "floor-4": { de: "Dach", en: "Roof", fr: "Toit" }
   },
   club: {
     "floor-1": { de: "Keller", en: "Basement", fr: "Sous-sol" },
