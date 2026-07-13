@@ -86,14 +86,14 @@ export function MapFloorViewer({ map }: { map: GameMap }) {
   );
 
   // Focus on a room
-  const focusRoom = useCallback((xp: number, yp: number) => {
+  const focusRoom = useCallback((xp: number, yp: number, targetFloor?: { w?: number; h?: number }) => {
     const vp = viewportRef.current;
     const img = imgRef.current;
     if (!vp || !img) return;
     const vw = vp.clientWidth;
     const vh = vp.clientHeight;
-    const iw = img.naturalWidth;
-    const ih = img.naturalHeight;
+    const iw = targetFloor?.w || img.naturalWidth || 2600;
+    const ih = targetFloor?.h || img.naturalHeight || 1463;
     if (!iw || !ih || !vw || !vh) return;
 
     const nextScale = 2.0;
@@ -116,9 +116,7 @@ export function MapFloorViewer({ map }: { map: GameMap }) {
     return () => clearTimeout(timer);
   }, [ping]);
 
-
-
-  // Mausrad-Zoom (nativer, nicht-passiver Listener wegen preventDefault).
+  // Mausrad-Zoom
   useEffect(() => {
     const vp = viewportRef.current;
     if (!vp) return;
@@ -158,10 +156,12 @@ export function MapFloorViewer({ map }: { map: GameMap }) {
     }
   }, [fit]);
 
-  const selectFloor = (i: number) => {
+  const selectFloor = (i: number, clearSearch = true) => {
     setActive(i);
     setPing(null);
-    setSearchQuery("");
+    if (clearSearch) {
+      setSearchQuery("");
+    }
     // URL aktualisieren (teilbar), ohne Navigation.
     const url = new URL(window.location.href);
     url.searchParams.set("floor", floors[i].id);
@@ -200,15 +200,38 @@ export function MapFloorViewer({ map }: { map: GameMap }) {
   };
 
   const current = floors[active];
-  const mapRooms = typedRoomsData[map.id]?.[current.id] || [];
-  const filteredRooms = mapRooms.filter((r) =>
-    r.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
 
-  const handleRoomClick = (room: Room) => {
-    focusRoom(room.x, room.y);
-    pingIdRef.current += 1;
-    setPing({ x: room.x, y: room.y, id: pingIdRef.current });
+  // Collect all rooms grouped by floor
+  const allFloorsRooms = floors.map((f) => ({
+    floor: f,
+    rooms: typedRoomsData[map.id]?.[f.id] || [],
+  }));
+
+  const hasRooms = floors.some((f) => (typedRoomsData[map.id]?.[f.id] || []).length > 0);
+
+  // Filter rooms based on search query, keeping floor structure
+  const filteredFloorsRooms = allFloorsRooms
+    .map(({ floor, rooms }) => {
+      const filtered = rooms.filter((r) =>
+        r.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      return { floor, rooms: filtered };
+    })
+    .filter(({ rooms }) => rooms.length > 0);
+
+  const totalFilteredRooms = filteredFloorsRooms.reduce((acc, f) => acc + f.rooms.length, 0);
+
+  const handleRoomClick = (room: Room, floorId: string) => {
+    const idx = floors.findIndex((f) => f.id === floorId);
+    if (idx >= 0) {
+      if (idx !== active) {
+        selectFloor(idx, false);
+      }
+      const targetFloor = floors[idx];
+      focusRoom(room.x, room.y, targetFloor);
+      pingIdRef.current += 1;
+      setPing({ x: room.x, y: room.y, id: pingIdRef.current });
+    }
   };
 
   return (
@@ -266,7 +289,7 @@ export function MapFloorViewer({ map }: { map: GameMap }) {
       </div>
 
       {/* Main Grid Content */}
-      <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-border">
+      <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-border md:h-[78vh] md:min-h-[500px]">
         {/* Interaktive Fläche */}
         <div
           ref={viewportRef}
@@ -278,8 +301,8 @@ export function MapFloorViewer({ map }: { map: GameMap }) {
             const r = e.currentTarget.getBoundingClientRect();
             zoomAt(1.6, e.clientX - r.left, e.clientY - r.top);
           }}
-          className={`flex-1 relative cursor-grab touch-none select-none overflow-hidden bg-[#0e1118] active:cursor-grabbing transition-colors duration-300 ${
-            fs ? "h-[calc(100vh-3.5rem)]" : "h-[78vh] min-h-[420px]"
+          className={`w-full md:flex-1 relative cursor-grab touch-none select-none overflow-hidden bg-[#0e1118] active:cursor-grabbing transition-colors duration-300 ${
+            fs ? "h-[calc(100vh-3.5rem)]" : "h-[50vh] min-h-[350px] md:h-full md:min-h-0"
           }`}
         >
           {/* Map Wrapper (transforms image & overlays together) */}
@@ -330,19 +353,19 @@ export function MapFloorViewer({ map }: { map: GameMap }) {
         </div>
 
         {/* Raumliste Sidebar */}
-        {mapRooms.length > 0 && (
+        {hasRooms && (
           <div
             className={`w-full md:w-72 shrink-0 bg-surface flex flex-col select-none ${
-              fs ? "h-[calc(100vh-3.5rem)]" : "h-[78vh] min-h-[420px]"
+              fs ? "h-[calc(100vh-3.5rem)]" : "h-[40vh] min-h-[300px] md:h-full md:min-h-0"
             }`}
           >
-            <div className="p-3 border-b border-border flex items-center justify-between bg-surface-2/20">
+            <div className="p-3 border-b border-border flex items-center justify-between bg-surface-2/20 shrink-0">
               <span className="text-xs font-bold text-text uppercase tracking-wider">
-                {translate("maps.roomsTitle")} ({filteredRooms.length})
+                {translate("maps.roomsTitle")} ({totalFilteredRooms})
               </span>
             </div>
             
-            <div className="p-3 border-b border-border bg-surface-2/10">
+            <div className="p-3 border-b border-border bg-surface-2/10 shrink-0">
               <input
                 type="text"
                 placeholder={translate("maps.searchRoomsPlaceholder")}
@@ -352,22 +375,38 @@ export function MapFloorViewer({ map }: { map: GameMap }) {
               />
             </div>
 
-            <div className="flex-1 overflow-y-auto p-2 space-y-0.5 custom-scrollbar bg-surface-2/5">
-              {filteredRooms.map((room) => (
-                <button
-                  key={`${room.name}-${room.x}-${room.y}`}
-                  onClick={() => handleRoomClick(room)}
-                  className="w-full text-left rounded-md px-3 py-2 text-sm text-muted hover:text-text hover:bg-surface-2 transition-all duration-150 flex items-center justify-between group"
-                >
-                  <span className="font-semibold group-hover:text-accent transition-colors truncate pr-2">
-                    {room.name}
-                  </span>
-                  <span className="text-[10px] shrink-0 font-mono bg-surface-3 text-muted px-1.5 py-0.5 rounded border border-border group-hover:border-accent/30 transition-all">
-                    {Math.round(room.x)}%, {Math.round(room.y)}%
-                  </span>
-                </button>
+            <div className="flex-1 overflow-y-auto p-2 space-y-3 custom-scrollbar bg-surface-2/5">
+              {filteredFloorsRooms.map(({ floor, rooms }) => (
+                <div key={floor.id} className="space-y-1">
+                  <div className="px-2.5 py-1 text-xs font-bold text-accent bg-accent/10 rounded border border-accent/20 sticky top-0 backdrop-blur z-10">
+                    {getLocalizedFloorName(map.id, floor.id, language, floor.name)}
+                  </div>
+                  <div className="space-y-0.5 pl-1.5">
+                    {rooms.map((room) => {
+                      const isActiveRoomFloor = floor.id === current.id;
+                      return (
+                        <button
+                          key={`${room.name}-${room.x}-${room.y}`}
+                          onClick={() => handleRoomClick(room, floor.id)}
+                          className={`w-full text-left rounded-md px-2.5 py-1.5 text-sm transition-all duration-150 flex items-center justify-between group ${
+                            isActiveRoomFloor
+                              ? "text-text hover:bg-surface-2"
+                              : "text-muted hover:text-text hover:bg-surface-2/50"
+                          }`}
+                        >
+                          <span className="font-semibold group-hover:text-accent transition-colors truncate pr-2">
+                            {room.name}
+                          </span>
+                          <span className="text-[10px] shrink-0 font-mono bg-surface-3 text-muted px-1.5 py-0.5 rounded border border-border group-hover:border-accent/30 transition-all">
+                            {Math.round(room.x)}%, {Math.round(room.y)}%
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
               ))}
-              {filteredRooms.length === 0 && (
+              {filteredFloorsRooms.length === 0 && (
                 <p className="text-xs text-muted text-center p-4">
                   {translate("maps.noRoomsFound")}
                 </p>
