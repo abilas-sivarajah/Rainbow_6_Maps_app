@@ -13,6 +13,7 @@ export function SiteHeader() {
     { href: "/maps", labelKey: "nav.maps" as const },
     { href: "/weapons", labelKey: "nav.weapons" as const },
     { href: "/compare", labelKey: "nav.compare" as const },
+    { href: "/stats", labelKey: "nav.stats" as const },
   ];
 
   const closeMenu = () => setMenuOpen(false);
