@@ -1,0 +1,3529 @@
+{
+  "casino": {
+    "floor-1": [
+      {
+        "name": "30",
+        "x": 56.65,
+        "y": 31.15
+      },
+      {
+        "name": "4",
+        "x": 23.77,
+        "y": 17.5
+      },
+      {
+        "name": "4A",
+        "x": 22.71,
+        "y": 17.5
+      },
+      {
+        "name": "4B",
+        "x": 22.73,
+        "y": 17.5
+      },
+      {
+        "name": "Break",
+        "x": 48.42,
+        "y": 13.26
+      },
+      {
+        "name": "Cash",
+        "x": 52.08,
+        "y": 9.4
+      },
+      {
+        "name": "CCTV",
+        "x": 52.01,
+        "y": 20.11
+      },
+      {
+        "name": "Checkpoint",
+        "x": 55.99,
+        "y": 21.95
+      },
+      {
+        "name": "Construction",
+        "x": 60.52,
+        "y": 27.85
+      },
+      {
+        "name": "Construction",
+        "x": 59.07,
+        "y": 40.63
+      },
+      {
+        "name": "Crane",
+        "x": 59.75,
+        "y": 47.06
+      },
+      {
+        "name": "Default",
+        "x": 56,
+        "y": 27.55
+      },
+      {
+        "name": "Double",
+        "x": 50.13,
+        "y": 3.6
+      },
+      {
+        "name": "Dropper",
+        "x": 52.34,
+        "y": 31.02
+      },
+      {
+        "name": "Exit",
+        "x": 56.72,
+        "y": 34.71
+      },
+      {
+        "name": "Façade",
+        "x": 53.18,
+        "y": 0.34
+      },
+      {
+        "name": "Green Stairs",
+        "x": 44.92,
+        "y": 9.02
+      },
+      {
+        "name": "Inner Vault",
+        "x": 63.97,
+        "y": 19.39
+      },
+      {
+        "name": "Keys",
+        "x": 55.26,
+        "y": 23.71
+      },
+      {
+        "name": "Lockers",
+        "x": 56.85,
+        "y": 7.32
+      },
+      {
+        "name": "Lockers Stairs",
+        "x": 56.76,
+        "y": 3.81
+      },
+      {
+        "name": "Office",
+        "x": 49.48,
+        "y": 7.65
+      },
+      {
+        "name": "Pillar",
+        "x": 61.62,
+        "y": 30.82
+      },
+      {
+        "name": "Pool Ruins Walkway",
+        "x": 44.36,
+        "y": 46.16
+      },
+      {
+        "name": "Pool side",
+        "x": 29.75,
+        "y": 29.54
+      },
+      {
+        "name": "Pool side",
+        "x": 34.78,
+        "y": 12.81
+      },
+      {
+        "name": "Ruins",
+        "x": 75.83,
+        "y": 31.22
+      },
+      {
+        "name": "Ruins",
+        "x": 75.92,
+        "y": 13.85
+      },
+      {
+        "name": "Screens",
+        "x": 52.98,
+        "y": 28.48
+      },
+      {
+        "name": "Server",
+        "x": 57.11,
+        "y": 11.86
+      },
+      {
+        "name": "Soda",
+        "x": 45.74,
+        "y": 14.56
+      },
+      {
+        "name": "Solo",
+        "x": 55.23,
+        "y": 1.92
+      },
+      {
+        "name": "Tarp",
+        "x": 50.77,
+        "y": 34.42
+      },
+      {
+        "name": "Vault",
+        "x": 60.26,
+        "y": 18.4
+      },
+      {
+        "name": "Weapons",
+        "x": 47.78,
+        "y": 24.26
+      },
+      {
+        "name": "Yellow Stairs",
+        "x": 59.35,
+        "y": 36.05
+      }
+    ],
+    "floor-2": [
+      {
+        "name": "2",
+        "x": 23.77,
+        "y": 17.5
+      },
+      {
+        "name": "2A",
+        "x": 22.71,
+        "y": 17.5
+      },
+      {
+        "name": "2B",
+        "x": 22.73,
+        "y": 17.5
+      },
+      {
+        "name": "3",
+        "x": 23.77,
+        "y": 17.5
+      },
+      {
+        "name": "3A",
+        "x": 22.71,
+        "y": 17.5
+      },
+      {
+        "name": "3B",
+        "x": 22.73,
+        "y": 17.5
+      },
+      {
+        "name": "51",
+        "x": 95.13,
+        "y": -29.7
+      },
+      {
+        "name": "52",
+        "x": 99.05,
+        "y": -29.74
+      },
+      {
+        "name": "Aqua Stairs",
+        "x": 92.19,
+        "y": 6.57
+      },
+      {
+        "name": "ATM",
+        "x": 102.96,
+        "y": -10.74
+      },
+      {
+        "name": "Bar",
+        "x": 99.96,
+        "y": -16.84
+      },
+      {
+        "name": "Bar Hallway",
+        "x": 97.25,
+        "y": -26.54
+      },
+      {
+        "name": "Bathroom",
+        "x": 96.56,
+        "y": -6.55
+      },
+      {
+        "name": "Betting",
+        "x": 94.5,
+        "y": -16.24
+      },
+      {
+        "name": "Black Jack",
+        "x": 97.82,
+        "y": 10.53
+      },
+      {
+        "name": "Blue",
+        "x": 102.74,
+        "y": -3.94
+      },
+      {
+        "name": "Boxes",
+        "x": 95.03,
+        "y": -27.45
+      },
+      {
+        "name": "Chairs",
+        "x": 99.49,
+        "y": -10.29
+      },
+      {
+        "name": "Crane",
+        "x": 107.58,
+        "y": 15.96
+      },
+      {
+        "name": "Darts",
+        "x": 103.52,
+        "y": -18.43
+      },
+      {
+        "name": "Desk",
+        "x": 92.19,
+        "y": -3.01
+      },
+      {
+        "name": "DJ",
+        "x": 99.65,
+        "y": 1.47
+      },
+      {
+        "name": "Elbow",
+        "x": 93.56,
+        "y": -10.24
+      },
+      {
+        "name": "Employee",
+        "x": 109.78,
+        "y": -23.73
+      },
+      {
+        "name": "Façade",
+        "x": 101,
+        "y": -30.76
+      },
+      {
+        "name": "Flowers",
+        "x": 109.72,
+        "y": 1.6
+      },
+      {
+        "name": "Flyers",
+        "x": 89.46,
+        "y": -6.84
+      },
+      {
+        "name": "Green Stairs",
+        "x": 92.93,
+        "y": -21.9
+      },
+      {
+        "name": "Green Wall",
+        "x": 101.32,
+        "y": 10.21
+      },
+      {
+        "name": "Hockey",
+        "x": 101.89,
+        "y": -21.79
+      },
+      {
+        "name": "Horse",
+        "x": 95.75,
+        "y": -12.92
+      },
+      {
+        "name": "Jackpot",
+        "x": 109.31,
+        "y": -12.04
+      },
+      {
+        "name": "Janitor",
+        "x": 106.42,
+        "y": -18.55
+      },
+      {
+        "name": "Janitor Door",
+        "x": 106.78,
+        "y": -22.24
+      },
+      {
+        "name": "Jersey",
+        "x": 102.57,
+        "y": -15.35
+      },
+      {
+        "name": "Lockers Stairs",
+        "x": 105.15,
+        "y": -27.12
+      },
+      {
+        "name": "Main Door",
+        "x": 112.11,
+        "y": -4.87
+      },
+      {
+        "name": "Main Lobby",
+        "x": 106.98,
+        "y": -3.14
+      },
+      {
+        "name": "Main Stairs",
+        "x": 108.46,
+        "y": -5.28
+      },
+      {
+        "name": "Pink",
+        "x": 102.63,
+        "y": 2.44
+      },
+      {
+        "name": "Plants",
+        "x": 92.11,
+        "y": -15.02
+      },
+      {
+        "name": "Plants window",
+        "x": 90.63,
+        "y": -17.04
+      },
+      {
+        "name": "Poker",
+        "x": 102.88,
+        "y": 6.45
+      },
+      {
+        "name": "Pool Ruins Walkway",
+        "x": 92.18,
+        "y": 15.06
+      },
+      {
+        "name": "Pool side",
+        "x": 77.58,
+        "y": -1.56
+      },
+      {
+        "name": "Pool side",
+        "x": 82.61,
+        "y": -18.29
+      },
+      {
+        "name": "Reception",
+        "x": 90.46,
+        "y": -5.32
+      },
+      {
+        "name": "Roulette",
+        "x": 99.38,
+        "y": -3.36
+      },
+      {
+        "name": "Ruins",
+        "x": 123.66,
+        "y": 0.12
+      },
+      {
+        "name": "Ruins",
+        "x": 123.74,
+        "y": -17.25
+      },
+      {
+        "name": "Secret",
+        "x": 94.73,
+        "y": 8.14
+      },
+      {
+        "name": "Secret Window",
+        "x": 94.46,
+        "y": 13.33
+      },
+      {
+        "name": "Shark",
+        "x": 110.18,
+        "y": -17.46
+      },
+      {
+        "name": "Sink",
+        "x": 95.66,
+        "y": -9.41
+      },
+      {
+        "name": "Vending",
+        "x": 93.76,
+        "y": 0.18
+      },
+      {
+        "name": "Wine",
+        "x": 102.64,
+        "y": -24.23
+      },
+      {
+        "name": "Wine window",
+        "x": 102.65,
+        "y": -29.7
+      },
+      {
+        "name": "Yellow Stairs",
+        "x": 108.48,
+        "y": 4.57
+      },
+      {
+        "name": "Yellow Window",
+        "x": 108.71,
+        "y": 9.07
+      }
+    ],
+    "floor-3": [
+      {
+        "name": "1",
+        "x": 23.77,
+        "y": 17.5
+      },
+      {
+        "name": "1A",
+        "x": 22.71,
+        "y": 17.5
+      },
+      {
+        "name": "1B",
+        "x": 22.73,
+        "y": 17.5
+      },
+      {
+        "name": "90",
+        "x": 60.01,
+        "y": 35.51
+      },
+      {
+        "name": "Apples",
+        "x": 63.99,
+        "y": 18.27
+      },
+      {
+        "name": "Aqua",
+        "x": 58.51,
+        "y": 31.44
+      },
+      {
+        "name": "Aqua Balcony",
+        "x": 58.92,
+        "y": 40.64
+      },
+      {
+        "name": "Aqua Stairs",
+        "x": 55.45,
+        "y": 36.9
+      },
+      {
+        "name": "Aqua Window",
+        "x": 63.24,
+        "y": 39.13
+      },
+      {
+        "name": "Barista",
+        "x": 66.85,
+        "y": 13.84
+      },
+      {
+        "name": "Bridge",
+        "x": 67.87,
+        "y": 38.89
+      },
+      {
+        "name": "Broom",
+        "x": 63.74,
+        "y": 11.24
+      },
+      {
+        "name": "Cafe",
+        "x": 66.14,
+        "y": 12.72
+      },
+      {
+        "name": "Cafe Balcony",
+        "x": 66.64,
+        "y": 8.11
+      },
+      {
+        "name": "Cigar",
+        "x": 62.21,
+        "y": 24.1
+      },
+      {
+        "name": "Coat",
+        "x": 75.46,
+        "y": 25.08
+      },
+      {
+        "name": "Crane",
+        "x": 71.76,
+        "y": 46.03
+      },
+      {
+        "name": "Credit",
+        "x": 67.84,
+        "y": 33.1
+      },
+      {
+        "name": "Default",
+        "x": 63.36,
+        "y": 20.63
+      },
+      {
+        "name": "Façade",
+        "x": 65.18,
+        "y": -0.69
+      },
+      {
+        "name": "Fish",
+        "x": 65.27,
+        "y": 36.23
+      },
+      {
+        "name": "Heaven",
+        "x": 72.47,
+        "y": 17.42
+      },
+      {
+        "name": "Jukebox",
+        "x": 66.04,
+        "y": 20.99
+      },
+      {
+        "name": "Kitchen",
+        "x": 62.44,
+        "y": 16
+      },
+      {
+        "name": "Lemon",
+        "x": 67.98,
+        "y": 11.71
+      },
+      {
+        "name": "Main Lobby",
+        "x": 70.37,
+        "y": 22.84
+      },
+      {
+        "name": "Main Stairs",
+        "x": 74.37,
+        "y": 26.72
+      },
+      {
+        "name": "Mezza",
+        "x": 72.47,
+        "y": 32.48
+      },
+      {
+        "name": "Minibar",
+        "x": 67.88,
+        "y": 18.23
+      },
+      {
+        "name": "Music",
+        "x": 73.56,
+        "y": 14.84
+      },
+      {
+        "name": "Pool",
+        "x": 67.15,
+        "y": 25.65
+      },
+      {
+        "name": "Pool Ruins Walkway",
+        "x": 56.36,
+        "y": 45.13
+      },
+      {
+        "name": "Pool side",
+        "x": 41.76,
+        "y": 28.51
+      },
+      {
+        "name": "Pool side",
+        "x": 46.79,
+        "y": 11.78
+      },
+      {
+        "name": "Pool Walls",
+        "x": 69.38,
+        "y": 26.63
+      },
+      {
+        "name": "Rope",
+        "x": 70.98,
+        "y": 11.72
+      },
+      {
+        "name": "Ruins",
+        "x": 87.84,
+        "y": 30.19
+      },
+      {
+        "name": "Ruins",
+        "x": 87.93,
+        "y": 12.82
+      },
+      {
+        "name": "Smoking",
+        "x": 61.81,
+        "y": 31.67
+      },
+      {
+        "name": "Soap",
+        "x": 68.42,
+        "y": 15.29
+      },
+      {
+        "name": "Stick",
+        "x": 67,
+        "y": 28.18
+      },
+      {
+        "name": "Swamp",
+        "x": 61.82,
+        "y": 28.26
+      },
+      {
+        "name": "Tequila",
+        "x": 58.72,
+        "y": 10.99
+      },
+      {
+        "name": "Tequila Door",
+        "x": 56.19,
+        "y": 13.99
+      },
+      {
+        "name": "Tequila Stairs",
+        "x": 57.09,
+        "y": 5.56
+      }
+    ],
+    "floor-4": [
+      {
+        "name": "Crane",
+        "x": 59.75,
+        "y": 47.06
+      },
+      {
+        "name": "Façade",
+        "x": 53.18,
+        "y": 0.34
+      },
+      {
+        "name": "Heaven Skylight",
+        "x": 61.06,
+        "y": 19.55
+      },
+      {
+        "name": "Helipad",
+        "x": 55.39,
+        "y": 62.56
+      },
+      {
+        "name": "Helipad Walkway",
+        "x": 56.85,
+        "y": 50.16
+      },
+      {
+        "name": "Mezza Skylight",
+        "x": 61.28,
+        "y": 32.03
+      },
+      {
+        "name": "Middle Skylight",
+        "x": 56.87,
+        "y": 28.27
+      },
+      {
+        "name": "Pool Ruins Walkway",
+        "x": 44.36,
+        "y": 46.16
+      },
+      {
+        "name": "Pool side",
+        "x": 29.75,
+        "y": 29.54
+      },
+      {
+        "name": "Pool side",
+        "x": 34.78,
+        "y": 12.81
+      },
+      {
+        "name": "Roof",
+        "x": 49.78,
+        "y": 9.5
+      },
+      {
+        "name": "Roof",
+        "x": 61.7,
+        "y": 4.83
+      },
+      {
+        "name": "Roof",
+        "x": 51.72,
+        "y": 33.19
+      },
+      {
+        "name": "Roof Stairs",
+        "x": 42.89,
+        "y": 40.28
+      },
+      {
+        "name": "Ruins",
+        "x": 75.83,
+        "y": 31.22
+      },
+      {
+        "name": "Ruins",
+        "x": 75.92,
+        "y": 13.85
+      }
+    ],
+    "floor-5": [
+      {
+        "name": "Catwalk",
+        "x": 59.42,
+        "y": 26.16
+      },
+      {
+        "name": "Crane",
+        "x": 59.75,
+        "y": 47.06
+      },
+      {
+        "name": "Façade",
+        "x": 53.18,
+        "y": 0.34
+      },
+      {
+        "name": "Heaven Skylight",
+        "x": 61.06,
+        "y": 19.55
+      },
+      {
+        "name": "Helipad",
+        "x": 55.39,
+        "y": 62.56
+      },
+      {
+        "name": "Helipad Walkway",
+        "x": 56.85,
+        "y": 50.16
+      },
+      {
+        "name": "Mezza Skylight",
+        "x": 61.28,
+        "y": 32.03
+      },
+      {
+        "name": "Middle Skylight",
+        "x": 56.09,
+        "y": 28.24
+      },
+      {
+        "name": "Pool Ruins Walkway",
+        "x": 44.36,
+        "y": 46.16
+      },
+      {
+        "name": "Pool side",
+        "x": 29.75,
+        "y": 29.54
+      },
+      {
+        "name": "Pool side",
+        "x": 34.78,
+        "y": 12.81
+      },
+      {
+        "name": "Roof",
+        "x": 49.78,
+        "y": 9.5
+      },
+      {
+        "name": "Roof",
+        "x": 61.7,
+        "y": 4.83
+      },
+      {
+        "name": "Roof",
+        "x": 51.72,
+        "y": 33.19
+      },
+      {
+        "name": "Roof Stairs",
+        "x": 42.89,
+        "y": 40.28
+      },
+      {
+        "name": "Ruins",
+        "x": 75.83,
+        "y": 31.22
+      },
+      {
+        "name": "Ruins",
+        "x": 75.92,
+        "y": 13.85
+      }
+    ],
+    "floor-6": [
+      {
+        "name": "Crane",
+        "x": 59.75,
+        "y": 47.06
+      },
+      {
+        "name": "Crane Catwalk",
+        "x": 62.53,
+        "y": 28.31
+      },
+      {
+        "name": "Façade",
+        "x": 53.18,
+        "y": 0.34
+      },
+      {
+        "name": "Helipad",
+        "x": 55.39,
+        "y": 62.56
+      },
+      {
+        "name": "Helipad Walkway",
+        "x": 56.85,
+        "y": 50.16
+      },
+      {
+        "name": "Pool Ruins Walkway",
+        "x": 44.36,
+        "y": 46.16
+      },
+      {
+        "name": "Pool side",
+        "x": 29.75,
+        "y": 29.54
+      },
+      {
+        "name": "Pool side",
+        "x": 34.78,
+        "y": 12.81
+      },
+      {
+        "name": "Roof",
+        "x": 49.78,
+        "y": 9.5
+      },
+      {
+        "name": "Roof",
+        "x": 61.7,
+        "y": 4.83
+      },
+      {
+        "name": "Roof",
+        "x": 51.72,
+        "y": 33.19
+      },
+      {
+        "name": "Roof Stairs",
+        "x": 42.89,
+        "y": 40.28
+      },
+      {
+        "name": "Ruins",
+        "x": 75.83,
+        "y": 31.22
+      },
+      {
+        "name": "Ruins",
+        "x": 75.92,
+        "y": 13.85
+      }
+    ]
+  },
+  "fortress": {
+    "floor-1": [
+      {
+        "name": "3",
+        "x": 12.58,
+        "y": 9.27
+      },
+      {
+        "name": "3A",
+        "x": 12.02,
+        "y": 9.27
+      },
+      {
+        "name": "3B",
+        "x": 12.03,
+        "y": 9.27
+      },
+      {
+        "name": "4",
+        "x": 12.58,
+        "y": 9.27
+      },
+      {
+        "name": "4A",
+        "x": 12.02,
+        "y": 9.27
+      },
+      {
+        "name": "4B",
+        "x": 12.03,
+        "y": 9.27
+      },
+      {
+        "name": "Cafeteria",
+        "x": 55.06,
+        "y": 68.67
+      },
+      {
+        "name": "Cafeteria",
+        "x": 52.7,
+        "y": 65.31
+      },
+      {
+        "name": "Cafeteria Hallway",
+        "x": 54.52,
+        "y": 71.01
+      },
+      {
+        "name": "Cannon",
+        "x": 40.61,
+        "y": 51.64
+      },
+      {
+        "name": "Cannon",
+        "x": 41.05,
+        "y": 60.86
+      },
+      {
+        "name": "Cannon",
+        "x": 41.3,
+        "y": 69.26
+      },
+      {
+        "name": "Changing",
+        "x": 45.04,
+        "y": 62.66
+      },
+      {
+        "name": "Cliffside",
+        "x": 60.38,
+        "y": 50.16
+      },
+      {
+        "name": "Cliffside",
+        "x": 61.91,
+        "y": 57.63
+      },
+      {
+        "name": "Cliffside",
+        "x": 62.77,
+        "y": 71.38
+      },
+      {
+        "name": "Cliffside",
+        "x": 59.61,
+        "y": 40.39
+      },
+      {
+        "name": "Courtyard Path",
+        "x": 59.58,
+        "y": 55.95
+      },
+      {
+        "name": "Dining",
+        "x": 51,
+        "y": 57.93
+      },
+      {
+        "name": "Fountain",
+        "x": 55.46,
+        "y": 54.5
+      },
+      {
+        "name": "Fountain Hallway",
+        "x": 55.09,
+        "y": 58.4
+      },
+      {
+        "name": "Fountain Hallway",
+        "x": 53.38,
+        "y": 56.93
+      },
+      {
+        "name": "Front Entrance",
+        "x": 46.59,
+        "y": 40.94
+      },
+      {
+        "name": "Garden",
+        "x": 49.63,
+        "y": 81.61
+      },
+      {
+        "name": "Garden Path",
+        "x": 49.52,
+        "y": 76.43
+      },
+      {
+        "name": "Garden Path",
+        "x": 44.16,
+        "y": 75.57
+      },
+      {
+        "name": "Garden Path",
+        "x": 56.47,
+        "y": 76.94
+      },
+      {
+        "name": "Guard Tower",
+        "x": 57.1,
+        "y": 51.37
+      },
+      {
+        "name": "Gun Room",
+        "x": 46.94,
+        "y": 58.94
+      },
+      {
+        "name": "Gun Room",
+        "x": 48.49,
+        "y": 57.94
+      },
+      {
+        "name": "Hammam",
+        "x": 44.95,
+        "y": 71.41
+      },
+      {
+        "name": "Hammam",
+        "x": 45.95,
+        "y": 66.52
+      },
+      {
+        "name": "Infirmary",
+        "x": 57.87,
+        "y": 62.31
+      },
+      {
+        "name": "Kitchen",
+        "x": 51.76,
+        "y": 62.65
+      },
+      {
+        "name": "Kitchen Hallway",
+        "x": 48.31,
+        "y": 61.4
+      },
+      {
+        "name": "Laundry",
+        "x": 59.29,
+        "y": 72.75
+      },
+      {
+        "name": "Lobby",
+        "x": 47.99,
+        "y": 50.8
+      },
+      {
+        "name": "Lobby Stairs",
+        "x": 44.66,
+        "y": 47.14
+      },
+      {
+        "name": "Main Hallway",
+        "x": 49.97,
+        "y": 69.51
+      },
+      {
+        "name": "Main Stairs",
+        "x": 50.59,
+        "y": 65.15
+      },
+      {
+        "name": "Music",
+        "x": 45.07,
+        "y": 53.45
+      },
+      {
+        "name": "Office",
+        "x": 50.86,
+        "y": 49.43
+      },
+      {
+        "name": "Office Hallway",
+        "x": 50.95,
+        "y": 51.44
+      },
+      {
+        "name": "Old Stairs",
+        "x": 58.4,
+        "y": 68.78
+      },
+      {
+        "name": "Showers",
+        "x": 48.48,
+        "y": 73.21
+      },
+      {
+        "name": "Sitting",
+        "x": 45.08,
+        "y": 58.75
+      },
+      {
+        "name": "Stable",
+        "x": 60.33,
+        "y": 83.52
+      },
+      {
+        "name": "Stable Path",
+        "x": 59.47,
+        "y": 76.26
+      },
+      {
+        "name": "Unloading",
+        "x": 53.9,
+        "y": 42.41
+      },
+      {
+        "name": "Unloading Stairs",
+        "x": 54.05,
+        "y": 50.53
+      },
+      {
+        "name": "Waiting",
+        "x": 54.97,
+        "y": 61.46
+      }
+    ],
+    "floor-2": [
+      {
+        "name": "1",
+        "x": 12.58,
+        "y": 9.27
+      },
+      {
+        "name": "1A",
+        "x": 12.02,
+        "y": 9.27
+      },
+      {
+        "name": "1B",
+        "x": 12.03,
+        "y": 9.27
+      },
+      {
+        "name": "2",
+        "x": 12.58,
+        "y": 9.27
+      },
+      {
+        "name": "2A",
+        "x": 12.02,
+        "y": 9.27
+      },
+      {
+        "name": "2B",
+        "x": 12.03,
+        "y": 9.27
+      },
+      {
+        "name": "Bathroom",
+        "x": 50.91,
+        "y": 61.19
+      },
+      {
+        "name": "Bedroom",
+        "x": 50.74,
+        "y": 52.24
+      },
+      {
+        "name": "Bedroom Hallway",
+        "x": 53.33,
+        "y": 56.88
+      },
+      {
+        "name": "Briefing",
+        "x": 54.87,
+        "y": 60.4
+      },
+      {
+        "name": "Briefing Hallway",
+        "x": 54.45,
+        "y": 58.43
+      },
+      {
+        "name": "Cannon",
+        "x": 40.61,
+        "y": 51.64
+      },
+      {
+        "name": "Cannon",
+        "x": 41.05,
+        "y": 60.86
+      },
+      {
+        "name": "Cannon",
+        "x": 41.3,
+        "y": 69.26
+      },
+      {
+        "name": "Cannon Stairs",
+        "x": 42.73,
+        "y": 66.72
+      },
+      {
+        "name": "Cliffside",
+        "x": 60.38,
+        "y": 50.16
+      },
+      {
+        "name": "Cliffside",
+        "x": 61.91,
+        "y": 57.63
+      },
+      {
+        "name": "Cliffside",
+        "x": 62.77,
+        "y": 71.38
+      },
+      {
+        "name": "Cliffside",
+        "x": 59.61,
+        "y": 40.39
+      },
+      {
+        "name": "Commander",
+        "x": 47.61,
+        "y": 54.32
+      },
+      {
+        "name": "Courtyard Balcony",
+        "x": 59.46,
+        "y": 64.34
+      },
+      {
+        "name": "Courtyard Balcony",
+        "x": 58.61,
+        "y": 56.98
+      },
+      {
+        "name": "Courtyard Path",
+        "x": 59.58,
+        "y": 55.95
+      },
+      {
+        "name": "Dormitory",
+        "x": 51.73,
+        "y": 70.72
+      },
+      {
+        "name": "Dormitory",
+        "x": 53.2,
+        "y": 66.54
+      },
+      {
+        "name": "Dormitory Hallway",
+        "x": 50.45,
+        "y": 72.4
+      },
+      {
+        "name": "Fountain",
+        "x": 55.42,
+        "y": 55.61
+      },
+      {
+        "name": "Front Entrance",
+        "x": 46.59,
+        "y": 40.94
+      },
+      {
+        "name": "Gaming",
+        "x": 56.2,
+        "y": 68.43
+      },
+      {
+        "name": "Gaming Hallway",
+        "x": 55.99,
+        "y": 74.04
+      },
+      {
+        "name": "Garden",
+        "x": 49.63,
+        "y": 81.61
+      },
+      {
+        "name": "Garden Path",
+        "x": 44.16,
+        "y": 75.57
+      },
+      {
+        "name": "Garden Path",
+        "x": 56.47,
+        "y": 76.94
+      },
+      {
+        "name": "Guard Tower",
+        "x": 57.1,
+        "y": 51.37
+      },
+      {
+        "name": "Hammam Roof",
+        "x": 45.32,
+        "y": 71.09
+      },
+      {
+        "name": "Horse",
+        "x": 47.13,
+        "y": 60.54
+      },
+      {
+        "name": "Lobby Stairs",
+        "x": 44.15,
+        "y": 47.14
+      },
+      {
+        "name": "Main Stairs",
+        "x": 50.58,
+        "y": 67.48
+      },
+      {
+        "name": "Mezzanine",
+        "x": 55.31,
+        "y": 53.3
+      },
+      {
+        "name": "Old Stairs",
+        "x": 58.45,
+        "y": 68.72
+      },
+      {
+        "name": "Portrait",
+        "x": 45.06,
+        "y": 54.66
+      },
+      {
+        "name": "Portrait Balcony",
+        "x": 44.38,
+        "y": 57.68
+      },
+      {
+        "name": "Renovation",
+        "x": 49.43,
+        "y": 49.34
+      },
+      {
+        "name": "Renovation Hallway",
+        "x": 46.78,
+        "y": 49.19
+      },
+      {
+        "name": "Shisha",
+        "x": 52.56,
+        "y": 74.9
+      },
+      {
+        "name": "Stable",
+        "x": 60.33,
+        "y": 83.52
+      },
+      {
+        "name": "Stable Path",
+        "x": 59.47,
+        "y": 76.26
+      },
+      {
+        "name": "Unloading",
+        "x": 53.9,
+        "y": 42.41
+      }
+    ],
+    "floor-3": [
+      {
+        "name": "Cannon",
+        "x": 40.61,
+        "y": 51.64
+      },
+      {
+        "name": "Cannon",
+        "x": 41.05,
+        "y": 60.86
+      },
+      {
+        "name": "Cannon",
+        "x": 41.3,
+        "y": 69.26
+      },
+      {
+        "name": "Cannon Stairs",
+        "x": 42.73,
+        "y": 66.72
+      },
+      {
+        "name": "Cliffside",
+        "x": 60.38,
+        "y": 50.16
+      },
+      {
+        "name": "Cliffside",
+        "x": 61.91,
+        "y": 57.63
+      },
+      {
+        "name": "Cliffside",
+        "x": 62.77,
+        "y": 71.38
+      },
+      {
+        "name": "Cliffside",
+        "x": 59.61,
+        "y": 40.39
+      },
+      {
+        "name": "Courtyard Balcony",
+        "x": 59.46,
+        "y": 64.34
+      },
+      {
+        "name": "Courtyard Path",
+        "x": 59.58,
+        "y": 55.95
+      },
+      {
+        "name": "Front Entrance",
+        "x": 46.59,
+        "y": 40.94
+      },
+      {
+        "name": "Garden",
+        "x": 49.63,
+        "y": 81.61
+      },
+      {
+        "name": "Garden Path",
+        "x": 44.16,
+        "y": 75.57
+      },
+      {
+        "name": "Garden Path",
+        "x": 56.47,
+        "y": 76.94
+      },
+      {
+        "name": "Guard Tower",
+        "x": 57.1,
+        "y": 51.37
+      },
+      {
+        "name": "Hammam Roof",
+        "x": 45.32,
+        "y": 71.09
+      },
+      {
+        "name": "Modern Roof",
+        "x": 47.1,
+        "y": 58.86
+      },
+      {
+        "name": "Modern Roof",
+        "x": 55.28,
+        "y": 58.37
+      },
+      {
+        "name": "Old Roof",
+        "x": 52.31,
+        "y": 71.75
+      },
+      {
+        "name": "Old Tower",
+        "x": 59.63,
+        "y": 70.93
+      },
+      {
+        "name": "Renovation Tower",
+        "x": 49.98,
+        "y": 47.05
+      },
+      {
+        "name": "Stable",
+        "x": 60.33,
+        "y": 83.52
+      },
+      {
+        "name": "Stable Path",
+        "x": 59.47,
+        "y": 76.26
+      },
+      {
+        "name": "Unloading",
+        "x": 53.9,
+        "y": 42.41
+      },
+      {
+        "name": "Unloading Stairs",
+        "x": 53.98,
+        "y": 49.95
+      },
+      {
+        "name": "West Tower",
+        "x": 44.82,
+        "y": 48.39
+      }
+    ],
+    "floor-4": [
+      {
+        "name": "Cannon",
+        "x": 40.61,
+        "y": 51.64
+      },
+      {
+        "name": "Cannon",
+        "x": 41.05,
+        "y": 60.86
+      },
+      {
+        "name": "Cannon",
+        "x": 41.3,
+        "y": 69.26
+      },
+      {
+        "name": "Cannon Stairs",
+        "x": 42.73,
+        "y": 66.72
+      },
+      {
+        "name": "Cliffside",
+        "x": 60.38,
+        "y": 50.16
+      },
+      {
+        "name": "Cliffside",
+        "x": 61.91,
+        "y": 57.63
+      },
+      {
+        "name": "Cliffside",
+        "x": 62.77,
+        "y": 71.38
+      },
+      {
+        "name": "Cliffside",
+        "x": 59.61,
+        "y": 40.39
+      },
+      {
+        "name": "Courtyard Balcony",
+        "x": 59.46,
+        "y": 64.34
+      },
+      {
+        "name": "Courtyard Path",
+        "x": 59.58,
+        "y": 55.95
+      },
+      {
+        "name": "Front Entrance",
+        "x": 46.59,
+        "y": 40.94
+      },
+      {
+        "name": "Garden",
+        "x": 49.63,
+        "y": 81.61
+      },
+      {
+        "name": "Garden Path",
+        "x": 44.16,
+        "y": 75.57
+      },
+      {
+        "name": "Garden Path",
+        "x": 56.47,
+        "y": 76.94
+      },
+      {
+        "name": "Guard Tower",
+        "x": 57.1,
+        "y": 51.37
+      },
+      {
+        "name": "Hammam Roof",
+        "x": 45.32,
+        "y": 71.09
+      },
+      {
+        "name": "Modern Roof",
+        "x": 47.1,
+        "y": 58.86
+      },
+      {
+        "name": "Modern Roof",
+        "x": 55.28,
+        "y": 58.37
+      },
+      {
+        "name": "Old Roof",
+        "x": 52.31,
+        "y": 71.75
+      },
+      {
+        "name": "Old Tower",
+        "x": 59.63,
+        "y": 70.93
+      },
+      {
+        "name": "Renovation Tower",
+        "x": 50.18,
+        "y": 47.02
+      },
+      {
+        "name": "Stable",
+        "x": 60.33,
+        "y": 83.52
+      },
+      {
+        "name": "Stable Path",
+        "x": 59.47,
+        "y": 76.26
+      },
+      {
+        "name": "Unloading",
+        "x": 53.9,
+        "y": 42.41
+      },
+      {
+        "name": "Unloading Stairs",
+        "x": 53.98,
+        "y": 49.95
+      },
+      {
+        "name": "West Tower",
+        "x": 44.76,
+        "y": 47.17
+      }
+    ],
+    "floor-5": [
+      {
+        "name": "Cannon",
+        "x": 40.61,
+        "y": 51.64
+      },
+      {
+        "name": "Cannon",
+        "x": 41.05,
+        "y": 60.86
+      },
+      {
+        "name": "Cannon",
+        "x": 41.3,
+        "y": 69.26
+      },
+      {
+        "name": "Cannon Stairs",
+        "x": 42.73,
+        "y": 66.72
+      },
+      {
+        "name": "Cliffside",
+        "x": 60.38,
+        "y": 50.16
+      },
+      {
+        "name": "Cliffside",
+        "x": 61.91,
+        "y": 57.63
+      },
+      {
+        "name": "Cliffside",
+        "x": 62.77,
+        "y": 71.38
+      },
+      {
+        "name": "Cliffside",
+        "x": 59.61,
+        "y": 40.39
+      },
+      {
+        "name": "Courtyard Balcony",
+        "x": 59.46,
+        "y": 64.34
+      },
+      {
+        "name": "Courtyard Path",
+        "x": 59.58,
+        "y": 55.95
+      },
+      {
+        "name": "Front Entrance",
+        "x": 46.59,
+        "y": 40.94
+      },
+      {
+        "name": "Garden",
+        "x": 49.63,
+        "y": 81.61
+      },
+      {
+        "name": "Garden Path",
+        "x": 44.16,
+        "y": 75.57
+      },
+      {
+        "name": "Garden Path",
+        "x": 56.47,
+        "y": 76.94
+      },
+      {
+        "name": "Guard Tower",
+        "x": 57.1,
+        "y": 51.37
+      },
+      {
+        "name": "Hammam Roof",
+        "x": 45.32,
+        "y": 71.09
+      },
+      {
+        "name": "Modern Roof",
+        "x": 47.1,
+        "y": 58.86
+      },
+      {
+        "name": "Modern Roof",
+        "x": 55.28,
+        "y": 58.37
+      },
+      {
+        "name": "Old Roof",
+        "x": 52.31,
+        "y": 71.75
+      },
+      {
+        "name": "Old Tower",
+        "x": 59.63,
+        "y": 70.93
+      },
+      {
+        "name": "Renovation Tower",
+        "x": 50.18,
+        "y": 48.39
+      },
+      {
+        "name": "Stable",
+        "x": 60.33,
+        "y": 83.52
+      },
+      {
+        "name": "Stable Path",
+        "x": 59.47,
+        "y": 76.26
+      },
+      {
+        "name": "Unloading",
+        "x": 53.9,
+        "y": 42.41
+      },
+      {
+        "name": "Unloading Stairs",
+        "x": 53.98,
+        "y": 49.95
+      },
+      {
+        "name": "West Tower",
+        "x": 44.82,
+        "y": 48.39
+      }
+    ]
+  },
+  "kanal": {
+    "floor-1": [
+      {
+        "name": "1",
+        "x": 14.48,
+        "y": 10.66
+      },
+      {
+        "name": "4A",
+        "x": 13.84,
+        "y": 10.66
+      },
+      {
+        "name": "4B",
+        "x": 13.85,
+        "y": 10.66
+      },
+      {
+        "name": "Alcove",
+        "x": 11.74,
+        "y": 7.02
+      },
+      {
+        "name": "Basement Corridor",
+        "x": 11.08,
+        "y": 16.34
+      },
+      {
+        "name": "Bathroom",
+        "x": 11.99,
+        "y": 23.53
+      },
+      {
+        "name": "Construction",
+        "x": 29.71,
+        "y": 16.02
+      },
+      {
+        "name": "Construction",
+        "x": 39.28,
+        "y": 15.47
+      },
+      {
+        "name": "Construction",
+        "x": 29.54,
+        "y": 1.61
+      },
+      {
+        "name": "Containers",
+        "x": 21.09,
+        "y": 0.56
+      },
+      {
+        "name": "Containers",
+        "x": 6.81,
+        "y": -0.61
+      },
+      {
+        "name": "Diving",
+        "x": 7.82,
+        "y": 7.29
+      },
+      {
+        "name": "Diving Corridor",
+        "x": 7.78,
+        "y": 10.42
+      },
+      {
+        "name": "Docks Bridge",
+        "x": 13.53,
+        "y": -3.03
+      },
+      {
+        "name": "Forklift",
+        "x": 4.77,
+        "y": 23
+      },
+      {
+        "name": "Forklift",
+        "x": 4.78,
+        "y": 8.25
+      },
+      {
+        "name": "Garage",
+        "x": 20.29,
+        "y": 11.46
+      },
+      {
+        "name": "Kayaks",
+        "x": 7.74,
+        "y": 14.83
+      },
+      {
+        "name": "Lawn",
+        "x": 9.92,
+        "y": 31.5
+      },
+      {
+        "name": "Lawn Entrance",
+        "x": 9.1,
+        "y": 23.65
+      },
+      {
+        "name": "Lawn Stairs",
+        "x": 6.58,
+        "y": 26.32
+      },
+      {
+        "name": "Lock Gate",
+        "x": -2.7,
+        "y": 3.98
+      },
+      {
+        "name": "Lock Gate",
+        "x": 2.74,
+        "y": 19.24
+      },
+      {
+        "name": "Lock Gate Tunnel",
+        "x": -0.61,
+        "y": -3.61
+      },
+      {
+        "name": "Lock Gate Tunnel",
+        "x": 0.32,
+        "y": 27.9
+      },
+      {
+        "name": "Locker",
+        "x": 12.27,
+        "y": 14.71
+      },
+      {
+        "name": "Middle",
+        "x": 15.7,
+        "y": 32.6
+      },
+      {
+        "name": "Middle",
+        "x": 15.87,
+        "y": 14.58
+      },
+      {
+        "name": "Parking",
+        "x": 21.5,
+        "y": 34.57
+      },
+      {
+        "name": "Parking Entrance",
+        "x": 21.95,
+        "y": 24.95
+      },
+      {
+        "name": "Pipes",
+        "x": 7.1,
+        "y": 23.62
+      },
+      {
+        "name": "Red Stairs",
+        "x": 21.25,
+        "y": 20.34
+      },
+      {
+        "name": "Shower",
+        "x": 13.51,
+        "y": 21.22
+      },
+      {
+        "name": "Supply",
+        "x": 7.9,
+        "y": 20.31
+      },
+      {
+        "name": "White Stairs",
+        "x": 11.53,
+        "y": 18.54
+      },
+      {
+        "name": "Yellow Stairs",
+        "x": 6.31,
+        "y": 4.47
+      }
+    ],
+    "floor-2": [
+      {
+        "name": "2",
+        "x": 14.48,
+        "y": 10.66
+      },
+      {
+        "name": "2A",
+        "x": 13.84,
+        "y": 10.66
+      },
+      {
+        "name": "2B",
+        "x": 13.85,
+        "y": 10.66
+      },
+      {
+        "name": "3",
+        "x": 14.48,
+        "y": 10.66
+      },
+      {
+        "name": "3A",
+        "x": 13.84,
+        "y": 10.66
+      },
+      {
+        "name": "3B",
+        "x": 13.85,
+        "y": 10.66
+      },
+      {
+        "name": "Archives",
+        "x": 8.04,
+        "y": 23.31
+      },
+      {
+        "name": "Blue Stairs",
+        "x": 12.37,
+        "y": 4.38
+      },
+      {
+        "name": "Bridge",
+        "x": 15.81,
+        "y": 20.73
+      },
+      {
+        "name": "Construction",
+        "x": 29.71,
+        "y": 16.02
+      },
+      {
+        "name": "Construction",
+        "x": 39.28,
+        "y": 15.47
+      },
+      {
+        "name": "Construction",
+        "x": 29.54,
+        "y": 1.61
+      },
+      {
+        "name": "Construction Entrance",
+        "x": 26.34,
+        "y": 14.48
+      },
+      {
+        "name": "Construction Stairs",
+        "x": 28.42,
+        "y": 13.26
+      },
+      {
+        "name": "Containers",
+        "x": 21.09,
+        "y": 0.56
+      },
+      {
+        "name": "Containers",
+        "x": 6.81,
+        "y": -0.61
+      },
+      {
+        "name": "Docks Bridge",
+        "x": 13.53,
+        "y": -3.03
+      },
+      {
+        "name": "Forklift",
+        "x": 4.77,
+        "y": 23
+      },
+      {
+        "name": "Forklift",
+        "x": 4.78,
+        "y": 8.25
+      },
+      {
+        "name": "Green Stairs",
+        "x": 27.44,
+        "y": 12.97
+      },
+      {
+        "name": "Gym",
+        "x": 12.36,
+        "y": 13.72
+      },
+      {
+        "name": "Kitchen",
+        "x": 24.7,
+        "y": 11.48
+      },
+      {
+        "name": "Lawn",
+        "x": 9.92,
+        "y": 31.5
+      },
+      {
+        "name": "Lawn Stairs",
+        "x": 6.58,
+        "y": 26.32
+      },
+      {
+        "name": "Lock Gate",
+        "x": -2.7,
+        "y": 3.98
+      },
+      {
+        "name": "Lock Gate",
+        "x": 2.74,
+        "y": 19.24
+      },
+      {
+        "name": "Lock Gate Tunnel",
+        "x": -0.61,
+        "y": -3.61
+      },
+      {
+        "name": "Lock Gate Tunnel",
+        "x": 0.32,
+        "y": 27.9
+      },
+      {
+        "name": "Lounge",
+        "x": 12.21,
+        "y": 10.04
+      },
+      {
+        "name": "Map",
+        "x": 22.07,
+        "y": 9.28
+      },
+      {
+        "name": "Map Corridor",
+        "x": 23.2,
+        "y": 16.81
+      },
+      {
+        "name": "Meeting",
+        "x": 8.28,
+        "y": 18.31
+      },
+      {
+        "name": "Meeting Hallway",
+        "x": 11.22,
+        "y": 18.34
+      },
+      {
+        "name": "Middle",
+        "x": 15.7,
+        "y": 32.6
+      },
+      {
+        "name": "Middle",
+        "x": 15.87,
+        "y": 14.58
+      },
+      {
+        "name": "Model",
+        "x": 19.32,
+        "y": 20.83
+      },
+      {
+        "name": "Museum",
+        "x": 25,
+        "y": 19.39
+      },
+      {
+        "name": "Parking",
+        "x": 21.5,
+        "y": 34.57
+      },
+      {
+        "name": "Parking Entrance",
+        "x": 21.95,
+        "y": 24.95
+      },
+      {
+        "name": "Projector",
+        "x": 18.6,
+        "y": 9
+      },
+      {
+        "name": "Radio",
+        "x": 7.53,
+        "y": 10.32
+      },
+      {
+        "name": "Radio Hallway",
+        "x": 10.09,
+        "y": 10.08
+      },
+      {
+        "name": "Reception",
+        "x": 11.77,
+        "y": 23.86
+      },
+      {
+        "name": "Red Stairs",
+        "x": 21.58,
+        "y": 20.43
+      },
+      {
+        "name": "Security",
+        "x": 18.74,
+        "y": 15.96
+      },
+      {
+        "name": "White Stairs",
+        "x": 12.21,
+        "y": 17.12
+      },
+      {
+        "name": "Yellow Stairs",
+        "x": 6.36,
+        "y": 4.31
+      }
+    ],
+    "floor-3": [
+      {
+        "name": "&quot;L&quot;",
+        "x": 25.78,
+        "y": 20.11
+      },
+      {
+        "name": "1A",
+        "x": 13.84,
+        "y": 10.66
+      },
+      {
+        "name": "1B",
+        "x": 13.85,
+        "y": 10.66
+      },
+      {
+        "name": "4",
+        "x": 14.48,
+        "y": 10.66
+      },
+      {
+        "name": "Blue Stairs",
+        "x": 12.46,
+        "y": 4.37
+      },
+      {
+        "name": "Bridge Roof",
+        "x": 15.63,
+        "y": 20.79
+      },
+      {
+        "name": "Construction",
+        "x": 29.71,
+        "y": 16.02
+      },
+      {
+        "name": "Construction",
+        "x": 39.28,
+        "y": 15.47
+      },
+      {
+        "name": "Construction",
+        "x": 29.54,
+        "y": 1.61
+      },
+      {
+        "name": "Containers",
+        "x": 21.09,
+        "y": 0.56
+      },
+      {
+        "name": "Containers",
+        "x": 6.81,
+        "y": -0.61
+      },
+      {
+        "name": "Control",
+        "x": 19.91,
+        "y": 9.02
+      },
+      {
+        "name": "Docks Bridge",
+        "x": 13.53,
+        "y": -3.03
+      },
+      {
+        "name": "Forklift",
+        "x": 4.77,
+        "y": 23
+      },
+      {
+        "name": "Forklift",
+        "x": 4.78,
+        "y": 8.25
+      },
+      {
+        "name": "Green Stairs",
+        "x": 27.58,
+        "y": 12.04
+      },
+      {
+        "name": "Lawn",
+        "x": 9.92,
+        "y": 31.5
+      },
+      {
+        "name": "Lawn Stairs",
+        "x": 6.58,
+        "y": 26.32
+      },
+      {
+        "name": "Lock Gate",
+        "x": -2.7,
+        "y": 3.98
+      },
+      {
+        "name": "Lock Gate",
+        "x": 2.74,
+        "y": 19.24
+      },
+      {
+        "name": "Lock Gate Tunnel",
+        "x": -0.61,
+        "y": -3.61
+      },
+      {
+        "name": "Lock Gate Tunnel",
+        "x": 0.32,
+        "y": 27.9
+      },
+      {
+        "name": "Middle",
+        "x": 150.74,
+        "y": 132.48
+      },
+      {
+        "name": "Middle",
+        "x": 15.87,
+        "y": 14.58
+      },
+      {
+        "name": "Parking",
+        "x": 21.5,
+        "y": 34.57
+      },
+      {
+        "name": "Parking Entrance",
+        "x": 21.95,
+        "y": 24.95
+      },
+      {
+        "name": "Printer",
+        "x": 12.44,
+        "y": 8.5
+      },
+      {
+        "name": "Radar",
+        "x": 19.75,
+        "y": 15.12
+      },
+      {
+        "name": "Radar Corridor",
+        "x": 23.52,
+        "y": 17.02
+      },
+      {
+        "name": "Red Stairs",
+        "x": 22.14,
+        "y": 20.63
+      },
+      {
+        "name": "Renovations",
+        "x": 18.88,
+        "y": 18.46
+      },
+      {
+        "name": "Renovations Balcony",
+        "x": 18.59,
+        "y": 21.83
+      },
+      {
+        "name": "Roof Entrance",
+        "x": 21.21,
+        "y": 19.43
+      },
+      {
+        "name": "Server",
+        "x": 23.92,
+        "y": 11.93
+      },
+      {
+        "name": "Server Corridor",
+        "x": 26.73,
+        "y": 13.67
+      },
+      {
+        "name": "Upper Bridge",
+        "x": 15.23,
+        "y": 7.06
+      },
+      {
+        "name": "West Roof",
+        "x": 8.81,
+        "y": 20.67
+      },
+      {
+        "name": "West Roof",
+        "x": 9.07,
+        "y": 10.22
+      },
+      {
+        "name": "White Stairs",
+        "x": 11.32,
+        "y": 17.27
+      }
+    ],
+    "floor-4": [
+      {
+        "name": "&quot;L&quot;",
+        "x": 25.73,
+        "y": 20
+      },
+      {
+        "name": "Bridge Roof",
+        "x": 15.54,
+        "y": 20.89
+      },
+      {
+        "name": "Construction",
+        "x": 29.71,
+        "y": 16.02
+      },
+      {
+        "name": "Construction",
+        "x": 39.28,
+        "y": 15.47
+      },
+      {
+        "name": "Construction",
+        "x": 29.54,
+        "y": 1.61
+      },
+      {
+        "name": "Containers",
+        "x": 21.09,
+        "y": 0.56
+      },
+      {
+        "name": "Containers",
+        "x": 6.81,
+        "y": -0.61
+      },
+      {
+        "name": "Docks Bridge",
+        "x": 13.53,
+        "y": -3.03
+      },
+      {
+        "name": "East Roof",
+        "x": 22.51,
+        "y": 14.1
+      },
+      {
+        "name": "Forklift",
+        "x": 4.77,
+        "y": 23
+      },
+      {
+        "name": "Forklift",
+        "x": 4.78,
+        "y": 8.25
+      },
+      {
+        "name": "Lawn",
+        "x": 9.92,
+        "y": 31.5
+      },
+      {
+        "name": "Lawn Stairs",
+        "x": 6.58,
+        "y": 26.32
+      },
+      {
+        "name": "Lock Gate",
+        "x": -2.7,
+        "y": 3.98
+      },
+      {
+        "name": "Lock Gate",
+        "x": 2.74,
+        "y": 19.24
+      },
+      {
+        "name": "Lock Gate Tunnel",
+        "x": -0.61,
+        "y": -3.61
+      },
+      {
+        "name": "Lock Gate Tunnel",
+        "x": 0.32,
+        "y": 27.9
+      },
+      {
+        "name": "Middle",
+        "x": 15.7,
+        "y": 32.6
+      },
+      {
+        "name": "Middle",
+        "x": 15.87,
+        "y": 14.58
+      },
+      {
+        "name": "Parking",
+        "x": 21.5,
+        "y": 34.57
+      },
+      {
+        "name": "Parking Entrance",
+        "x": 21.95,
+        "y": 24.95
+      },
+      {
+        "name": "Renovations Balcony",
+        "x": 18.4,
+        "y": 21.74
+      },
+      {
+        "name": "Upper Bridge Roof",
+        "x": 14.91,
+        "y": 6.21
+      },
+      {
+        "name": "West Roof",
+        "x": 10.06,
+        "y": 11.79
+      },
+      {
+        "name": "West Roof",
+        "x": 8.48,
+        "y": 20.46
+      }
+    ]
+  },
+  "outback": {
+    "floor-1": [
+      {
+        "name": "3",
+        "x": 16.25,
+        "y": 11.96
+      },
+      {
+        "name": "3A",
+        "x": 15.53,
+        "y": 11.96
+      },
+      {
+        "name": "3B",
+        "x": 15.54,
+        "y": 11.96
+      },
+      {
+        "name": "4",
+        "x": 16.25,
+        "y": 11.96
+      },
+      {
+        "name": "4A",
+        "x": 15.53,
+        "y": 11.96
+      },
+      {
+        "name": "4B",
+        "x": 15.54,
+        "y": 11.96
+      },
+      {
+        "name": "Balcony Stairs",
+        "x": 70.71,
+        "y": 68.26
+      },
+      {
+        "name": "Bathroom",
+        "x": 74.4,
+        "y": 63.71
+      },
+      {
+        "name": "Bike",
+        "x": 81.13,
+        "y": 81.8
+      },
+      {
+        "name": "Closet",
+        "x": 77.9,
+        "y": 65.12
+      },
+      {
+        "name": "Garage",
+        "x": 82.21,
+        "y": 85.23
+      },
+      {
+        "name": "Garage Stairs",
+        "x": 79.44,
+        "y": 82.66
+      },
+      {
+        "name": "Golf",
+        "x": 74.06,
+        "y": 60.37
+      },
+      {
+        "name": "Green",
+        "x": 76.11,
+        "y": 67.28
+      },
+      {
+        "name": "Kitchen",
+        "x": 79.32,
+        "y": 74.38
+      },
+      {
+        "name": "Kitchen Hallway",
+        "x": 79.49,
+        "y": 68.73
+      },
+      {
+        "name": "Loading",
+        "x": 79.7,
+        "y": 65.93
+      },
+      {
+        "name": "Lobby",
+        "x": 84.13,
+        "y": 70.66
+      },
+      {
+        "name": "Lounge Balcony",
+        "x": 85.52,
+        "y": 80.57
+      },
+      {
+        "name": "Motel Parking",
+        "x": 76.27,
+        "y": 85.43
+      },
+      {
+        "name": "Motel Parking",
+        "x": 72.73,
+        "y": 79.38
+      },
+      {
+        "name": "Parking Stairs",
+        "x": 167.99,
+        "y": 148.23
+      },
+      {
+        "name": "Picnic",
+        "x": 80.35,
+        "y": 60.79
+      },
+      {
+        "name": "Pumps",
+        "x": 80.33,
+        "y": 94.41
+      },
+      {
+        "name": "Reception",
+        "x": 77.52,
+        "y": 74.73
+      },
+      {
+        "name": "Red",
+        "x": 73.71,
+        "y": 66.64
+      },
+      {
+        "name": "Reptile",
+        "x": 75.09,
+        "y": 72.61
+      },
+      {
+        "name": "Reptile",
+        "x": 77.85,
+        "y": 68.63
+      },
+      {
+        "name": "Restaurant",
+        "x": 81.87,
+        "y": 73.54
+      },
+      {
+        "name": "Restaurant",
+        "x": 81.88,
+        "y": 68.21
+      },
+      {
+        "name": "Restaurant Entrance",
+        "x": 85.69,
+        "y": 71.11
+      },
+      {
+        "name": "Restaurant Parking",
+        "x": 87.48,
+        "y": 81.36
+      },
+      {
+        "name": "Restaurant Parking",
+        "x": 87.54,
+        "y": 71.45
+      },
+      {
+        "name": "Shark Stairs",
+        "x": 82.32,
+        "y": 64.92
+      },
+      {
+        "name": "Shop",
+        "x": 82.05,
+        "y": 76.84
+      },
+      {
+        "name": "Terrace Stairs",
+        "x": 79.93,
+        "y": 63.5
+      },
+      {
+        "name": "Waiting",
+        "x": 84.14,
+        "y": 79.32
+      },
+      {
+        "name": "Yellow",
+        "x": 72.12,
+        "y": 67.69
+      },
+      {
+        "name": "Yellow Stairs",
+        "x": 71.6,
+        "y": 67.02
+      }
+    ],
+    "floor-2": [
+      {
+        "name": "1",
+        "x": 16.25,
+        "y": 11.96
+      },
+      {
+        "name": "1A",
+        "x": 15.53,
+        "y": 11.96
+      },
+      {
+        "name": "1B",
+        "x": 15.54,
+        "y": 11.96
+      },
+      {
+        "name": "2",
+        "x": 16.25,
+        "y": 11.96
+      },
+      {
+        "name": "2A",
+        "x": 15.53,
+        "y": 11.96
+      },
+      {
+        "name": "2B",
+        "x": 15.54,
+        "y": 11.96
+      },
+      {
+        "name": "Balcony Stairs",
+        "x": 70.44,
+        "y": 68.85
+      },
+      {
+        "name": "Bull",
+        "x": 80.07,
+        "y": 73.95
+      },
+      {
+        "name": "Connector",
+        "x": 76.28,
+        "y": 69
+      },
+      {
+        "name": "Dorms",
+        "x": 72.19,
+        "y": 69.63
+      },
+      {
+        "name": "Gaming",
+        "x": 78.36,
+        "y": 70.75
+      },
+      {
+        "name": "Garage",
+        "x": 82.17,
+        "y": 85.34
+      },
+      {
+        "name": "Garage Balcony",
+        "x": 78.3,
+        "y": 79.33
+      },
+      {
+        "name": "Garage Stairs",
+        "x": 79.31,
+        "y": 79.94
+      },
+      {
+        "name": "Golf",
+        "x": 74.06,
+        "y": 60.37
+      },
+      {
+        "name": "Laundry",
+        "x": 74.6,
+        "y": 68.14
+      },
+      {
+        "name": "Lounge",
+        "x": 81.39,
+        "y": 81.74
+      },
+      {
+        "name": "Lounge Balcony",
+        "x": 85.52,
+        "y": 80.57
+      },
+      {
+        "name": "Motel Balcony",
+        "x": 73.38,
+        "y": 72.7
+      },
+      {
+        "name": "Motel Balcony",
+        "x": 70.29,
+        "y": 72.14
+      },
+      {
+        "name": "Motel Hallway",
+        "x": 73.72,
+        "y": 64.29
+      },
+      {
+        "name": "Motel Parking",
+        "x": 76.27,
+        "y": 85.43
+      },
+      {
+        "name": "Motel Parking",
+        "x": 72.73,
+        "y": 79.38
+      },
+      {
+        "name": "Office",
+        "x": 81.79,
+        "y": 78.2
+      },
+      {
+        "name": "Parking Stairs",
+        "x": 167.99,
+        "y": 148.23
+      },
+      {
+        "name": "Party",
+        "x": 82.31,
+        "y": 74.88
+      },
+      {
+        "name": "Party Hallway",
+        "x": 81.69,
+        "y": 70.74
+      },
+      {
+        "name": "Piano",
+        "x": 77.53,
+        "y": 65.76
+      },
+      {
+        "name": "Picnic",
+        "x": 80.35,
+        "y": 60.79
+      },
+      {
+        "name": "Pumps",
+        "x": 80.33,
+        "y": 94.41
+      },
+      {
+        "name": "Restaurant Parking",
+        "x": 87.48,
+        "y": 81.36
+      },
+      {
+        "name": "Restaurant Parking",
+        "x": 87.54,
+        "y": 71.45
+      },
+      {
+        "name": "Shark",
+        "x": 81.5,
+        "y": 67.47
+      },
+      {
+        "name": "Shark Stairs",
+        "x": 82.12,
+        "y": 65.03
+      },
+      {
+        "name": "Showers",
+        "x": 74.99,
+        "y": 70.17
+      },
+      {
+        "name": "Supplies",
+        "x": 84.32,
+        "y": 77.94
+      },
+      {
+        "name": "Terrace",
+        "x": 79.73,
+        "y": 66.3
+      },
+      {
+        "name": "Terrace Stairs",
+        "x": 79.92,
+        "y": 63.6
+      },
+      {
+        "name": "Yellow Stairs",
+        "x": 71.19,
+        "y": 63.92
+      }
+    ],
+    "floor-3": [
+      {
+        "name": "Garage Roof",
+        "x": 81.21,
+        "y": 82.07
+      },
+      {
+        "name": "Golf",
+        "x": 74.06,
+        "y": 60.37
+      },
+      {
+        "name": "Lounge Balcony",
+        "x": 85.52,
+        "y": 80.57
+      },
+      {
+        "name": "Motel Parking",
+        "x": 76.27,
+        "y": 85.43
+      },
+      {
+        "name": "Motel Parking",
+        "x": 72.73,
+        "y": 79.38
+      },
+      {
+        "name": "Motel Roof",
+        "x": 73.85,
+        "y": 67.54
+      },
+      {
+        "name": "Parking Stairs",
+        "x": 167.99,
+        "y": 148.23
+      },
+      {
+        "name": "Picnic",
+        "x": 80.35,
+        "y": 60.79
+      },
+      {
+        "name": "Pumps",
+        "x": 80.33,
+        "y": 94.41
+      },
+      {
+        "name": "Restaurant Parking",
+        "x": 87.48,
+        "y": 81.36
+      },
+      {
+        "name": "Restaurant Parking",
+        "x": 87.54,
+        "y": 71.45
+      },
+      {
+        "name": "Restaurant Roof",
+        "x": 82.3,
+        "y": 68.68
+      }
+    ]
+  },
+  "themepark": {
+    "floor-1": [
+      {
+        "name": "3",
+        "x": 11.62,
+        "y": 8.56
+      },
+      {
+        "name": "3A",
+        "x": 11.1,
+        "y": 8.56
+      },
+      {
+        "name": "3B",
+        "x": 11.11,
+        "y": 8.56
+      },
+      {
+        "name": "4",
+        "x": 11.62,
+        "y": 8.56
+      },
+      {
+        "name": "4A",
+        "x": 11.1,
+        "y": 8.56
+      },
+      {
+        "name": "4B",
+        "x": 11.11,
+        "y": 8.56
+      },
+      {
+        "name": "Alley",
+        "x": 37.96,
+        "y": 24.22
+      },
+      {
+        "name": "Alley",
+        "x": 47.2,
+        "y": 27.54
+      },
+      {
+        "name": "Arcade",
+        "x": 33.71,
+        "y": 45.02
+      },
+      {
+        "name": "Arcade",
+        "x": 32.01,
+        "y": 40.66
+      },
+      {
+        "name": "Armory",
+        "x": 40.26,
+        "y": 38.79
+      },
+      {
+        "name": "Barrel",
+        "x": 36.36,
+        "y": 44.64
+      },
+      {
+        "name": "Blue",
+        "x": 38.57,
+        "y": 41
+      },
+      {
+        "name": "Castle",
+        "x": 48.21,
+        "y": 30.64
+      },
+      {
+        "name": "Castle",
+        "x": 48.87,
+        "y": 48.04
+      },
+      {
+        "name": "Castle",
+        "x": 43.41,
+        "y": 52.92
+      },
+      {
+        "name": "Dragon",
+        "x": 42.75,
+        "y": 41.49
+      },
+      {
+        "name": "Dragon Stairs",
+        "x": 43.29,
+        "y": 44.47
+      },
+      {
+        "name": "Drug",
+        "x": 33.9,
+        "y": 32.4
+      },
+      {
+        "name": "Gong",
+        "x": 44.8,
+        "y": 37.06
+      },
+      {
+        "name": "Guest",
+        "x": 30.35,
+        "y": 49.57
+      },
+      {
+        "name": "Lab",
+        "x": 34.72,
+        "y": 37.1
+      },
+      {
+        "name": "Lab Corridor",
+        "x": 34.86,
+        "y": 40.36
+      },
+      {
+        "name": "Locker",
+        "x": 41.64,
+        "y": 30.97
+      },
+      {
+        "name": "Locker Corridor",
+        "x": 39.99,
+        "y": 33.56
+      },
+      {
+        "name": "Maintenance",
+        "x": 43.46,
+        "y": 47.24
+      },
+      {
+        "name": "Oven",
+        "x": 38.92,
+        "y": 36.94
+      },
+      {
+        "name": "Palms",
+        "x": 37.66,
+        "y": 55.49
+      },
+      {
+        "name": "Red Corridor",
+        "x": 42.81,
+        "y": 38.27
+      },
+      {
+        "name": "Robot",
+        "x": 45.53,
+        "y": 62.22
+      },
+      {
+        "name": "Service",
+        "x": 53.18,
+        "y": 35.89
+      },
+      {
+        "name": "Sweet",
+        "x": 29.88,
+        "y": 35.25
+      },
+      {
+        "name": "Tellers",
+        "x": 44.45,
+        "y": 33.58
+      },
+      {
+        "name": "Throne",
+        "x": 39.91,
+        "y": 44.25
+      },
+      {
+        "name": "Toilet",
+        "x": 36.6,
+        "y": 31.22
+      },
+      {
+        "name": "Toilet Corridor",
+        "x": 37.84,
+        "y": 37.98
+      },
+      {
+        "name": "Village",
+        "x": 24.61,
+        "y": 35.8
+      },
+      {
+        "name": "Yellow Stairs",
+        "x": 40.03,
+        "y": 32.18
+      }
+    ],
+    "floor-2": [
+      {
+        "name": "1",
+        "x": 11.62,
+        "y": 8.56
+      },
+      {
+        "name": "1A",
+        "x": 11.1,
+        "y": 8.56
+      },
+      {
+        "name": "1B",
+        "x": 11.11,
+        "y": 8.56
+      },
+      {
+        "name": "2",
+        "x": 11.62,
+        "y": 8.56
+      },
+      {
+        "name": "2A",
+        "x": 11.1,
+        "y": 8.56
+      },
+      {
+        "name": "2B",
+        "x": 11.11,
+        "y": 8.56
+      },
+      {
+        "name": "Alley",
+        "x": 37.96,
+        "y": 24.22
+      },
+      {
+        "name": "Alley",
+        "x": 47.2,
+        "y": 27.54
+      },
+      {
+        "name": "Arcade Balcony",
+        "x": 35.57,
+        "y": 46
+      },
+      {
+        "name": "Arcade Stairs",
+        "x": 32.2,
+        "y": 39.68
+      },
+      {
+        "name": "Bar",
+        "x": 41.01,
+        "y": 36.49
+      },
+      {
+        "name": "Bunk",
+        "x": 37.08,
+        "y": 43.68
+      },
+      {
+        "name": "Cafe",
+        "x": 36.69,
+        "y": 32.51
+      },
+      {
+        "name": "Cafe Corridor",
+        "x": 36.19,
+        "y": 35.69
+      },
+      {
+        "name": "Cash",
+        "x": 45.26,
+        "y": 35.36
+      },
+      {
+        "name": "Cash Balcony",
+        "x": 47.83,
+        "y": 38.4
+      },
+      {
+        "name": "Cash Corridor",
+        "x": 43.9,
+        "y": 38.65
+      },
+      {
+        "name": "Castle",
+        "x": 48.21,
+        "y": 30.64
+      },
+      {
+        "name": "Castle",
+        "x": 48.87,
+        "y": 48.04
+      },
+      {
+        "name": "Castle",
+        "x": 43.41,
+        "y": 52.92
+      },
+      {
+        "name": "Control",
+        "x": 44.64,
+        "y": 47.4
+      },
+      {
+        "name": "Day Care",
+        "x": 36.89,
+        "y": 40.66
+      },
+      {
+        "name": "Dragon",
+        "x": 45.06,
+        "y": 43.02
+      },
+      {
+        "name": "Dragon Stairs",
+        "x": 43.67,
+        "y": 44.35
+      },
+      {
+        "name": "Dragon Top",
+        "x": 46.39,
+        "y": 43.47
+      },
+      {
+        "name": "Guest",
+        "x": 30.35,
+        "y": 49.57
+      },
+      {
+        "name": "Initiation",
+        "x": 40.91,
+        "y": 42.73
+      },
+      {
+        "name": "Kitchen",
+        "x": 37.58,
+        "y": 47.64
+      },
+      {
+        "name": "Office",
+        "x": 41.7,
+        "y": 33.97
+      },
+      {
+        "name": "Palms",
+        "x": 37.66,
+        "y": 55.49
+      },
+      {
+        "name": "Robot",
+        "x": 45.53,
+        "y": 62.22
+      },
+      {
+        "name": "Service",
+        "x": 53.18,
+        "y": 35.89
+      },
+      {
+        "name": "Showers",
+        "x": 43.46,
+        "y": 33.68
+      },
+      {
+        "name": "Sweet",
+        "x": 29.88,
+        "y": 35.25
+      },
+      {
+        "name": "Terrace",
+        "x": 33.02,
+        "y": 32.11
+      },
+      {
+        "name": "Top Arcade",
+        "x": 34.37,
+        "y": 37.48
+      },
+      {
+        "name": "Vault",
+        "x": 41.17,
+        "y": 31.12
+      },
+      {
+        "name": "Village",
+        "x": 24.61,
+        "y": 35.8
+      },
+      {
+        "name": "Waiting",
+        "x": 40.97,
+        "y": 40.15
+      },
+      {
+        "name": "Yellow",
+        "x": 38.96,
+        "y": 38.12
+      },
+      {
+        "name": "Yellow",
+        "x": 38.9,
+        "y": 32.32
+      },
+      {
+        "name": "Yellow Balcony",
+        "x": 38.8,
+        "y": 30.22
+      }
+    ],
+    "floor-3": [
+      {
+        "name": "Alley",
+        "x": 37.96,
+        "y": 24.22
+      },
+      {
+        "name": "Alley",
+        "x": 47.2,
+        "y": 27.54
+      },
+      {
+        "name": "Castle",
+        "x": 48.87,
+        "y": 48.04
+      },
+      {
+        "name": "Castle",
+        "x": 43.41,
+        "y": 52.92
+      },
+      {
+        "name": "Control Hatch",
+        "x": 44.92,
+        "y": 45.35
+      },
+      {
+        "name": "Guest",
+        "x": 30.35,
+        "y": 49.57
+      },
+      {
+        "name": "Palms",
+        "x": 37.66,
+        "y": 55.49
+      },
+      {
+        "name": "Robot",
+        "x": 45.53,
+        "y": 62.22
+      },
+      {
+        "name": "Roof",
+        "x": 45.38,
+        "y": 40.02
+      },
+      {
+        "name": "Roof",
+        "x": 36.28,
+        "y": 39.45
+      },
+      {
+        "name": "Service",
+        "x": 53.18,
+        "y": 35.89
+      },
+      {
+        "name": "Sweet",
+        "x": 29.88,
+        "y": 35.25
+      },
+      {
+        "name": "Village",
+        "x": 24.61,
+        "y": 35.8
+      },
+      {
+        "name": "Yellow Hatch",
+        "x": 37.96,
+        "y": 36.93
+      }
+    ]
+  }
+}

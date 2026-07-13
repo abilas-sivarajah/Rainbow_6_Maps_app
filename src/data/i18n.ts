@@ -379,6 +379,21 @@ export const UI_TRANSLATIONS = {
     en: "Exit fullscreen",
     fr: "Quitter le plein écran"
   },
+  "maps.searchRoomsPlaceholder": {
+    de: "Raum suchen...",
+    en: "Search room...",
+    fr: "Rechercher une pièce..."
+  },
+  "maps.noRoomsFound": {
+    de: "Keine Räume gefunden.",
+    en: "No rooms found.",
+    fr: "Aucune pièce trouvée."
+  },
+  "maps.roomsTitle": {
+    de: "Räume",
+    en: "Rooms",
+    fr: "Pièces"
+  },
   "maps.floorGround": {
     de: "Erdgeschoss",
     en: "Ground Floor",
