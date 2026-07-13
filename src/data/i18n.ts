@@ -20,6 +20,11 @@ export const UI_TRANSLATIONS = {
     en: "Compare",
     fr: "Comparer"
   },
+  "nav.menu": {
+    de: "Menü",
+    en: "Menu",
+    fr: "Menu"
+  },
   "compare.title": {
     de: "Operator-Vergleich",
     en: "Operator comparison",
