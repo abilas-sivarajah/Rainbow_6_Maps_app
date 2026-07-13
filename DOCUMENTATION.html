@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>R6 Codex – Technische Dokumentation</title>
+  <!-- Google Fonts: Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #090d16;
+      --surface: #101626;
+      --surface-2: #192135;
+      --border: #263352;
+      --accent: #2e75ff;
+      --accent-glow: rgba(46, 117, 255, 0.15);
+      --accent-cyan: #00f0ff;
+      --accent-cyan-glow: rgba(0, 240, 255, 0.15);
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --success: #10b981;
+      --code-bg: #0c101d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Layout */
+    .layout-container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 320px;
+      background-color: var(--surface);
+      border-right: 1px solid var(--border);
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      padding: 2.5rem 1.5rem;
+      overflow-y: auto;
+      z-index: 10;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .brand-icon {
+      background-color: var(--accent);
+      color: var(--bg);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 900;
+      font-size: 1.25rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+
+    .brand-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-tag {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      display: block;
+      margin-top: 0.1rem;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .nav-item a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+
+    .nav-item a:hover {
+      background-color: var(--surface-2);
+      color: var(--text);
+    }
+
+    .nav-item.active a {
+      background-color: var(--accent-glow);
+      color: var(--accent);
+      border: 1px solid var(--border);
+    }
+
+    .nav-item svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Main Content */
+    .main-content {
+      margin-left: 320px;
+      flex: 1;
+      padding: 4rem 5% 5rem 5%;
+      max-width: 1200px;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #ffffff 40%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-size: 1.85rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
+      margin-top: 4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      margin-top: 2rem;
+      color: var(--accent);
+    }
+
+    p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    /* Grid cards */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin: 2.5rem 0;
+    }
+
+    .feature-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background-color: var(--border);
+      transition: background-color 0.2s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      border-color: rgba(46, 117, 255, 0.4);
+    }
+
+    .feature-card:hover::before {
+      background-color: var(--accent);
+    }
+
+    .card-icon {
+      background-color: var(--surface-2);
+      width: 3.25rem;
+      height: 3.25rem;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 1.25rem;
+      border: 1px solid var(--border);
+      color: var(--accent);
+    }
+
+    .feature-card h3 {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+      font-size: 1.25rem;
+    }
+
+    /* Tech pills */
+    .tech-pill-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .tech-pill {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tech-pill.primary {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Math diagram block */
+    .math-visualization {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .diagram-flex {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .diagram-flex {
+        flex-direction: column;
+      }
+    }
+
+    .diagram-schema {
+      flex: 1;
+      max-width: 450px;
+    }
+
+    .math-block {
+      background-color: var(--code-bg);
+      border-radius: 8px;
+      padding: 1.25rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      border-left: 3px solid var(--accent-cyan);
+      color: #8bb2ff;
+      overflow-x: auto;
+    }
+
+    /* Code styling */
+    pre {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+    }
+
+    code {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9em;
+      background-color: var(--surface-2);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      color: #ff9e64;
+    }
+
+    pre code {
+      background-color: transparent;
+      padding: 0;
+      border-radius: 0;
+      color: #a9b1d6;
+    }
+
+    /* Alerts */
+    .alert-box {
+      background-color: var(--accent-glow);
+      border-left: 4px solid var(--accent);
+      padding: 1rem 1.5rem;
+      border-radius: 0 8px 8px 0;
+      margin: 2rem 0;
+    }
+
+    .alert-box h4 {
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+
+    .alert-box p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+    }
+
+    /* Highlight badge */
+    .highlight-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background-color: var(--accent-cyan);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+      margin-top: 5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .sidebar {
+        display: none;
+      }
+      .main-content {
+        margin-left: 0;
+        padding: 3rem 1.5rem;
+      }
+      /* Add toggle header for mobile */
+      .mobile-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--surface);
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 1.5rem;
+        position: sticky;
+        top: 0;
+        z-index: 30;
+      }
+    }
+
+    @media (min-width: 1025px) {
+      .mobile-header {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Mobile Header -->
+  <div class="mobile-header">
+    <div style="display: flex; align-items: center; gap: 0.75rem;">
+      <div class="brand-icon">R6</div>
+      <div class="brand-name">Codex <span class="brand-tag">Siege</span></div>
+    </div>
+  </div>
+
+  <div class="layout-container">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <a href="#welcome" class="brand-logo">
+        <div class="brand-icon">R6</div>
+        <div>
+          <span class="brand-name">Codex</span>
+          <span class="brand-tag">Siege Documentation</span>
+        </div>
+      </a>
+      
+      <nav>
+        <ul class="nav-list">
+          <li class="nav-item active" id="nav-welcome">
+            <a href="#welcome">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+              Willkommen
+            </a>
+          </li>
+          <li class="nav-item" id="nav-tech-stack">
+            <a href="#tech-stack">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+              Tech-Stack & Struktur
+            </a>
+          </li>
+          <li class="nav-item" id="nav-map-viewer">
+            <a href="#map-viewer">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+              </svg>
+              Interactive Map-Viewer
+            </a>
+          </li>
+          <li class="nav-item" id="nav-operators-weapons">
+            <a href="#operators-weapons">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+              Operators & Waffen
+            </a>
+          </li>
+          <li class="nav-item" id="nav-i18n-pipeline">
+            <a href="#i18n-pipeline">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 11.37 7.363 16.173 3 18" />
+              </svg>
+              Lokalisierung & Pipeline
+            </a>
+          </li>
+          <li class="nav-item" id="nav-coordinate-solver">
+            <a href="#coordinate-solver">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a2 2 0 01-2 2H3m2 0h14a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m7 5h.01" />
+              </svg>
+              SVG Coordinate Solver
+            </a>
+          </li>
+          <li class="nav-item" id="nav-dev-commands">
+            <a href="#dev-commands">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              Befehle & Dev-Guide
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content Panel -->
+    <main class="main-content">
+      
+      <!-- WELCOME -->
+      <section id="welcome">
+        <span class="highlight-badge">Version 1.2.0</span>
+        <h1>R6 Codex – Technische Dokumentation</h1>
+        <p>
+          R6 Codex ist eine hochperformante, moderne Web-Applikation zur Visualisierung und Durchsuchung von Spieldaten aus <strong>Tom Clancy's Rainbow Six Siege</strong>. 
+          Diese Dokumentation bietet Entwicklern und Benutzern einen tiefen Einblick in die Systemarchitektur, den mathematischen SVG-Parser und die Interaktionssysteme.
+        </p>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+              </svg>
+            </div>
+            <h3>Interactive Maps</h3>
+            <p style="font-size: 0.95rem; margin-bottom: 0;">18 Maps mit präziser Raumsuche, mobilem Pinch-to-Zoom und pulsierenden Ortungs-Pings.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            </div>
+            <h3>Operator & Vergleich</h3>
+            <p style="font-size: 0.95rem; margin-bottom: 0;">Umfassende Statistiken zu allen 70+ Operators mit dynamischem Side-by-Side-Vergleich.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z" />
+              </svg>
+            </div>
+            <h3>Waffen-Schadenskurven</h3>
+            <p style="font-size: 0.95rem; margin-bottom: 0;">Visualisierung des Schadensabfalls (Damage Drop-off) über Distanzdiagramme für alle 118 Waffen.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TECH STACK -->
+      <section id="tech-stack">
+        <h2>Tech-Stack & Projektstruktur</h2>
+        <p>
+          Die Applikation nutzt Next.js SSG (Static Site Generation), um extrem kurze Ladezeiten zu erzielen. 
+          Sämtliche Steckbriefe und Kartendaten werden zur Build-Zeit in statisches HTML übersetzt.
+        </p>
+
+        <div class="tech-pill-container">
+          <div class="tech-pill primary">Next.js (App Router)</div>
+          <div class="tech-pill">TypeScript</div>
+          <div class="tech-pill">Tailwind CSS</div>
+          <div class="tech-pill">Lucide Icons</div>
+          <div class="tech-pill">Sharp (Bildkompression)</div>
+          <div class="tech-pill">PWA (Offline Service Worker)</div>
+        </div>
+
+        <h3>Ordnerstruktur</h3>
+        <pre><code>src/
+  app/                    # Routen (Operators, Maps, Weapons, Compare, Search, Favs)
+  components/             # UI-Komponenten (MapFloorViewer, WeaponsBrowser, Header, etc.)
+  context/                # Context Provider (LanguageContext)
+  data/                   # Statische Datenbanken (i18n.ts, maps.ts, rooms.json)
+R6_bundle/
+  R6_complete.json        # Strukturierte Spieldatenbank (Englisch)
+  R6_complete_de.json     # Spieldatenbank (Deutsch, generiert)
+  R6_complete_fr.json     # Spieldatenbank (Französisch, generiert)
+scripts/
+  translate-db.mjs        # Lokalisierungsskript (Google Translate API)
+  render-new-maps.mjs     # WebP Renderer für Maps</code></pre>
+      </section>
+
+      <!-- MAP VIEWER -->
+      <section id="map-viewer">
+        <h2>Interactive Map-Viewer & Multi-Touch</h2>
+        <p>
+          Das Herzstück des Kartensystems ist der in <code>MapFloorViewer.tsx</code> implementierte Canvas/Image-Viewer.
+        </p>
+
+        <div class="alert-box">
+          <h4>💡 Mobiles Pinch-to-Zoom & Pan</h4>
+          <p>
+            Auf Touchscreens wird das gleichzeitige Zoomen und Verschieben über Pointer Events abgefangen. 
+            Durch die Verwendung lokaler Koordinaten relativ zum Map-Container verbleibt das Zoomzentrum stabil direkt unter den Fingern.
+          </p>
+        </div>
+
+        <h3>So funktioniert die Gesten-Berechnung</h3>
+        <p>
+          Beim Ansetzen zweier Finger (Multi-Touch) wird der Startabstand der Finger \(d_{start}\) und der Startmittelpunkt \((cx_{start}, cy_{start})\) registriert. 
+          Bewegen sich die Finger, wird der Skalierungsfaktor über das Verhältnis der aktuellen Distanz zur Startdistanz ermittelt:
+        </p>
+        <div class="math-block">
+          factor = current_distance / start_distance;<br>
+          next_scale = clamp(min_scale, start_scale * factor, max_scale);
+        </div>
+        <p style="margin-top: 1rem;">
+          Die Karte wird anschließend so verschoben (Pan), dass der Berührungspunkt auf dem Kartenbild exakt an der Position des neuen Mittelpunkts verankert bleibt:
+        </p>
+        <pre><code>t.current.scale = nextScale;
+t.current.tx = cx_current - ((cx_start - tx_start) / scale_start) * nextScale;
+t.current.ty = cy_current - ((cy_start - ty_start) / scale_start) * nextScale;</code></pre>
+      </section>
+
+      <!-- OPERATORS & WEAPONS -->
+      <section id="operators-weapons">
+        <h2>Operators & Waffen-Datenbank</h2>
+        <p>
+          Die App bietet ein durchsuchbares Register aller Operators und Waffen. Alle Loadout-Einträge sind dynamisch verknüpft.
+        </p>
+
+        <h3>Operator-Vergleich (Compare-Engine)</h3>
+        <p>
+          Unter <code>/compare</code> können zwei Operators direkt nebeneinander geladen werden. Ein Client-seitiges Skript filtert und stellt die Unterschiede in Gesundheit, Rüstung, Spezialfähigkeiten sowie Primär- und Sekundärwaffen übersichtlich dar.
+        </p>
+
+        <h3>Waffen-Schadenskurve</h3>
+        <p>
+          Für jede Waffe wird die Schadensabfallkurve (Damage Drop-off) visuell dargestellt. Ein SVG-Graph berechnet aus den Distanzwerten der Spieldaten (z. B. 0–18m voller Schaden, linearer Abfall bis 28m, danach konstanter Minimalschaden) ein flüssiges Kurven-Diagramm:
+        </p>
+        
+        <!-- Schadenskurve Mockup -->
+        <div style="background-color: var(--code-bg); border: 1px solid var(--border); padding: 1.5rem; border-radius: 8px; display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--accent);">
+            <span>SCHADEN (HP)</span>
+            <span>Waffe: L85A2 (Sturmgewehr)</span>
+          </div>
+          <svg viewBox="0 0 400 120" style="width: 100%; height: 120px; overflow: visible;">
+            <!-- Grid Lines -->
+            <line x1="10" y1="10" x2="390" y2="10" stroke="#1f293d" stroke-dasharray="3" />
+            <line x1="10" y1="60" x2="390" y2="60" stroke="#1f293d" stroke-dasharray="3" />
+            <line x1="10" y1="100" x2="390" y2="100" stroke="#1f293d" stroke-dasharray="3" />
+            
+            <!-- Curve -->
+            <path d="M 10 20 L 150 20 L 250 80 L 390 80" fill="none" stroke="#2e75ff" stroke-width="3" />
+            <circle cx="150" cy="20" r="4" fill="#00f0ff" />
+            <circle cx="250" cy="80" r="4" fill="#00f0ff" />
+            
+            <!-- Labels -->
+            <text x="10" y="115" fill="#5c6f8f" font-size="9">0m</text>
+            <text x="145" y="115" fill="#5c6f8f" font-size="9">25m</text>
+            <text x="245" y="115" fill="#5c6f8f" font-size="9">35m</text>
+            <text x="375" y="115" fill="#5c6f8f" font-size="9">50m</text>
+            
+            <text x="10" y="32" fill="#fff" font-size="10" font-weight="bold">47 dmg</text>
+            <text x="330" y="92" fill="#fff" font-size="10" font-weight="bold">32 dmg</text>
+          </svg>
+        </div>
+      </section>
+
+      <!-- I18N PIPELINE -->
+      <section id="i18n-pipeline">
+        <h2>Mehrsprachigkeit & Übersetzungs-Pipeline</h2>
+        <p>
+          R6 Codex implementiert ein nahtloses System zur Übersetzung großer Datenmengen.
+        </p>
+
+        <div class="diagram-flex">
+          <div style="flex: 1.2;">
+            <p>
+              Da Ubisoft-Spieldatenbanken meist nur auf Englisch vorliegen, übersetzt das Skript <code>translate-db.mjs</code> die gesamte Quelldatenbank <code>R6_complete.json</code> vor dem Build-Prozess.
+            </p>
+            <p>
+              <strong>Resilienz:</strong> Um Abbrüche bei Netzwerkproblemen oder API-Limits zu verhindern, nutzt das Skript ein automatisiertes Retry-Verfahren mit exponentiellem Backoff (Exponential Backoff):
+            </p>
+            <div class="math-block">
+              Wartezeit = Startzeit * 2 ^ (Versuch - 1) + Jitter
+            </div>
+          </div>
+          
+          <!-- Flowchart -->
+          <div style="flex: 0.8; background-color: var(--surface); border: 1px solid var(--border); padding: 1.5rem; border-radius: 8px; font-size: 0.85rem; display: flex; flex-direction: column; gap: 0.75rem;">
+            <div style="text-align: center; font-weight: bold; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 0.25rem;">i18n Pipeline Workflow</div>
+            <div style="background-color: var(--surface-2); padding: 0.5rem; text-align: center; border-radius: 4px;">1. Englisch (R6_complete.json) laden</div>
+            <div style="text-align: center;">⬇️</div>
+            <div style="background-color: var(--surface-2); padding: 0.5rem; text-align: center; border-radius: 4px; border: 1px solid var(--accent-cyan);">2. API-Übersetzung (DE & FR)</div>
+            <div style="text-align: center;">⬇️ <span style="font-size: 0.75rem; color: #ff9e64;">Bei Fehler: Retry mit Backoff</span></div>
+            <div style="background-color: var(--surface-2); padding: 0.5rem; text-align: center; border-radius: 4px;">3. Export: R6_complete_de.json</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COORDINATE SOLVER -->
+      <section id="coordinate-solver">
+        <h2>SVG Coordinate Solver</h2>
+        <span class="highlight-badge">Präzision & Mathematik</span>
+        <p>
+          Das Einzoomen auf Räume in Vektorgrafiken stellt eine Herausforderung dar, wenn Räume innerhalb verschachtelter, transformierter Gruppen deklariert sind.
+        </p>
+
+        <div class="math-visualization">
+          <div class="diagram-flex">
+            <div class="diagram-schema">
+              <!-- Matrix Multiplication Schema -->
+              <svg viewBox="0 0 200 140" style="width: 100%; height: 140px; overflow: visible;">
+                <!-- Parent Group -->
+                <rect x="10" y="10" width="180" height="110" rx="6" fill="none" stroke="#263352" stroke-width="2" />
+                <text x="20" y="28" fill="#5c6f8f" font-size="9" font-weight="bold">Group [Floor 0] (Scale 3.78, Translate -2473, -968)</text>
+                
+                <!-- Child Group -->
+                <rect x="25" y="40" width="150" height="65" rx="4" fill="none" stroke="#2e75ff" stroke-width="1.5" />
+                <text x="35" y="55" fill="#2e75ff" font-size="9" font-weight="bold">Text Element [Pool] (Local X: 2260, Y: 1144)</text>
+                
+                <!-- Room Position -->
+                <circle cx="100" cy="80" r="5" fill="#00f0ff" />
+                <text x="112" y="84" fill="#00f0ff" font-size="9" font-weight="bold">Ziel: 52.78%, 68.01%</text>
+              </svg>
+            </div>
+            <div style="flex: 1.2;">
+              <p>
+                Der Raumkoordinaten-Parser traversiert die XML-Struktur der SVG-Dateien und führt einen Stack (Kellerspeicher) für die Transformationsmatrizen.
+              </p>
+              <p>
+                Trifft der Parser auf eine Gruppe mit <code>transform</code>, wird diese Matrix mit der bisherigen kumulierten Matrix multipliziert. Jede Textkoordinate wird anschließend durch diese Gesamtmatrix in absolute globale Koordinaten übersetzt.
+              </p>
+            </div>
+          </div>
+
+          <div class="math-block">
+            // Matrix-Multiplikation im Parser<br>
+            a_neu = a1 * a2 + c1 * b2<br>
+            b_neu = b1 * a2 + d1 * b2<br>
+            c_neu = a1 * c2 + c1 * d2<br>
+            d_neu = b1 * c2 + d1 * d2<br>
+            e_neu = a1 * e2 + c1 * f2 + e1<br>
+            f_neu = b1 * e2 + d1 * f2 + f1
+          </div>
+        </div>
+      </section>
+
+      <!-- DEVELOPER COMMANDS -->
+      <section id="dev-commands">
+        <h2>Entwickler-Befehle & Dev-Guide</h2>
+        <p>
+          Zur Ausführung der Entwicklerwerkzeuge und Kompilierung nutzen Sie die folgenden Befehle:
+        </p>
+
+        <h3>1. Entwicklungs-Server starten</h3>
+        <pre><code>npm run dev</code></pre>
+
+        <h3>2. Spieldaten übersetzen</h3>
+        <pre><code>node scripts/translate-db.mjs</code></pre>
+
+        <h3>3. Linter ausführen</h3>
+        <pre><code>npm run lint</code></pre>
+
+        <h3>4. Production Build kompilieren</h3>
+        <pre><code>npm run build</code></pre>
+      </section>
+
+      <!-- FOOTER -->
+      <footer>
+        <p>R6 Codex &copy; 2026. Technische Dokumentation.</p>
+      </footer>
+    </main>
+
+  </div>
+
+  <script>
+    // Navigation active state styling on scroll
+    const sections = document.querySelectorAll('section');
+    const navItems = document.querySelectorAll('.nav-item');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= (sectionTop - 150)) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.id === `nav-${current}`) {
+          item.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
