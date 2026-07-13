@@ -15,6 +15,31 @@ export const UI_TRANSLATIONS = {
     en: "Weapons",
     fr: "Armes"
   },
+  "nav.compare": {
+    de: "Vergleichen",
+    en: "Compare",
+    fr: "Comparer"
+  },
+  "compare.title": {
+    de: "Operator-Vergleich",
+    en: "Operator comparison",
+    fr: "Comparaison d'opérateurs"
+  },
+  "compare.select": {
+    de: "Operator wählen…",
+    en: "Select operator…",
+    fr: "Choisir un opérateur…"
+  },
+  "compare.health": {
+    de: "Gesundheit",
+    en: "Health",
+    fr: "Santé"
+  },
+  "compare.ability": {
+    de: "Fähigkeit",
+    en: "Ability",
+    fr: "Capacité"
+  },
   "footer.text": {
     de: "R6 Codex · inoffizielle Fan-Datenbank · Rainbow Six ist eine Marke von Ubisoft",
     en: "R6 Codex · unofficial fan database · Rainbow Six is a trademark of Ubisoft",

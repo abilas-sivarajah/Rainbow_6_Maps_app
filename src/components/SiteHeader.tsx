@@ -10,6 +10,7 @@ export function SiteHeader() {
     { href: "/operators", labelKey: "nav.operators" as const },
     { href: "/maps", labelKey: "nav.maps" as const },
     { href: "/weapons", labelKey: "nav.weapons" as const },
+    { href: "/compare", labelKey: "nav.compare" as const },
   ];
 
   return (
