@@ -167,6 +167,12 @@ async function postSession(authHeader: string): Promise<SessionResponse> {
 const COOLDOWN_FILE = path.join(os.tmpdir(), 'r6-tracker-cooldown.json');
 const COOLDOWN_MS = Number(process.env.R6_LOGIN_COOLDOWN_MS ?? 20 * 60 * 1000);
 
+// Ubisoft phrases per-IP throttling a few different ways depending on the
+// endpoint; match broadly so the cooldown reliably kicks in either way.
+function isRateLimitError(message: string): boolean {
+  return /too many calls|rate limit|max sessions|too many requests/i.test(message);
+}
+
 async function getCooldownUntil(): Promise<number> {
   try {
     const raw = await fs.readFile(COOLDOWN_FILE, 'utf8');
@@ -230,7 +236,7 @@ async function resolveTickets(now: number): Promise<Tickets> {
     first = await postSession(basic); // single login; "new" key is lazy
   } catch (err) {
     // On a rate-limit, start the cooldown so we stop hammering the endpoint.
-    if (err instanceof Error && /too many calls/i.test(err.message)) {
+    if (err instanceof Error && isRateLimitError(err.message)) {
       await setCooldown(Date.now() + COOLDOWN_MS);
     }
     throw err;
@@ -262,7 +268,7 @@ function ensureNewKey(): Promise<string> {
     try {
       second = await postSession(`Ubi_v1 t=${t.key}`);
     } catch (err) {
-      if (err instanceof Error && /too many calls/i.test(err.message)) {
+      if (err instanceof Error && isRateLimitError(err.message)) {
         await setCooldown(Date.now() + COOLDOWN_MS);
       }
       throw err;
