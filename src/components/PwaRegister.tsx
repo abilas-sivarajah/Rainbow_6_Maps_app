@@ -6,7 +6,7 @@ import { useEffect } from "react";
 export function PwaRegister() {
   useEffect(() => {
     if ("serviceWorker" in navigator) {
-      let intervalId: any;
+      let intervalId: ReturnType<typeof setInterval> | undefined;
       const onLoad = () => {
         navigator.serviceWorker.register("/sw.js")
           .then((reg) => {

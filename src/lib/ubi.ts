@@ -11,6 +11,7 @@ import { promises as fs } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
+import { hasKv, kvGet, kvSet, kvSetNx, kvDel } from './kv';
 import type { BoardStats, Platform, RankInfo } from './types';
 
 const APP_ID = process.env.R6_UBI_APPID ?? 'e3d5ea9e-50bd-43b7-88bf-39794f4e3d40';
@@ -83,9 +84,19 @@ interface Tickets {
 
 let tickets: Tickets | null = null;
 
-// Persist tickets to disk so we don't re-login on every request or restart
-// (Ubisoft rate-limits logins per IP: "Too many calls per IP address").
+// Persist tickets so we don't re-login on every request or restart (Ubisoft
+// rate-limits logins per IP: "Too many calls per IP address").
+//
+// On a normal always-on server, an in-memory + on-disk cache is enough. On
+// Vercel (or any serverless host), each invocation can land in a different,
+// isolated instance with its own memory and /tmp — so a shared, external
+// cache (Upstash Redis, see ./kv) is used when configured, so ALL instances
+// reuse the SAME ticket instead of each one logging in independently.
 const TICKETS_FILE = path.join(os.tmpdir(), 'r6-tracker-tickets.json');
+const KV_TICKETS_KEY = 'r6-tracker:tickets';
+// Keep the shared copy alive a bit past the ticket's own ~2h expiry so a
+// slightly-stale-but-still-valid entry never disappears from under us.
+const KV_TICKETS_TTL_S = 3 * 3600;
 
 async function loadTicketsFromDisk(): Promise<Tickets | null> {
   try {
@@ -102,6 +113,38 @@ async function saveTicketsToDisk(t: Tickets): Promise<void> {
   } catch {
     /* best-effort cache */
   }
+}
+
+/** Load the cached tickets — shared KV store when configured, else disk. */
+async function loadCachedTickets(): Promise<Tickets | null> {
+  if (hasKv()) {
+    try {
+      const raw = await kvGet(KV_TICKETS_KEY);
+      return raw ? (JSON.parse(raw) as Tickets) : null;
+    } catch {
+      return null;
+    }
+  }
+  return loadTicketsFromDisk();
+}
+
+/** Persist tickets to the shared KV store when configured, else to disk. */
+async function saveTickets(t: Tickets): Promise<void> {
+  if (hasKv()) {
+    try {
+      await kvSet(KV_TICKETS_KEY, JSON.stringify(t), KV_TICKETS_TTL_S);
+      return;
+    } catch {
+      /* fall through to disk as a best-effort backup */
+    }
+  }
+  await saveTicketsToDisk(t);
+}
+
+async function clearCachedTickets(): Promise<void> {
+  tickets = null;
+  await fs.rm(TICKETS_FILE, { force: true }).catch(() => {});
+  if (hasKv()) await kvDel(KV_TICKETS_KEY).catch(() => {});
 }
 
 // Only the primary key is required to be valid; the "new" key is fetched
@@ -163,8 +206,12 @@ async function postSession(authHeader: string): Promise<SessionResponse> {
 }
 
 // Self-imposed login cooldown: when Ubisoft replies "Too many calls per IP",
-// stop attempting logins for a while so repeated requests don't extend the ban.
+// stop attempting logins for a while so repeated requests don't extend the
+// ban. Shared via KV when configured — otherwise this only protects a single
+// serverless instance, which is exactly the gap that causes concurrent
+// instances to each trip the rate limit independently.
 const COOLDOWN_FILE = path.join(os.tmpdir(), 'r6-tracker-cooldown.json');
+const KV_COOLDOWN_KEY = 'r6-tracker:cooldown-until';
 const COOLDOWN_MS = Number(process.env.R6_LOGIN_COOLDOWN_MS ?? 20 * 60 * 1000);
 
 // Ubisoft phrases per-IP throttling a few different ways depending on the
@@ -174,6 +221,14 @@ function isRateLimitError(message: string): boolean {
 }
 
 async function getCooldownUntil(): Promise<number> {
+  if (hasKv()) {
+    try {
+      const raw = await kvGet(KV_COOLDOWN_KEY);
+      return raw ? Number(raw) || 0 : 0;
+    } catch {
+      return 0;
+    }
+  }
   try {
     const raw = await fs.readFile(COOLDOWN_FILE, 'utf8');
     return (JSON.parse(raw) as { until?: number }).until ?? 0;
@@ -183,11 +238,42 @@ async function getCooldownUntil(): Promise<number> {
 }
 
 async function setCooldown(until: number): Promise<void> {
+  if (hasKv()) {
+    try {
+      const ttl = Math.max(1, Math.ceil((until - Date.now()) / 1000));
+      await kvSet(KV_COOLDOWN_KEY, String(until), ttl);
+      return;
+    } catch {
+      /* fall through to disk as a best-effort backup */
+    }
+  }
   try {
     await fs.writeFile(COOLDOWN_FILE, JSON.stringify({ until }), 'utf8');
   } catch {
     /* best-effort */
   }
+}
+
+// Short-lived distributed lock so that when several serverless instances
+// need a ticket at once, only one of them actually calls Ubisoft's login
+// endpoint; the rest wait briefly and reuse the ticket it publishes.
+const KV_LOGIN_LOCK_KEY = 'r6-tracker:login-lock';
+const LOCK_TTL_S = 15;
+const LOCK_WAIT_MS = 500;
+const LOCK_WAIT_ATTEMPTS = 16; // ~8s total
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+/** Poll the shared cache briefly for a ticket another instance is fetching. */
+async function waitForSharedTickets(): Promise<Tickets | null> {
+  for (let i = 0; i < LOCK_WAIT_ATTEMPTS; i++) {
+    await sleep(LOCK_WAIT_MS);
+    const cached = await loadCachedTickets();
+    if (isValid(cached, Date.now())) return cached;
+  }
+  return null;
 }
 
 let inflight: Promise<Tickets> | null = null;
@@ -205,10 +291,11 @@ function getTickets(): Promise<Tickets> {
 }
 
 async function resolveTickets(now: number): Promise<Tickets> {
-  // on-disk cache (survives restarts / dev hot-reloads)
-  const onDisk = await loadTicketsFromDisk();
-  if (isValid(onDisk, now)) {
-    tickets = onDisk;
+  // Shared cache (KV across all instances when configured, else per-instance
+  // disk — survives restarts / dev hot-reloads either way).
+  const cached = await loadCachedTickets();
+  if (isValid(cached, now)) {
+    tickets = cached;
     return tickets;
   }
 
@@ -222,9 +309,27 @@ async function resolveTickets(now: number): Promise<Tickets> {
     );
   }
 
+  // With a shared KV store, make sure only ONE instance actually logs in —
+  // everyone else waits briefly and reuses the ticket the winner publishes.
+  // This is what keeps concurrent requests (several player lookups at once,
+  // or several visitors at once) from each tripping Ubisoft's per-IP limit.
+  if (hasKv()) {
+    const gotLock = await kvSetNx(KV_LOGIN_LOCK_KEY, '1', LOCK_TTL_S).catch(() => true);
+    if (!gotLock) {
+      const shared = await waitForSharedTickets();
+      if (shared) {
+        tickets = shared;
+        return tickets;
+      }
+      // The lock holder didn't finish in time (or failed) — fall through and
+      // try ourselves rather than fail outright.
+    }
+  }
+
   const email = process.env.UBI_EMAIL;
   const password = process.env.UBI_PASSWORD;
   if (!email || !password) {
+    if (hasKv()) await kvDel(KV_LOGIN_LOCK_KEY).catch(() => {});
     throw new Error('Missing Ubisoft credentials. Set UBI_EMAIL and UBI_PASSWORD in .env.local');
   }
 
@@ -239,6 +344,7 @@ async function resolveTickets(now: number): Promise<Tickets> {
     if (err instanceof Error && isRateLimitError(err.message)) {
       await setCooldown(Date.now() + COOLDOWN_MS);
     }
+    if (hasKv()) await kvDel(KV_LOGIN_LOCK_KEY).catch(() => {});
     throw err;
   }
 
@@ -249,7 +355,8 @@ async function resolveTickets(now: number): Promise<Tickets> {
     keyExp: first.expiration ? Date.parse(first.expiration) : now + 2 * 3600 * 1000,
     newKeyExp: 0,
   };
-  await saveTicketsToDisk(tickets);
+  await saveTickets(tickets);
+  if (hasKv()) await kvDel(KV_LOGIN_LOCK_KEY).catch(() => {});
   return tickets;
 }
 
@@ -278,7 +385,7 @@ function ensureNewKey(): Promise<string> {
       ? Date.parse(second.expiration)
       : Date.now() + 2 * 3600 * 1000;
     tickets = t;
-    await saveTicketsToDisk(t);
+    await saveTickets(t);
     return t.newKey;
   })().finally(() => {
     newKeyInflight = null;
@@ -323,9 +430,9 @@ async function ubiGet<T>(
         await ensureNewKey();
         return ubiGet<T>(url, useNew, true);
       }
-      // Ticket no longer valid — drop the cached one so we re-login next time.
-      tickets = null;
-      await fs.rm(TICKETS_FILE, { force: true }).catch(() => {});
+      // Ticket no longer valid — drop the cached one (shared + local) so we
+      // re-login next time.
+      await clearCachedTickets();
     }
     throw new Error(`HTTP ${d.httpCode}: ${d.message ?? 'request failed'}`);
   }
