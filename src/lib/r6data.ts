@@ -225,6 +225,18 @@ function parseRecentMatches(seasonal: unknown): RecentMatch[] {
 }
 
 /**
+ * Temporary helper: forward arbitrary params to R6Data's /stats endpoint, so
+ * undocumented parameters (e.g. past-season filters) can be probed safely.
+ */
+export async function r6dataProbe(params: Record<string, string>): Promise<unknown> {
+  try {
+    return await r6dataGet<unknown>(params);
+  } catch (err) {
+    return { __error: err instanceof Error ? err.message : String(err) };
+  }
+}
+
+/**
  * Temporary helper: fetch the raw R6Data responses we don't yet map, so their
  * exact shapes can be inspected (avatar id, operators, seasonal history).
  */

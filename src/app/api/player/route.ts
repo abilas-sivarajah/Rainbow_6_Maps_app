@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 import { getDemoPlayer } from '@/lib/demo';
 import { getPlayerData } from '@/lib/r6';
-import { getR6DataRawDebug, hasR6DataKey } from '@/lib/r6data';
+import { getR6DataRawDebug, hasR6DataKey, r6dataProbe } from '@/lib/r6data';
 import { TRACKER_ENABLED } from '@/lib/features';
 import type { Platform } from '@/lib/types';
 
@@ -44,6 +44,21 @@ export async function GET(request: Request) {
   // Debug: raw, unmapped R6Data responses (to inspect what the API offers,
   // e.g. past-season history). Only active when an R6Data key is configured.
   if (searchParams.get('raw') === '1' && hasR6DataKey()) {
+    // With probeType, forward arbitrary extra params to R6Data (to discover
+    // undocumented filters like past-season selectors).
+    const probeType = searchParams.get('probeType');
+    if (probeType) {
+      const params: Record<string, string> = {
+        type: probeType,
+        nameOnPlatform: username,
+        platformType: platform,
+      };
+      for (const [key, value] of searchParams.entries()) {
+        if (['username', 'platform', 'raw', 'probeType'].includes(key)) continue;
+        if (value) params[key] = value;
+      }
+      return NextResponse.json(await r6dataProbe(params));
+    }
     return NextResponse.json(await getR6DataRawDebug(platform, username));
   }
 
