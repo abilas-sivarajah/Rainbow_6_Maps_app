@@ -263,7 +263,7 @@ function SeasonAccordionItem({
           </span>
           <span className="match-date">{history.region || 'Global'}</span>
         </div>
-        <div className="match-change">{history.mmr} MMR</div>
+        <div className="match-change">{history.mmr} RP</div>
         <div className="match-rank">
           {history.rank.icon ? (
             // eslint-disable-next-line @next/next/no-img-element
@@ -295,6 +295,10 @@ function SeasonAccordionItem({
             <div className="card tile">
               <div className="value">{history.matches}</div>
               <div className="label">Spiele</div>
+            </div>
+            <div className="card tile">
+              <div className="value">{history.maxRank.name}</div>
+              <div className="label">Max. Rang · {history.maxRank.mmr} RP</div>
             </div>
           </div>
         </div>

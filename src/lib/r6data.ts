@@ -13,7 +13,9 @@ import type {
   OperatorBrief,
   PlayerData,
   Platform,
+  RankInfo,
   RecentMatch,
+  SeasonRank,
 } from './types';
 
 const BASE = 'https://api.r6data.com/api';
@@ -108,6 +110,69 @@ function withRealRankIcons(board: BoardStats | null): BoardStats | null {
   board.current.icon = rankImageUrl(board.current.name) ?? board.current.icon;
   board.max.icon = rankImageUrl(board.max.name) ?? board.max.icon;
   return board;
+}
+
+// Ranked 2.0 RP thresholds: tiers start at 1000 RP and span 500 RP each,
+// divisions 100 RP each (verified against R6Data's own seasons table, e.g.
+// 2562 RP -> Gold 5, 1611 -> Bronze 4, 1359 -> Copper 2). 4500+ = Champions.
+const RP_TIERS = ['Copper', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Emerald', 'Diamond'];
+
+function rankNameFromRp(rp: number | null | undefined): string {
+  if (rp == null || rp <= 0) return 'Unranked';
+  if (rp >= 4500) return 'Champions';
+  const clamped = Math.max(rp, 1000);
+  const tier = Math.min(Math.floor((clamped - 1000) / 500), RP_TIERS.length - 1);
+  const division = 5 - Math.floor(((clamped - 1000) % 500) / 100);
+  return `${RP_TIERS[tier]} ${division}`;
+}
+
+function rankInfoFromRp(rp: number | null | undefined): RankInfo {
+  const name = rankNameFromRp(rp);
+  return { id: 0, name, mmr: rp ?? 0, icon: rankImageUrl(name) ?? '' };
+}
+
+// One "segment" of R6Data's seasonsStats/fullStats response; the ranked
+// per-season segments carry everything the seasons table shows.
+interface RawSeasonSegment {
+  type?: string;
+  attributes?: { season?: number; gamemode?: string };
+  metadata?: { name?: string; shortName?: string; color?: string };
+  stats?: Record<string, { value?: number | null } | undefined>;
+}
+
+/** Map seasonsStats segments to the per-season history the UI renders. */
+function parseSeasonHistory(res: unknown): SeasonRank[] {
+  const segments =
+    (res as { data?: { segments?: RawSeasonSegment[] } })?.data?.segments ?? [];
+  const out: SeasonRank[] = [];
+  for (const seg of segments) {
+    if (seg.type !== 'season' || seg.attributes?.gamemode !== 'pvp_ranked') continue;
+    const stat = (key: string): number => Number(seg.stats?.[key]?.value ?? 0);
+    const rp = seg.stats?.rankPoints?.value ?? null;
+    const maxRp = seg.stats?.maxRankPoints?.value ?? null;
+    const wins = stat('matchesWon');
+    const losses = stat('matchesLost');
+    const matches = stat('matchesPlayed');
+    const kills = stat('kills');
+    const deaths = stat('deaths');
+    out.push({
+      seasonId: seg.attributes?.season ?? 0,
+      seasonName: seg.metadata?.name ?? seg.metadata?.shortName ?? '',
+      seasonColor: seg.metadata?.color,
+      region: seg.metadata?.shortName ?? '',
+      rank: rankInfoFromRp(rp ?? maxRp),
+      maxRank: rankInfoFromRp(maxRp),
+      mmr: Number(rp ?? maxRp ?? 0),
+      wins,
+      losses,
+      abandons: Math.max(0, matches - wins - losses),
+      matches,
+      winRate:
+        wins + losses > 0 ? `${((wins / (wins + losses)) * 100).toFixed(1)}%` : '0%',
+      kd: deaths > 0 ? Math.round((kills / deaths) * 100) / 100 : kills,
+    });
+  }
+  return out.sort((a, b) => b.seasonId - a.seasonId);
 }
 
 /** Small side-coloured operator badge (no external icon hosting needed). */
@@ -294,7 +359,7 @@ export async function getPlayerDataViaR6Data(
   };
 
   // Fetch the remaining pieces in parallel (all best-effort).
-  const [account, operatorsRes, seasonal, banRes] = await Promise.all([
+  const [account, operatorsRes, seasonal, banRes, seasonsRes] = await Promise.all([
     grab<unknown>({ type: 'accountInfo', nameOnPlatform: username, platformType: platform }, 'accountInfo'),
     grab<{ operators?: RawOperator[] }>(
       { type: 'operatorStats', nameOnPlatform: username, platformType: platform, modes: 'ranked' },
@@ -302,6 +367,7 @@ export async function getPlayerDataViaR6Data(
     ),
     grab<unknown>({ type: 'seasonalStats', nameOnPlatform: username, platformType: platform }, 'seasonalStats'),
     grab<unknown>({ type: 'isBanned', nameOnPlatform: username, platformType: platform }, 'isBanned'),
+    grab<unknown>({ type: 'seasonsStats', nameOnPlatform: username, platformType: platform }, 'seasonsStats'),
   ]);
 
   const { level, xp } = pickLevel(account ?? {});
@@ -341,7 +407,7 @@ export async function getPlayerDataViaR6Data(
     currentRegion: '',
     banned: pickBanned(banRes),
     inactiveSeasons,
-    history: [],
+    history: parseSeasonHistory(seasonsRes),
     recentMatches: parseRecentMatches(seasonal),
     general: aggregateGeneral(operators),
     topOperators: mapOperators(operators),
