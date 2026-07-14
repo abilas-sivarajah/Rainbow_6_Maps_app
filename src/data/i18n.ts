@@ -129,6 +129,58 @@ export const UI_TRANSLATIONS = {
     en: "Rainbow Six · Database",
     fr: "Rainbow Six · Base de données"
   },
+  "home.btn.tracker": {
+    de: "R6 Tracker",
+    en: "R6 Tracker",
+    fr: "R6 Tracker"
+  },
+  "home.tracker.kicker": {
+    de: "Live-Spielerstatistiken",
+    en: "Live player statistics",
+    fr: "Statistiques de joueur en direct"
+  },
+  "home.tracker.title": {
+    de: "R6 Tracker",
+    en: "R6 Tracker",
+    fr: "R6 Tracker"
+  },
+  "home.tracker.text": {
+    de: "Rang, RP-Verlauf, Saison-Historie und Operator-Stats für jeden Spieler nachschlagen – auf PC, PlayStation und Xbox.",
+    en: "Look up rank, RP progression, season history and operator stats for any player – on PC, PlayStation and Xbox.",
+    fr: "Consultez le rang, la progression RP, l'historique des saisons et les stats d'opérateurs de n'importe quel joueur – sur PC, PlayStation et Xbox."
+  },
+  "home.tracker.btn": {
+    de: "Spieler suchen",
+    en: "Search player",
+    fr: "Rechercher un joueur"
+  },
+
+  // PWA installieren
+  "pwa.install": {
+    de: "App installieren",
+    en: "Install app",
+    fr: "Installer l'appli"
+  },
+  "pwa.howTitle": {
+    de: "So installierst du die App",
+    en: "How to install the app",
+    fr: "Comment installer l'appli"
+  },
+  "pwa.iosHint": {
+    de: "Tippe in Safari auf das Teilen-Symbol (Quadrat mit Pfeil) und wähle „Zum Home-Bildschirm“. Die App erscheint dann wie eine normale App auf deinem Startbildschirm.",
+    en: "In Safari, tap the Share icon (square with arrow) and choose “Add to Home Screen”. The app will then appear on your home screen like a regular app.",
+    fr: "Dans Safari, touchez l'icône Partager (carré avec flèche) puis « Sur l'écran d'accueil ». L'appli apparaîtra sur votre écran d'accueil comme une appli normale."
+  },
+  "pwa.genericHint": {
+    de: "Öffne das Browser-Menü (⋮ bzw. ⋯) und wähle „App installieren“ oder „Zum Startbildschirm hinzufügen“.",
+    en: "Open your browser menu (⋮ or ⋯) and choose “Install app” or “Add to home screen”.",
+    fr: "Ouvrez le menu du navigateur (⋮ ou ⋯) et choisissez « Installer l'application » ou « Ajouter à l'écran d'accueil »."
+  },
+  "pwa.close": {
+    de: "Schließen",
+    en: "Close",
+    fr: "Fermer"
+  },
 
   // Operators Browser
   "ops.title": {

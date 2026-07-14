@@ -9,6 +9,7 @@ import { maps } from "@/data/maps";
 import { useMounted } from "@/lib/useMounted";
 import { AssetImage } from "@/components/AssetImage";
 import { OperatorAvatar, SideBadge, Tag } from "@/components/ui";
+import { TRACKER_ENABLED } from "@/lib/features";
 
 export default function Home() {
   const { operators, weapons, t } = useLanguage();
@@ -69,6 +70,14 @@ export default function Home() {
           >
             {t("home.btn.maps")}
           </Link>
+          {TRACKER_ENABLED && (
+            <Link
+              href="/stats"
+              className="rounded-lg border border-accent/60 px-5 py-2.5 font-semibold text-accent transition-all hover:bg-accent hover:text-bg"
+            >
+              📈 {t("home.btn.tracker")}
+            </Link>
+          )}
           <button
             onClick={goRandom}
             className="rounded-lg border border-border px-5 py-2.5 font-semibold transition-colors hover:bg-surface"
@@ -105,6 +114,29 @@ export default function Home() {
             </div>
             <span className="hidden shrink-0 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-bg sm:block">
               {t("home.view")}
+            </span>
+          </Link>
+        </section>
+      )}
+
+      {TRACKER_ENABLED && (
+        <section className="mb-4">
+          <Link
+            href="/stats"
+            className="group flex flex-wrap items-center gap-5 rounded-xl border border-accent/30 bg-surface p-5 transition-all hover:-translate-y-0.5 hover:border-accent/70 hover:bg-surface-2"
+          >
+            <span className="grid h-16 w-16 shrink-0 place-items-center rounded-lg bg-accent/10 text-3xl">
+              📈
+            </span>
+            <div className="min-w-0 flex-1">
+              <div className="mb-1 text-xs font-semibold uppercase tracking-widest text-accent">
+                {t("home.tracker.kicker")}
+              </div>
+              <div className="text-2xl font-black">{t("home.tracker.title")}</div>
+              <p className="mt-1 text-sm text-muted">{t("home.tracker.text")}</p>
+            </div>
+            <span className="hidden shrink-0 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-bg sm:block">
+              {t("home.tracker.btn")}
             </span>
           </Link>
         </section>

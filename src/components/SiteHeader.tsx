@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
+import { InstallAppButton } from "@/components/InstallAppButton";
 import { TRACKER_ENABLED } from "@/lib/features";
 
 export function SiteHeader() {
@@ -94,6 +95,7 @@ export function SiteHeader() {
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
               </svg>
             </Link>
+            <InstallAppButton variant="icon" />
           </div>
 
           {/* Desktop Language Selector */}
@@ -148,6 +150,9 @@ export function SiteHeader() {
                 {t(item.labelKey)}
               </Link>
             ))}
+
+            {/* App installieren (PWA) */}
+            <InstallAppButton variant="menu" />
 
             {/* Mobile Language Selector inside Dropdown */}
             <div className="mt-2 border-t border-border pt-2.5">
