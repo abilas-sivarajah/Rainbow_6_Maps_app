@@ -11,8 +11,24 @@ import { promises as fs } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
+import { ProxyAgent, type Dispatcher } from 'undici';
+
 import { hasKv, kvGet, kvSet, kvSetNx, kvDel } from './kv';
 import type { BoardStats, Platform, RankInfo } from './types';
+
+// Vercel functions have no fixed outbound IP (shared/dynamic pool), which is
+// exactly what trips Ubisoft's per-IP login rate limit under load. Routing
+// through a small proxy with a static IP (a cheap VPS running e.g. 3proxy)
+// sidesteps that entirely. Optional: without UBI_PROXY_URL, requests go out
+// directly as before.
+const PROXY_URL = process.env.UBI_PROXY_URL;
+let proxyAgent: ProxyAgent | null = null;
+
+function getDispatcher(): Dispatcher | undefined {
+  if (!PROXY_URL) return undefined;
+  if (!proxyAgent) proxyAgent = new ProxyAgent(PROXY_URL);
+  return proxyAgent;
+}
 
 const APP_ID = process.env.R6_UBI_APPID ?? 'e3d5ea9e-50bd-43b7-88bf-39794f4e3d40';
 const XPLAY_SPACE = '0d2ae42d-4c27-4cb7-af6c-2099062302bb';
@@ -184,7 +200,8 @@ async function postSession(authHeader: string): Promise<SessionResponse> {
     method: 'POST',
     headers: { ...baseHeaders(), Authorization: authHeader },
     body: JSON.stringify({ rememberMe: true }),
-  });
+    dispatcher: getDispatcher(),
+  } as RequestInit & { dispatcher?: Dispatcher });
   const text = await res.text();
   let data: SessionResponse;
   try {
@@ -424,7 +441,8 @@ async function ubiGet<T>(
       'Ubi-SessionId': t.sessionId,
       Connection: 'keep-alive',
     },
-  });
+    dispatcher: getDispatcher(),
+  } as RequestInit & { dispatcher?: Dispatcher });
   if (res.status === 204) return {} as T;
   const text = await res.text();
   let data: unknown;
