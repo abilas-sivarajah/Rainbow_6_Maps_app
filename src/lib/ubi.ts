@@ -291,10 +291,14 @@ function getTickets(): Promise<Tickets> {
 }
 
 async function resolveTickets(now: number): Promise<Tickets> {
+  const kvConfigured = hasKv();
+  console.log(`[r6-tracker] resolveTickets: shared KV configured=${kvConfigured}`);
+
   // Shared cache (KV across all instances when configured, else per-instance
   // disk — survives restarts / dev hot-reloads either way).
   const cached = await loadCachedTickets();
   if (isValid(cached, now)) {
+    console.log('[r6-tracker] resolveTickets: reusing cached ticket (no login needed)');
     tickets = cached;
     return tickets;
   }
@@ -313,23 +317,31 @@ async function resolveTickets(now: number): Promise<Tickets> {
   // everyone else waits briefly and reuses the ticket the winner publishes.
   // This is what keeps concurrent requests (several player lookups at once,
   // or several visitors at once) from each tripping Ubisoft's per-IP limit.
-  if (hasKv()) {
-    const gotLock = await kvSetNx(KV_LOGIN_LOCK_KEY, '1', LOCK_TTL_S).catch(() => true);
+  if (kvConfigured) {
+    const gotLock = await kvSetNx(KV_LOGIN_LOCK_KEY, '1', LOCK_TTL_S).catch((err) => {
+      console.log('[r6-tracker] resolveTickets: kvSetNx (lock) failed:', err);
+      return true;
+    });
+    console.log(`[r6-tracker] resolveTickets: lock acquired=${gotLock}`);
     if (!gotLock) {
       const shared = await waitForSharedTickets();
       if (shared) {
+        console.log('[r6-tracker] resolveTickets: got ticket from lock holder while waiting');
         tickets = shared;
         return tickets;
       }
+      console.log('[r6-tracker] resolveTickets: wait timed out, logging in ourselves anyway');
       // The lock holder didn't finish in time (or failed) — fall through and
       // try ourselves rather than fail outright.
     }
   }
 
+  console.log('[r6-tracker] resolveTickets: no valid cached ticket — logging in to Ubisoft now');
+
   const email = process.env.UBI_EMAIL;
   const password = process.env.UBI_PASSWORD;
   if (!email || !password) {
-    if (hasKv()) await kvDel(KV_LOGIN_LOCK_KEY).catch(() => {});
+    if (kvConfigured) await kvDel(KV_LOGIN_LOCK_KEY).catch(() => {});
     throw new Error('Missing Ubisoft credentials. Set UBI_EMAIL and UBI_PASSWORD in .env.local');
   }
 
