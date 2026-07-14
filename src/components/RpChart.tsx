@@ -9,7 +9,7 @@
 import { useMemo, useRef, useState } from 'react';
 import type { RankHistoryPoint } from '@/lib/types';
 
-const LINE = '#38bdf8'; // var(--accent-2), validated ≥3:1 on the card surface
+const LINE = '#ff7a1a'; // the wiki's accent orange, validated ≥3:1 on the card surface
 
 // Ranked 2.0 tier boundaries (every 500 RP from 1000). Used for the subtle
 // dashed guide lines so RP values map to ranks at a glance.

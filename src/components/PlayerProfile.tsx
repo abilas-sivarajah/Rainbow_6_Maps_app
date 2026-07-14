@@ -378,8 +378,8 @@ function MatchDetailsModal({ match, onClose, isSimulated }: { match: RecentMatch
         <div className="modal-header">
           {isSimulated ? (
             <div style={{
-              background: 'rgba(56, 189, 248, 0.08)',
-              border: '1px solid rgba(56, 189, 248, 0.25)',
+              background: 'rgba(255, 122, 26, 0.08)',
+              border: '1px solid rgba(255, 122, 26, 0.25)',
               borderRadius: '8px',
               padding: '10px 16px',
               fontSize: '0.85rem',
