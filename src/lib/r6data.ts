@@ -13,6 +13,7 @@ import type {
   OperatorBrief,
   PlayerData,
   Platform,
+  RankHistoryPoint,
   RankInfo,
   RecentMatch,
   SeasonRank,
@@ -262,6 +263,19 @@ function historyArray(seasonal: unknown): RawHistoryPoint[] {
   return Array.isArray(data) ? data : [];
 }
 
+/** Chronological RP timeline of the current season (for the profile chart). */
+function parseRankHistory(seasonal: unknown): RankHistoryPoint[] {
+  return historyArray(seasonal) // newest first
+    .map((p) => ({
+      date: p[0],
+      rp: p[1]?.value ?? 0,
+      rank: p[1]?.metadata?.rank ?? '',
+      rankImage: p[1]?.metadata?.imageUrl ?? '',
+      color: p[1]?.metadata?.color,
+    }))
+    .reverse();
+}
+
 /**
  * Derive recent ranked matches from the RP timeline: each consecutive pair of
  * points is one match — RP up = win, RP down = loss. (R6Data has no per-match
@@ -408,6 +422,7 @@ export async function getPlayerDataViaR6Data(
     banned: pickBanned(banRes),
     inactiveSeasons,
     history: parseSeasonHistory(seasonsRes),
+    rankHistory: parseRankHistory(seasonal),
     recentMatches: parseRecentMatches(seasonal),
     general: aggregateGeneral(operators),
     topOperators: mapOperators(operators),

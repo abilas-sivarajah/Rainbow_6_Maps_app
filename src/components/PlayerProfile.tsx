@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import RpChart from '@/components/RpChart';
 import type { BoardStats, PlayerData, RecentMatch, OperatorBrief, SeasonRank, PlayerMatchStat, MatchDetails } from '@/lib/types';
 
 function getKdClass(kd: number): string {
@@ -537,6 +538,16 @@ export default function PlayerProfile({ data }: { data: PlayerData }) {
             <RankCard title="Ranked" board={data.ranked} />
             <RankCard title="Casual" board={data.casual} />
           </div>
+
+          {/* RP graph over the current season */}
+          {data.rankHistory && data.rankHistory.length > 1 ? (
+            <div className="section">
+              <p className="section-title">
+                RP-Verlauf · {data.currentSeasonName || 'Aktuelle Season'}
+              </p>
+              <RpChart points={data.rankHistory} />
+            </div>
+          ) : null}
 
           {/* General Stats */}
           {data.general ? (
