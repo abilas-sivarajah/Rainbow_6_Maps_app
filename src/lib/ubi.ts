@@ -11,23 +11,41 @@ import { promises as fs } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
-import { ProxyAgent, type Dispatcher } from 'undici';
+import { fetch as undiciFetch, ProxyAgent } from 'undici';
 
 import { hasKv, kvGet, kvSet, kvSetNx, kvDel } from './kv';
 import type { BoardStats, Platform, RankInfo } from './types';
 
 // Vercel functions have no fixed outbound IP (shared/dynamic pool), which is
 // exactly what trips Ubisoft's per-IP login rate limit under load. Routing
-// through a small proxy with a static IP (a cheap VPS running e.g. 3proxy)
+// through a small proxy with a static IP (a cheap VPS running e.g. tinyproxy)
 // sidesteps that entirely. Optional: without UBI_PROXY_URL, requests go out
 // directly as before.
+//
+// Node's built-in fetch and the npm `undici` package each ship their own,
+// mutually incompatible dispatcher plumbing — handing an undici ProxyAgent to
+// the built-in fetch fails at runtime with UND_ERR_INVALID_ARG ("invalid
+// onRequestStart method"). So with a proxy configured, the request must go
+// through undici's own fetch; without one, the built-in fetch is used as
+// before. Both responses expose the same status/text() surface we rely on.
 const PROXY_URL = process.env.UBI_PROXY_URL;
 let proxyAgent: ProxyAgent | null = null;
 
-function getDispatcher(): Dispatcher | undefined {
-  if (!PROXY_URL) return undefined;
-  if (!proxyAgent) proxyAgent = new ProxyAgent(PROXY_URL);
-  return proxyAgent;
+interface UbiFetchInit {
+  method?: string;
+  headers: Record<string, string>;
+  body?: string;
+}
+
+function ubiFetch(
+  url: string,
+  init: UbiFetchInit,
+): Promise<{ status: number; text(): Promise<string> }> {
+  if (PROXY_URL) {
+    if (!proxyAgent) proxyAgent = new ProxyAgent(PROXY_URL);
+    return undiciFetch(url, { ...init, dispatcher: proxyAgent });
+  }
+  return fetch(url, init);
 }
 
 const APP_ID = process.env.R6_UBI_APPID ?? 'e3d5ea9e-50bd-43b7-88bf-39794f4e3d40';
@@ -196,12 +214,11 @@ interface SessionResponse {
 }
 
 async function postSession(authHeader: string): Promise<SessionResponse> {
-  const res = await fetch(`${UBISERVICES}/v3/profiles/sessions`, {
+  const res = await ubiFetch(`${UBISERVICES}/v3/profiles/sessions`, {
     method: 'POST',
     headers: { ...baseHeaders(), Authorization: authHeader },
     body: JSON.stringify({ rememberMe: true }),
-    dispatcher: getDispatcher(),
-  } as RequestInit & { dispatcher?: Dispatcher });
+  });
   const text = await res.text();
   let data: SessionResponse;
   try {
@@ -433,7 +450,7 @@ async function ubiGet<T>(
   const usingNew = useNew && !!t.newKey && t.newKeyExp > Date.now();
   const token = usingNew ? t.newKey : t.key;
 
-  const res = await fetch(url, {
+  const res = await ubiFetch(url, {
     headers: {
       ...baseHeaders(),
       Authorization: `Ubi_v1 t=${token}`,
@@ -441,8 +458,7 @@ async function ubiGet<T>(
       'Ubi-SessionId': t.sessionId,
       Connection: 'keep-alive',
     },
-    dispatcher: getDispatcher(),
-  } as RequestInit & { dispatcher?: Dispatcher });
+  });
   if (res.status === 204) return {} as T;
   const text = await res.text();
   let data: unknown;
