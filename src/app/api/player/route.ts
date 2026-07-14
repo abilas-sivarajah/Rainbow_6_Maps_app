@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 
 import { getDemoPlayer } from '@/lib/demo';
 import { getPlayerData } from '@/lib/r6';
+import { getR6DataRawDebug, hasR6DataKey } from '@/lib/r6data';
 import { TRACKER_ENABLED } from '@/lib/features';
 import type { Platform } from '@/lib/types';
 
@@ -38,6 +39,12 @@ export async function GET(request: Request) {
   // Demo mode: serve mock data without Ubisoft credentials / network.
   if (process.env.R6_DEMO === '1') {
     return NextResponse.json(getDemoPlayer(platform, username));
+  }
+
+  // Debug: raw, unmapped R6Data responses (to inspect what the API offers,
+  // e.g. past-season history). Only active when an R6Data key is configured.
+  if (searchParams.get('raw') === '1' && hasR6DataKey()) {
+    return NextResponse.json(await getR6DataRawDebug(platform, username));
   }
 
   try {
