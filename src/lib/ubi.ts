@@ -371,6 +371,13 @@ async function resolveTickets(now: number): Promise<Tickets> {
   }
 
   console.log('[r6-tracker] resolveTickets: no valid cached ticket — logging in to Ubisoft now');
+  console.log(`[r6-tracker] resolveTickets: proxy configured=${!!PROXY_URL}`);
+  try {
+    const ipRes = await ubiFetch('https://api.ipify.org', { headers: {} });
+    console.log(`[r6-tracker] resolveTickets: egress IP=${await ipRes.text()}`);
+  } catch (err) {
+    console.log('[r6-tracker] resolveTickets: egress IP check failed:', err);
+  }
 
   const email = process.env.UBI_EMAIL;
   const password = process.env.UBI_PASSWORD;
