@@ -508,9 +508,20 @@ export default function PlayerProfile({ data }: { data: PlayerData }) {
           {dataAsOf ? (
             <div
               style={{ marginTop: 6, fontSize: '0.78rem', color: 'var(--text-muted)' }}
-              title="Die Daten stammen von R6Data und werden dort mit Verzögerung aktualisiert — die neuesten Matches können daher etwas später erscheinen."
+              title="Die Daten stammen von R6Data und werden dort erst beim Aufruf des Profils auf r6data.com aufgefrischt — die neuesten Matches können daher etwas später erscheinen."
             >
-              Datenstand: {dataAsOf} Uhr · neueste Matches können verzögert erscheinen
+              Datenstand: {dataAsOf} Uhr ·{' '}
+              <a
+                href={`https://r6data.com/stats?username=${encodeURIComponent(data.username)}&platform=${encodeURIComponent(data.platform)}`}
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'var(--accent-2)', textDecoration: 'underline' }}
+              >
+                Jetzt aktualisieren ↗
+              </a>{' '}
+              <span title="Öffnet dein Profil auf r6data.com — das stößt dort die Aktualisierung an. Danach hier einfach neu suchen.">
+                (öffnet r6data.com, danach neu suchen)
+              </span>
             </div>
           ) : null}
           {data.xp > 0 ? (
