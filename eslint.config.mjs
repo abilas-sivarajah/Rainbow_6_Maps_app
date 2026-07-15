@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Gos offizielle WASM-Laufzeit — nicht von uns gepflegt, nicht linten.
+    "public/wasm/**",
   ]),
 ]);
 

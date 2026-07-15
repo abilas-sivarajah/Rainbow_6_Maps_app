@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { InstallAppButton } from "@/components/InstallAppButton";
-import { TRACKER_ENABLED } from "@/lib/features";
+import { TRACKER_ENABLED, REPLAYS_ENABLED } from "@/lib/features";
 
 export function SiteHeader() {
   const { language, setLanguage, t } = useLanguage();
@@ -15,12 +15,8 @@ export function SiteHeader() {
     { href: "/maps", labelKey: "nav.maps" as const },
     { href: "/weapons", labelKey: "nav.weapons" as const },
     { href: "/compare", labelKey: "nav.compare" as const },
-    ...(TRACKER_ENABLED
-      ? [
-          { href: "/stats", labelKey: "nav.stats" as const },
-          { href: "/replays", labelKey: "nav.replays" as const },
-        ]
-      : []),
+    ...(TRACKER_ENABLED ? [{ href: "/stats", labelKey: "nav.stats" as const }] : []),
+    ...(REPLAYS_ENABLED ? [{ href: "/replays", labelKey: "nav.replays" as const }] : []),
   ];
 
   const closeMenu = () => setMenuOpen(false);

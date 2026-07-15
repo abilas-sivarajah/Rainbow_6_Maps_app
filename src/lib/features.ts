@@ -5,3 +5,8 @@
 // Nav-Link, Seite und API wieder zu deaktivieren (z.B. bei erneuten
 // Sicherheits-/Rate-Limit-Problemen mit dem direkten Ubisoft-Login).
 export const TRACKER_ENABLED = true;
+
+// R6-Match-Replay-Analyse (/replays). Parst .rec-Dateien komplett lokal im
+// Browser (WebAssembly, kein Upload). Auf `false` setzen, um Nav-Link und
+// Seite auszublenden.
+export const REPLAYS_ENABLED = true;

@@ -11,6 +11,8 @@
   --color-accent-soft: #ff9a4d;
   --color-attacker: #4aa3ff;
   --color-defender: #ff7a3d;
+  --color-win: #10b981;
+  --color-loss: #f43f5e;
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;
 }

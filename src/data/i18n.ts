@@ -25,6 +25,106 @@ export const UI_TRANSLATIONS = {
     en: "Replays",
     fr: "Replays"
   },
+  "replays.title": {
+    de: "Match Replay Analyse",
+    en: "Match Replay Analysis",
+    fr: "Analyse de Replays"
+  },
+  "replays.subtitle": {
+    de: "Analysiere deine .rec Replay-Dateien: Teams, Roster, Runden-Ergebnisse und Kill-Timeline. Die Auswertung läuft komplett lokal in deinem Browser – nichts wird hochgeladen.",
+    en: "Analyze your .rec replay files: teams, rosters, round results and kill timeline. Everything runs entirely in your browser – nothing is uploaded.",
+    fr: "Analysez vos fichiers replay .rec : équipes, effectifs, résultats des manches et chronologie des kills. Tout se passe dans votre navigateur – rien n'est téléchargé."
+  },
+  "replays.privacy": {
+    de: "🔒 100% lokal – deine Replays verlassen deinen Rechner nicht.",
+    en: "🔒 100% local – your replays never leave your device.",
+    fr: "🔒 100% local – vos replays ne quittent jamais votre appareil."
+  },
+  "replays.dropzone": {
+    de: ".rec Dateien auswählen oder hierher ziehen",
+    en: "Select .rec files or drag them here",
+    fr: "Sélectionnez des fichiers .rec ou glissez-les ici"
+  },
+  "replays.drophint": {
+    de: "Alle Runden eines Matches gemeinsam auswählen (Ordner „MatchReplay“)",
+    en: "Select all rounds of a match together (folder \"MatchReplay\")",
+    fr: "Sélectionnez toutes les manches d'un match ensemble (dossier « MatchReplay »)"
+  },
+  "replays.selected_files": {
+    de: "{count} Datei(en) ausgewählt",
+    en: "{count} file(s) selected",
+    fr: "{count} fichier(s) sélectionné(s)"
+  },
+  "replays.button_analyze": {
+    de: "Analysieren",
+    en: "Analyze",
+    fr: "Analyser"
+  },
+  "replays.loading_engine": {
+    de: "Analyse-Engine wird geladen…",
+    en: "Loading analysis engine…",
+    fr: "Chargement du moteur d'analyse…"
+  },
+  "replays.analyzing": {
+    de: "Replays werden lokal analysiert…",
+    en: "Analyzing replays locally…",
+    fr: "Analyse locale des replays…"
+  },
+  "replays.download_json": {
+    de: "Als JSON herunterladen",
+    en: "Download as JSON",
+    fr: "Télécharger en JSON"
+  },
+  "replays.reset": {
+    de: "Neue Analyse",
+    en: "New analysis",
+    fr: "Nouvelle analyse"
+  },
+  "replays.site": {
+    de: "Spot",
+    en: "Site",
+    fr: "Site"
+  },
+  "replays.round": {
+    de: "Runde {num}",
+    en: "Round {num}",
+    fr: "Manche {num}"
+  },
+  "replays.timeline": {
+    de: "Runden-Timeline",
+    en: "Round Timeline",
+    fr: "Chronologie de la manche"
+  },
+  "replays.roster": {
+    de: "Team-Aufstellung",
+    en: "Team Roster",
+    fr: "Composition de l'équipe"
+  },
+  "replays.kill_feed": {
+    de: "Ausschaltungen",
+    en: "Kill Feed",
+    fr: "Flux d'éliminations"
+  },
+  "replays.no_events": {
+    de: "Keine nennenswerten Events in dieser Runde.",
+    en: "No notable events in this round.",
+    fr: "Aucun événement notable dans cette manche."
+  },
+  "replays.error_select": {
+    de: "Bitte wähle mindestens eine .rec Datei aus.",
+    en: "Please select at least one .rec file.",
+    fr: "Veuillez sélectionner au moins un fichier .rec."
+  },
+  "replays.error_parse": {
+    de: "Keine der Dateien konnte gelesen werden. Sind es gültige .rec-Replays?",
+    en: "None of the files could be read. Are they valid .rec replays?",
+    fr: "Aucun fichier n'a pu être lu. Sont-ce des replays .rec valides ?"
+  },
+  "replays.duration": {
+    de: "Dauer: {dur} Min",
+    en: "Duration: {dur} min",
+    fr: "Durée: {dur} min"
+  },
   "nav.stats": {
     de: "Spieler-Stats",
     en: "Player Stats",
