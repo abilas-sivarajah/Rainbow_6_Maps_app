@@ -32,7 +32,15 @@ function apiKey(): string {
 }
 
 async function r6dataGet<T>(params: Record<string, string>): Promise<T> {
-  const url = `${BASE}/stats?${new URLSearchParams(params).toString()}`;
+  return r6dataGetPath<T>('/stats', params);
+}
+
+async function r6dataGetPath<T>(
+  path: string,
+  params: Record<string, string> = {},
+): Promise<T> {
+  const qs = new URLSearchParams(params).toString();
+  const url = `${BASE}${path}${qs ? `?${qs}` : ''}`;
   const res = await fetch(url, { headers: { 'api-key': apiKey() } });
   const text = await res.text();
   let data: unknown;
@@ -51,25 +59,6 @@ async function r6dataGet<T>(params: Record<string, string>): Promise<T> {
   return data as T;
 }
 
-/** Read a level/xp from R6Data's accountInfo response defensively. */
-function pickLevel(account: unknown): { level: number; xp: number } {
-  const a = (account ?? {}) as Record<string, unknown>;
-  const num = (...keys: string[]): number => {
-    for (const k of keys) {
-      const v = a[k];
-      if (typeof v === 'number') return v;
-      if (typeof v === 'string' && v.trim() !== '' && !Number.isNaN(Number(v))) {
-        return Number(v);
-      }
-    }
-    return 0;
-  };
-  return {
-    level: num('level', 'clearance_level', 'clearanceLevel'),
-    xp: num('xp', 'experience'),
-  };
-}
-
 /** Defensively read a ban flag from R6Data's isBanned response. */
 function pickBanned(res: unknown): boolean {
   if (!res || typeof res !== 'object') return false;
@@ -81,6 +70,20 @@ function pickBanned(res: unknown): boolean {
   const bans = (r.bans ?? r.sanctions) as unknown;
   if (Array.isArray(bans)) return bans.length > 0;
   return false;
+}
+
+/** Ban reasons/dates from isBanned's banAlerts (documented shape). */
+function pickBanAlerts(res: unknown): PlayerData['banAlerts'] {
+  const alerts = (res as { banAlerts?: unknown })?.banAlerts;
+  if (!Array.isArray(alerts)) return undefined;
+  const mapped = alerts
+    .filter((a): a is Record<string, unknown> => !!a && typeof a === 'object')
+    .map((a) => ({
+      reason: typeof a.reasonName === 'string' ? a.reasonName : '',
+      date: typeof a.banDate === 'string' ? a.banDate : '',
+      reversed: a.banReversed === true,
+    }));
+  return mapped.length > 0 ? mapped : undefined;
 }
 
 function pickAvatar(account: unknown, username: string): string {
@@ -303,6 +306,63 @@ function parseRecentMatches(seasonal: unknown): RecentMatch[] {
   return out;
 }
 
+// --- Leaderboard, Live-Spielerzahlen & Serverstatus --------------------------
+
+export interface LeaderboardEntry {
+  id: string;
+  kd: number;
+  matchesPlayed: number;
+  rankPoints: number;
+  position: number;
+}
+
+export async function getLeaderboard(
+  page = 1,
+  platform: 'pc' | 'console' = 'pc',
+): Promise<LeaderboardEntry[]> {
+  const data = await r6dataGet<unknown>({
+    type: 'leaderboards',
+    page: String(page),
+    platform,
+  });
+  if (!Array.isArray(data)) return [];
+  return data
+    .filter((e): e is Record<string, unknown> => !!e && typeof e === 'object')
+    .map((e) => ({
+      id: typeof e.id === 'string' ? e.id : '',
+      kd: Number(e.kd ?? 0),
+      matchesPlayed: Number(e.matchesPlayed ?? 0),
+      rankPoints: Number(e.rankPoints ?? 0),
+      position: Number(e.position ?? 0),
+    }))
+    .filter((e) => e.id);
+}
+
+export interface GameStatus {
+  playersOnline: number | null;
+  monthlyActive: number | null;
+  services: Array<{ name: string; status: string }>;
+}
+
+export async function getGameStatus(): Promise<GameStatus> {
+  const [stats, services] = await Promise.all([
+    r6dataGet<{
+      ubisoft?: { onlineEstimate?: number };
+      crossPlatform?: { monthlyActive?: number };
+    }>({ type: 'gameStats' }).catch(() => null),
+    r6dataGetPath<Array<{ name?: string; status?: string }>>('/servicestatus').catch(
+      () => null,
+    ),
+  ]);
+  return {
+    playersOnline: stats?.ubisoft?.onlineEstimate ?? null,
+    monthlyActive: stats?.crossPlatform?.monthlyActive ?? null,
+    services: Array.isArray(services)
+      ? services.map((s) => ({ name: s.name ?? '', status: s.status ?? '' }))
+      : [],
+  };
+}
+
 /**
  * Temporary helper: forward arbitrary params to R6Data's /stats endpoint, so
  * undocumented parameters (e.g. past-season filters) can be probed safely.
@@ -340,23 +400,36 @@ export async function getR6DataRawDebug(
   return { accountInfo, operatorStats, seasonalStats, stats };
 }
 
+// fullStats bundles what used to take three separate calls: the current
+// ranked/casual boards (platform_families_full_profiles), the per-season
+// segments (seasonsStats) AND profile basics (level, avatar, handle).
+interface FullStatsResponse extends FullProfilesData {
+  data?: {
+    platformInfo?: {
+      platformUserId?: string;
+      platformUserHandle?: string;
+      avatarUrl?: string;
+    };
+    metadata?: { currentSeason?: number; clearanceLevel?: number };
+    segments?: unknown[];
+  };
+}
+
 export async function getPlayerDataViaR6Data(
   platform: Platform,
   username: string,
 ): Promise<PlayerData | null> {
-  const family = platform === 'uplay' ? 'pc' : 'console';
-
-  // Stats (current ranked + casual) — same payload shape as Ubisoft.
-  const stats = await r6dataGet<FullProfilesData | null>({
-    type: 'stats',
+  // One consolidated call instead of stats + seasonsStats + accountInfo —
+  // player searches used to cost 6 R6Data requests, now 4 (API quota!).
+  const full = await r6dataGet<FullStatsResponse | null>({
+    type: 'fullStats',
     nameOnPlatform: username,
     platformType: platform,
-    platform_families: family,
   });
   // No profile structure => player not found.
-  if (!stats || !stats.platform_families_full_profiles) return null;
+  if (!full || !full.platform_families_full_profiles) return null;
 
-  const profiles = parseFullProfiles(stats);
+  const profiles = parseFullProfiles(full);
   const ranked = withRealRankIcons(profiles.ranked);
   const casual = withRealRankIcons(profiles.casual);
 
@@ -373,18 +446,18 @@ export async function getPlayerDataViaR6Data(
   };
 
   // Fetch the remaining pieces in parallel (all best-effort).
-  const [account, operatorsRes, seasonal, banRes, seasonsRes] = await Promise.all([
-    grab<unknown>({ type: 'accountInfo', nameOnPlatform: username, platformType: platform }, 'accountInfo'),
+  const [operatorsRes, seasonal, banRes] = await Promise.all([
     grab<{ operators?: RawOperator[] }>(
       { type: 'operatorStats', nameOnPlatform: username, platformType: platform, modes: 'ranked' },
       'operatorStats',
     ),
     grab<unknown>({ type: 'seasonalStats', nameOnPlatform: username, platformType: platform }, 'seasonalStats'),
     grab<unknown>({ type: 'isBanned', nameOnPlatform: username, platformType: platform }, 'isBanned'),
-    grab<unknown>({ type: 'seasonsStats', nameOnPlatform: username, platformType: platform }, 'seasonsStats'),
   ]);
 
-  const { level, xp } = pickLevel(account ?? {});
+  const info = full.data?.platformInfo ?? {};
+  const level = Number(full.data?.metadata?.clearanceLevel ?? 0);
+  const xp = 0; // not exposed by fullStats (the old accountInfo reported 0 too)
   const operators = operatorsRes?.operators ?? [];
 
   // Inactivity: how many seasons behind the current one is the player's data.
@@ -409,10 +482,10 @@ export async function getPlayerDataViaR6Data(
   }
 
   return {
-    id: username,
-    username,
+    id: info.platformUserId ?? username,
+    username: info.platformUserHandle ?? username,
     platform,
-    avatar: pickAvatar(account, username),
+    avatar: info.avatarUrl || pickAvatar({ profileId: info.platformUserId }, username),
     level,
     xp,
     ranked,
@@ -420,8 +493,9 @@ export async function getPlayerDataViaR6Data(
     currentSeasonName: profiles.seasonId > 0 ? `Season ${profiles.seasonId}` : '',
     currentRegion: '',
     banned: pickBanned(banRes),
+    banAlerts: pickBanAlerts(banRes),
     inactiveSeasons,
-    history: parseSeasonHistory(seasonsRes),
+    history: parseSeasonHistory(full),
     rankHistory: parseRankHistory(seasonal),
     recentMatches: parseRecentMatches(seasonal),
     general: aggregateGeneral(operators),

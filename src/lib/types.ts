@@ -119,6 +119,7 @@ export interface PlayerData {
   currentSeasonName: string;
   currentRegion: string;
   banned?: boolean;
+  banAlerts?: Array<{ reason: string; date: string; reversed: boolean }>;
   inactiveSeasons?: number; // how many seasons behind the current one (0 = active)
   history: SeasonRank[];
   rankHistory?: RankHistoryPoint[];

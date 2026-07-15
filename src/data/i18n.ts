@@ -20,6 +20,11 @@ export const UI_TRANSLATIONS = {
     en: "Compare",
     fr: "Comparer"
   },
+  "nav.replays": {
+    de: "Replays",
+    en: "Replays",
+    fr: "Replays"
+  },
   "nav.stats": {
     de: "Spieler-Stats",
     en: "Player Stats",

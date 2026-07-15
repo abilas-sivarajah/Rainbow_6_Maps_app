@@ -489,7 +489,27 @@ export default function PlayerProfile({ data }: { data: PlayerData }) {
             {data.currentRegion ? (
               <span className="badge">{data.currentRegion}</span>
             ) : null}
-            {data.banned ? <span className="badge badge-ban">GESPERRT</span> : null}
+            {data.banned ? (
+              <span
+                className="badge badge-ban"
+                title={
+                  data.banAlerts?.length
+                    ? data.banAlerts
+                        .map((b) => {
+                          const d = new Date(b.date);
+                          const when = Number.isNaN(d.getTime())
+                            ? b.date
+                            : d.toLocaleDateString('de-DE');
+                          return `${b.reason || 'Unbekannter Grund'} (${when}${b.reversed ? ', aufgehoben' : ''})`;
+                        })
+                        .join(' · ')
+                    : undefined
+                }
+              >
+                GESPERRT
+                {data.banAlerts?.[0]?.reason ? ` · ${data.banAlerts[0].reason}` : ''}
+              </span>
+            ) : null}
           </h2>
           <div className="meta">
             <span>Level {data.level}</span>

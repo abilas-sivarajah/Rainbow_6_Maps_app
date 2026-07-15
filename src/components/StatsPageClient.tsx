@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import PlayerProfile from '@/components/PlayerProfile';
 import type { ApiError, PlayerData, Platform } from '@/lib/types';
@@ -10,6 +10,20 @@ const PLATFORMS: { value: Platform; label: string }[] = [
   { value: 'psn', label: 'PlayStation' },
   { value: 'xbl', label: 'Xbox' },
 ];
+
+interface LeaderboardEntry {
+  id: string;
+  kd: number;
+  matchesPlayed: number;
+  rankPoints: number;
+  position: number;
+}
+
+interface GameStatus {
+  playersOnline: number | null;
+  monthlyActive: number | null;
+  services: Array<{ name: string; status: string }>;
+}
 
 function PlayerSkeleton() {
   return (
@@ -41,6 +55,205 @@ function PlayerSkeleton() {
   );
 }
 
+/** Kompakte Zeile: Live-Spielerzahl + Serverstatus (aus /api/gamestatus). */
+function GameStatusBar() {
+  const [status, setStatus] = useState<GameStatus | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/api/gamestatus')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((s) => {
+        if (!cancelled && s && !('error' in s)) setStatus(s as GameStatus);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  if (!status) return null;
+
+  const allOnline =
+    status.services.length > 0 &&
+    status.services.every((s) => /online/i.test(s.status));
+
+  return (
+    <div
+      className="card"
+      style={{
+        marginTop: 20,
+        padding: '12px 18px',
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '8px 24px',
+        justifyContent: 'center',
+        fontSize: '0.85rem',
+        color: 'var(--text-muted)',
+      }}
+    >
+      {status.playersOnline != null ? (
+        <span>
+          👥 <strong style={{ color: 'var(--text)' }}>{status.playersOnline.toLocaleString('de-DE')}</strong> gerade online
+        </span>
+      ) : null}
+      {status.monthlyActive != null ? (
+        <span>
+          📆 <strong style={{ color: 'var(--text)' }}>{(status.monthlyActive / 1_000_000).toLocaleString('de-DE', { maximumFractionDigits: 1 })} Mio.</strong> aktive Spieler/Monat
+        </span>
+      ) : null}
+      {status.services.length > 0 ? (
+        <span title={status.services.map((s) => `${s.name}: ${s.status}`).join(' · ')}>
+          <span style={{ color: allOnline ? 'var(--win)' : 'var(--loss)' }}>●</span>{' '}
+          Server: {allOnline ? 'alle online' : status.services.filter((s) => !/online/i.test(s.status)).map((s) => `${s.name} ${s.status}`).join(', ')}
+        </span>
+      ) : null}
+    </div>
+  );
+}
+
+/** Top-Spieler-Bestenliste (aus /api/leaderboard), Klick auf Namen sucht den Spieler. */
+function Leaderboard({ onSelect }: { onSelect: (name: string) => void }) {
+  const [entries, setEntries] = useState<LeaderboardEntry[] | null>(null);
+  const [platform, setPlatform] = useState<'pc' | 'console'>('pc');
+  const [page, setPage] = useState(1);
+  // true bei Erstladung; bei Seiten-/Plattformwechsel setzen es die Handler.
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch(`/api/leaderboard?page=${page}&platform=${platform}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((list) => {
+        if (!cancelled) setEntries(Array.isArray(list) ? list : []);
+      })
+      .catch(() => {
+        if (!cancelled) setEntries([]);
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [page, platform]);
+
+  if (entries === null && !loading) return null;
+  if (entries !== null && entries.length === 0 && page === 1) return null;
+
+  return (
+    <div className="section">
+      <p className="section-title">
+        <span>🏆 Top-Spieler ({platform === 'pc' ? 'PC' : 'Konsole'})</span>
+        <span style={{ display: 'flex', gap: 8 }}>
+          <button
+            className="badge"
+            style={{ cursor: 'pointer', opacity: platform === 'pc' ? 1 : 0.55 }}
+            onClick={() => {
+              setPlatform('pc');
+              setPage(1);
+              setLoading(true);
+            }}
+          >
+            PC
+          </button>
+          <button
+            className="badge"
+            style={{ cursor: 'pointer', opacity: platform === 'console' ? 1 : 0.55 }}
+            onClick={() => {
+              setPlatform('console');
+              setPage(1);
+              setLoading(true);
+            }}
+          >
+            Konsole
+          </button>
+        </span>
+      </p>
+      <div className="card" style={{ padding: '10px 18px' }}>
+        <div className="table-scroll">
+          <table className="team-table">
+            <thead>
+              <tr>
+                <th style={{ width: 46 }}>#</th>
+                <th>Spieler</th>
+                <th style={{ textAlign: 'center' }}>RP</th>
+                <th style={{ textAlign: 'center' }}>K/D</th>
+                <th style={{ textAlign: 'center' }}>Matches</th>
+              </tr>
+            </thead>
+            <tbody>
+              {(entries ?? []).map((e) => (
+                <tr key={`${e.position}-${e.id}`}>
+                  <td style={{ color: 'var(--text-muted)' }}>{e.position}</td>
+                  <td className="team-player-name">
+                    <button
+                      onClick={() => onSelect(e.id)}
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        color: 'var(--accent-2)',
+                        fontWeight: 700,
+                        cursor: 'pointer',
+                        padding: 0,
+                        font: 'inherit',
+                      }}
+                      title={`${e.id} im Tracker suchen`}
+                    >
+                      {e.id}
+                    </button>
+                  </td>
+                  <td style={{ textAlign: 'center', fontWeight: 700 }}>
+                    {e.rankPoints.toLocaleString('de-DE')}
+                  </td>
+                  <td style={{ textAlign: 'center' }}>{e.kd.toFixed(2)}</td>
+                  <td style={{ textAlign: 'center', color: 'var(--text-muted)' }}>
+                    {e.matchesPlayed}
+                  </td>
+                </tr>
+              ))}
+              {loading && (entries ?? []).length === 0 ? (
+                <tr>
+                  <td colSpan={5} style={{ textAlign: 'center', color: 'var(--text-muted)', padding: 20 }}>
+                    Bestenliste wird geladen…
+                  </td>
+                </tr>
+              ) : null}
+            </tbody>
+          </table>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 12, padding: '12px 0 6px' }}>
+          <button
+            className="badge"
+            style={{ cursor: page > 1 ? 'pointer' : 'not-allowed', opacity: page > 1 ? 1 : 0.4 }}
+            disabled={page <= 1 || loading}
+            onClick={() => {
+              setPage((p) => Math.max(1, p - 1));
+              setLoading(true);
+            }}
+          >
+            ← Zurück
+          </button>
+          <span style={{ alignSelf: 'center', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+            Seite {page}
+          </span>
+          <button
+            className="badge"
+            style={{ cursor: 'pointer', opacity: loading ? 0.5 : 1 }}
+            disabled={loading || (entries ?? []).length === 0}
+            onClick={() => {
+              setPage((p) => p + 1);
+              setLoading(true);
+            }}
+          >
+            Weiter →
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function StatsPageClient() {
   const [username, setUsername] = useState('');
   const [platform, setPlatform] = useState<Platform>('uplay');
@@ -49,18 +262,15 @@ export function StatsPageClient() {
   const [data, setData] = useState<PlayerData | null>(null);
   const [searched, setSearched] = useState(false);
 
-  async function handleSearch(e: React.FormEvent) {
-    e.preventDefault();
-    const name = username.trim();
+  const runSearch = useCallback(async (name: string, plat: Platform) => {
     if (!name) return;
-
     setLoading(true);
     setError(null);
     setData(null);
     setSearched(true);
 
     try {
-      const params = new URLSearchParams({ username: name, platform });
+      const params = new URLSearchParams({ username: name, platform: plat });
       const res = await fetch(`/api/player?${params.toString()}`);
       const body: PlayerData | ApiError = await res.json();
       if (!res.ok) {
@@ -73,7 +283,23 @@ export function StatsPageClient() {
     } finally {
       setLoading(false);
     }
+  }, []);
+
+  function handleSearch(e: React.FormEvent) {
+    e.preventDefault();
+    void runSearch(username.trim(), platform);
   }
+
+  // Klick in der Bestenliste: Namen übernehmen und direkt suchen. Die
+  // Leaderboard-Plattform "pc" entspricht uplay; für "console" lässt sich die
+  // konkrete Plattform (psn/xbl) nicht ableiten — der Nutzer wählt dann selbst.
+  const searchFromLeaderboard = (name: string) => {
+    setUsername(name);
+    void runSearch(name, platform);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const showLanding = !loading && !data;
 
   return (
     <main className="container">
@@ -115,7 +341,7 @@ export function StatsPageClient() {
 
       {loading ? (
         <div style={{ marginTop: '28px' }}>
-          <div className="message info" style={{ marginBottom: '16px' }}>Daten werden von Ubisoft abgerufen...</div>
+          <div className="message info" style={{ marginBottom: '16px' }}>Daten werden abgerufen...</div>
           <PlayerSkeleton />
         </div>
       ) : null}
@@ -124,6 +350,14 @@ export function StatsPageClient() {
 
       {!loading && !error && !data && searched ? (
         <div className="message info">Kein Spieler mit diesem Namen gefunden.</div>
+      ) : null}
+
+      {/* Startansicht: Live-Status + Bestenliste, solange kein Profil offen ist */}
+      {showLanding ? (
+        <>
+          <GameStatusBar />
+          <Leaderboard onSelect={searchFromLeaderboard} />
+        </>
       ) : null}
     </main>
   );
