@@ -455,6 +455,25 @@ export default function PlayerProfile({ data }: { data: PlayerData }) {
   // XP Percent
   const xpPercent = data.xp > 0 ? Math.min(100, Math.max(5, (data.xp % 5000) / 50)) : 0;
 
+  // Zeitpunkt des neuesten Datenpunkts (RP-Verlauf bzw. Matches). R6Data
+  // aktualisiert Profile nur verzögert — der Stand macht das transparent,
+  // statt wie fehlende Matches auszusehen.
+  const newestIso =
+    data.rankHistory?.[data.rankHistory.length - 1]?.date ??
+    data.recentMatches?.[0]?.date;
+  const dataAsOf = (() => {
+    if (!newestIso) return null;
+    const d = new Date(newestIso);
+    return Number.isNaN(d.getTime())
+      ? null
+      : d.toLocaleString('de-DE', {
+          day: '2-digit',
+          month: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+        });
+  })();
+
   return (
     <div>
       {/* Profile Header */}
@@ -486,6 +505,14 @@ export default function PlayerProfile({ data }: { data: PlayerData }) {
               </span>
             ) : null}
           </div>
+          {dataAsOf ? (
+            <div
+              style={{ marginTop: 6, fontSize: '0.78rem', color: 'var(--text-muted)' }}
+              title="Die Daten stammen von R6Data und werden dort mit Verzögerung aktualisiert — die neuesten Matches können daher etwas später erscheinen."
+            >
+              Datenstand: {dataAsOf} Uhr · neueste Matches können verzögert erscheinen
+            </div>
+          ) : null}
           {data.xp > 0 ? (
             <div className="xp-container">
               <div className="xp-label">
