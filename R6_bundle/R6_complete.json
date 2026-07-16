@@ -77,7 +77,7 @@
      "image": "img/loadout/S.E.L.M.A. AQUA BREACHER.png"
     }
    ],
-   "image": "img/operators/ace_render.png",
+   "image": "img/operators/ace_render.webp",
    "icon": "img/operators/ace_icon.png",
    "quote": "\"The perfect shot, like the perfect rescue, is all about the framing.\"",
    "organization": "ARASSAS"
@@ -147,7 +147,7 @@
      "image": "img/loadout/Prisma.png"
     }
    ],
-   "image": "img/operators/alibi_render.png",
+   "image": "img/operators/alibi_render.webp",
    "icon": "img/operators/alibi_icon.png",
    "quote": "\"Never reveal the cards you were dealt.\"",
    "organization": "GIS"
@@ -223,7 +223,7 @@
      "image": "img/loadout/ITA12S.png"
     }
    ],
-   "image": "img/operators/amaru_render.png",
+   "image": "img/operators/amaru_render.webp",
    "icon": "img/operators/amaru_icon.png",
    "quote": "\"Forget who you are, and nothing else matters. You'll fight for anyone, and never know why.\"",
    "organization": "GSAC"
@@ -287,7 +287,7 @@
      "image": "img/loadout/Surya Gate.png"
     }
    ],
-   "image": "img/operators/aruni_render.png",
+   "image": "img/operators/aruni_render.webp",
    "icon": "img/operators/aruni_icon.png",
    "quote": "\"In every conflict, it's the children who are made to suffer, even after the fighting has stopped.\"",
    "organization": "UNAFFILIATED"
@@ -357,7 +357,7 @@
      "image": "img/loadout/BREACHING ROUND.png"
     }
    ],
-   "image": "img/operators/ash_render.png",
+   "image": "img/operators/ash_render.webp",
    "icon": "img/operators/ash_icon.png",
    "quote": "\"You can never truly understand a conflict until you've been on both sides.\"",
    "organization": "RAINBOW"
@@ -421,7 +421,7 @@
      "image": "img/loadout/KIBA BARRIER.png"
     }
    ],
-   "image": "img/operators/azami_render.png",
+   "image": "img/operators/azami_render.webp",
    "icon": "img/operators/azami_icon.png",
    "quote": "\"Honor is not the only thing worth protecting…but sometimes it's all you have left.\"",
    "organization": "YAHATADATASECURITY"
@@ -486,7 +486,7 @@
      "image": "img/loadout/Shock Wire.png"
     }
    ],
-   "image": "img/operators/bandit_render.png",
+   "image": "img/operators/bandit_render.webp",
    "icon": "img/operators/bandit_icon.png",
    "quote": "\"Survival is all about timing. Nature doesn't give second chances.\"",
    "organization": "GSG9"
@@ -544,7 +544,7 @@
      "image": "img/loadout/H.U.L.L. ADAPTABLE SHIELD.png"
     }
    ],
-   "image": "img/operators/blackbeard_render.png",
+   "image": "img/operators/blackbeard_render.webp",
    "icon": "img/operators/blackbeard_icon.png",
    "quote": "\"I'm a diver. We're used to seeing threats through a layer of tempered glass.\"",
    "organization": "RAINBOW"
@@ -602,7 +602,7 @@
      "image": "img/loadout/G52-TACTICAL SHIELD.png"
     }
    ],
-   "image": "img/operators/blitz_render.png",
+   "image": "img/operators/blitz_render.webp",
    "icon": "img/operators/blitz_icon.png",
    "quote": "\"I don't like photos of myself. The lighting is always wrong.\"",
    "organization": "RAINBOW"
@@ -672,7 +672,7 @@
      "image": "img/loadout/Kludge Drone.png"
     }
    ],
-   "image": "img/operators/brava_render.png",
+   "image": "img/operators/brava_render.webp",
    "icon": "img/operators/brava_icon.png",
    "quote": "\"Sometimes the only path to justice is through a bullet…\"",
    "organization": "RAINBOW"
@@ -736,7 +736,7 @@
      "image": "img/loadout/Skeleton Key.png"
     }
    ],
-   "image": "img/operators/buck_render.png",
+   "image": "img/operators/buck_render.webp",
    "icon": "img/operators/buck_icon.png",
    "quote": "\"Follow me. I know a shortcut.\"",
    "organization": "JTF2"
@@ -818,7 +818,7 @@
      "image": "img/loadout/Tactical Crossbow.png"
     }
    ],
-   "image": "img/operators/capitao_render.png",
+   "image": "img/operators/capitao_render.webp",
    "icon": "img/operators/capitao_icon.png",
    "quote": "\"Focusing only on the bad things in life will keep you from seeing the many opportunities to do good.\"",
    "organization": "UNAFFILIATED"
@@ -894,7 +894,7 @@
      "image": "img/loadout/Armor Panel.png"
     }
    ],
-   "image": "img/operators/castle_render.png",
+   "image": "img/operators/castle_render.webp",
    "icon": "img/operators/castle_icon.png",
    "quote": "\"Listen up, people: No one dies today. Any questions'll just have to wait.\"",
    "organization": "RAINBOW"
@@ -964,7 +964,7 @@
      "image": "img/loadout/Silent Step.png"
     }
    ],
-   "image": "img/operators/caveira_render.png",
+   "image": "img/operators/caveira_render.webp",
    "icon": "img/operators/caveira_icon.png",
    "quote": "\"Not every child gets to choose who they grow up to be.\"",
    "organization": "RAINBOW"
@@ -1034,7 +1034,7 @@
      "image": "img/loadout/CCE SHIELD MK2.png"
     }
    ],
-   "image": "img/operators/clash_render.png",
+   "image": "img/operators/clash_render.webp",
    "icon": "img/operators/clash_icon.png",
    "quote": "\"Change will come if you're willing to fight for it.\"",
    "organization": "UNAFFILIATED"
@@ -1096,7 +1096,7 @@
      "image": "img/loadout/DEATHMARK TRACKER.png"
     }
    ],
-   "image": "img/operators/deimos_render.png",
+   "image": "img/operators/deimos_render.webp",
    "icon": "img/operators/deimos_icon.png",
    "quote": "\"I was there when Rainbow began. I'll be there when it ends.\"",
    "organization": "KERESLEGION"
@@ -1166,7 +1166,7 @@
      "image": "img/loadout/T.R.I.P. Connector.png"
     }
    ],
-   "image": "img/operators/denari_render.png",
+   "image": "img/operators/denari_render.webp",
    "icon": "img/operators/denari_icon.png",
    "quote": "\"Take a seat, play a round. What's the worst that can happen?\"",
    "organization": "ARASSAS"
@@ -1247,7 +1247,7 @@
      "image": "img/loadout/Bailiff 410.png"
     }
    ],
-   "image": "img/operators/doc_render.png",
+   "image": "img/operators/doc_render.webp",
    "icon": "img/operators/doc_icon.png",
    "quote": "\"My job is to keep you alive. Make it as hard as you like.\"",
    "organization": "GIGN"
@@ -1329,7 +1329,7 @@
      "image": "img/loadout/Impact EMP Grenade.png"
     }
    ],
-   "image": "img/operators/dokkaebi_render.png",
+   "image": "img/operators/dokkaebi_render.webp",
    "icon": "img/operators/dokkaebi_icon.png",
    "quote": "\"You say potato, I say botnet.\"",
    "organization": "RAINBOW"
@@ -1399,7 +1399,7 @@
      "image": "img/loadout/Yokai.png"
     }
    ],
-   "image": "img/operators/echo_render.png",
+   "image": "img/operators/echo_render.webp",
    "icon": "img/operators/echo_icon.png",
    "quote": "\"Don't ask me what I'm doing on my phone. You don't want to know.\"",
    "organization": "YAHATADATASECURITY"
@@ -1469,7 +1469,7 @@
      "image": "img/loadout/Grzmot Mine.png"
     }
    ],
-   "image": "img/operators/ela_render.png",
+   "image": "img/operators/ela_render.webp",
    "icon": "img/operators/ela_icon.png",
    "quote": "\"Together, we can shake the very stars from the sky.\"",
    "organization": "UNAFFILIATED"
@@ -1533,7 +1533,7 @@
      "image": "img/loadout/F-Natt Dread Mine.png"
     }
    ],
-   "image": "img/operators/fenrir_render.png",
+   "image": "img/operators/fenrir_render.webp",
    "icon": "img/operators/fenrir_icon.png",
    "quote": "\"Fear is a teacher. There's always a lesson to be learned.\"",
    "organization": "UNAFFILIATED"
@@ -1615,7 +1615,7 @@
      "image": "img/loadout/Adrenal Surge.png"
     }
    ],
-   "image": "img/operators/finka_render.png",
+   "image": "img/operators/finka_render.webp",
    "icon": "img/operators/finka_icon.png",
    "quote": "\"The hand you get dealt isn't the one you have to keep.\"",
    "organization": "UNAFFILIATED"
@@ -1685,7 +1685,7 @@
      "image": "img/loadout/RCE-RATERO CHARGE.png"
     }
    ],
-   "image": "img/operators/flores_render.png",
+   "image": "img/operators/flores_render.webp",
    "icon": "img/operators/flores_icon.png",
    "quote": "\"In life, you have to commit to the things that make you happy. For me, that's robbing the rich and corrupt.\"",
    "organization": "UNAFFILIATED"
@@ -1755,7 +1755,7 @@
      "image": "img/loadout/Welcome Mat.png"
     }
    ],
-   "image": "img/operators/frost_render.png",
+   "image": "img/operators/frost_render.webp",
    "icon": "img/operators/frost_icon.png",
    "quote": "\"There are two things the human body needs most in a survival situation: Water, and hope.\"",
    "organization": "JTF2"
@@ -1836,7 +1836,7 @@
      "image": "img/loadout/Smoke Grenade.png"
     }
    ],
-   "image": "img/operators/fuze_render.png",
+   "image": "img/operators/fuze_render.webp",
    "icon": "img/operators/fuze_icon.png",
    "quote": "\"Chaos is only an enemy if you're unable to adapt.\"",
    "organization": "ARASSAS"
@@ -1913,7 +1913,7 @@
      "image": "img/loadout/Claymore.png"
     }
    ],
-   "image": "img/operators/glaz_render.png",
+   "image": "img/operators/glaz_render.webp",
    "icon": "img/operators/glaz_icon.png",
    "quote": "\"Imagination keeps you alive. It's how you find your way out of the dark. That, and a flashlight.\"",
    "organization": "GSAC"
@@ -1983,7 +1983,7 @@
      "image": "img/loadout/Volcán Canister.png"
     }
    ],
-   "image": "img/operators/goyo_render.png",
+   "image": "img/operators/goyo_render.webp",
    "icon": "img/operators/goyo_icon.png",
    "quote": "\"A person is never more honest than when they think they're alone.\"",
    "organization": "RAINBOW"
@@ -2059,7 +2059,7 @@
      "image": "img/loadout/Impact EMP Grenade.png"
     }
    ],
-   "image": "img/operators/gridlock_render.png",
+   "image": "img/operators/gridlock_render.webp",
    "icon": "img/operators/gridlock_icon.png",
    "quote": "\"You've gotta have a couple of roos loose in the top paddock to sign up for this life, but there's nowhere I'd rather be.\"",
    "organization": "SASR"
@@ -2135,7 +2135,7 @@
      "image": "img/loadout/Kawan Hive Launcher.png"
     }
    ],
-   "image": "img/operators/grim_render.png",
+   "image": "img/operators/grim_render.webp",
    "icon": "img/operators/grim_icon.png",
    "quote": "\"Get out of my way.\"",
    "organization": "ARASSAS"
@@ -2217,7 +2217,7 @@
      "image": "img/loadout/X-Kairos.png"
     }
    ],
-   "image": "img/operators/hibana_render.png",
+   "image": "img/operators/hibana_render.webp",
    "icon": "img/operators/hibana_icon.png",
    "quote": "\"Kyūdō is meditation in action. Explosions are part of that action.\"",
    "organization": "RAINBOW"
@@ -2287,7 +2287,7 @@
      "image": "img/loadout/GEMINI REPLICATOR.png"
     }
    ],
-   "image": "img/operators/iana_render.png",
+   "image": "img/operators/iana_render.webp",
    "icon": "img/operators/iana_icon.png",
    "quote": "\"All systems are complementary, if you know how to connect them.\"",
    "organization": "UNAFFILIATED"
@@ -2363,7 +2363,7 @@
      "image": "img/loadout/Electronics Detector.png"
     }
    ],
-   "image": "img/operators/iq_render.png",
+   "image": "img/operators/iq_render.webp",
    "icon": "img/operators/iq_icon.png",
    "quote": "\"Life is the ultimate Rube Goldberg machine.\"",
    "organization": "NIGHTHAVENLABS"
@@ -2439,7 +2439,7 @@
      "image": "img/loadout/Eyenox Model III.png"
     }
    ],
-   "image": "img/operators/jackal_render.png",
+   "image": "img/operators/jackal_render.webp",
    "icon": "img/operators/jackal_icon.png",
    "quote": "\"You can't escape me, but that doesn't mean you won't try.\"",
    "organization": "RAINBOW"
@@ -2503,7 +2503,7 @@
      "image": "img/loadout/ACTIVE DEFENSE.png"
     }
    ],
-   "image": "img/operators/jager_render.png",
+   "image": "img/operators/jager_render.webp",
    "icon": "img/operators/jager_icon.png",
    "quote": "\"Birthdays. Proposals. These should be surprises. No one wants a grenade to the face.\"",
    "organization": "RAINBOW"
@@ -2579,7 +2579,7 @@
      "image": "img/loadout/_Rtila_ Electroclaw.png"
     }
    ],
-   "image": "img/operators/kaid_render.png",
+   "image": "img/operators/kaid_render.webp",
    "icon": "img/operators/kaid_icon.png",
    "quote": "\"Lead by example and the mountain will move.\"",
    "organization": "UNAFFILIATED"
@@ -2655,7 +2655,7 @@
      "image": "img/loadout/LV Explosive Lance.png"
     }
    ],
-   "image": "img/operators/kali_render.png",
+   "image": "img/operators/kali_render.webp",
    "icon": "img/operators/kali_icon.png",
    "quote": "\"Acceptance of mediocrity is the first step toward failure.\"",
    "organization": "UNAFFILIATED"
@@ -2726,7 +2726,7 @@
      "image": "img/loadout/Entry Denial Device.png"
     }
    ],
-   "image": "img/operators/kapkan_render.png",
+   "image": "img/operators/kapkan_render.webp",
    "icon": "img/operators/kapkan_icon.png",
    "quote": "\"There are many different kinds of cunning. Fortunately, survival requires only one.\"",
    "organization": "RAINBOW"
@@ -2796,7 +2796,7 @@
      "image": "img/loadout/Super Shorty.png"
     }
    ],
-   "image": "img/operators/lesion_render.png",
+   "image": "img/operators/lesion_render.webp",
    "icon": "img/operators/lesion_icon.png",
    "quote": "\"Make no excuses for who you are. Only the weak-minded will demand you make yourself smaller.\"",
    "organization": "RAINBOW"
@@ -2878,7 +2878,7 @@
      "image": "img/loadout/EE-ONE-D.png"
     }
    ],
-   "image": "img/operators/lion_render.png",
+   "image": "img/operators/lion_render.webp",
    "icon": "img/operators/lion_icon.png",
    "quote": "\"Confusing what is right with what is easy can lead down a dangerous path.\"",
    "organization": "RAINBOW"
@@ -2954,7 +2954,7 @@
      "image": "img/loadout/Evil Eye.png"
     }
    ],
-   "image": "img/operators/maestro_render.png",
+   "image": "img/operators/maestro_render.webp",
    "icon": "img/operators/maestro_icon.png",
    "quote": "\"Did I ever tell you about the time we tree-jumped into a Congo swamp at night? No? Oh, it's a good one.\"",
    "organization": "RAINBOW"
@@ -3042,7 +3042,7 @@
      "image": "img/loadout/Breaching Torch.png"
     }
    ],
-   "image": "img/operators/maverick_render.png",
+   "image": "img/operators/maverick_render.webp",
    "icon": "img/operators/maverick_icon.png",
    "quote": "\"The Devil's in the details… that's where you'll find me.\"",
    "organization": "GSUTR"
@@ -3112,7 +3112,7 @@
      "image": "img/loadout/BANSHEE SONIC DEFENSE.png"
     }
    ],
-   "image": "img/operators/melusi_render.png",
+   "image": "img/operators/melusi_render.webp",
    "icon": "img/operators/melusi_icon.png",
    "quote": "\"Understanding is the only tool that vanquishes ignorance.\"",
    "organization": "ITF"
@@ -3182,7 +3182,7 @@
      "image": "img/loadout/Black mirror.png"
     }
    ],
-   "image": "img/operators/mira_render.png",
+   "image": "img/operators/mira_render.webp",
    "icon": "img/operators/mira_icon.png",
    "quote": "\"Think of me as your conscience. I see everything, and I'm just as ruthless.\"",
    "organization": "UNAFFILIATED"
@@ -3252,7 +3252,7 @@
      "image": "img/loadout/Impact EMP Grenade.png"
     }
    ],
-   "image": "img/operators/montagne_render.png",
+   "image": "img/operators/montagne_render.webp",
    "icon": "img/operators/montagne_icon.png",
    "quote": "\"Every conflict is an iteration upon the last. Every scar, a victory.\"",
    "organization": "RAINBOW"
@@ -3328,7 +3328,7 @@
      "image": "img/loadout/Pest Launcher.png"
     }
    ],
-   "image": "img/operators/mozzie_render.png",
+   "image": "img/operators/mozzie_render.webp",
    "icon": "img/operators/mozzie_icon.png",
    "quote": "\"C'mon, I'm not here to fuck spiders.\"",
    "organization": "SASR"
@@ -3399,7 +3399,7 @@
      "image": "img/loadout/Signal Disruptor.png"
     }
    ],
-   "image": "img/operators/mute_render.png",
+   "image": "img/operators/mute_render.webp",
    "icon": "img/operators/mute_icon.png",
    "quote": "\"People think my codename is because I don't like to talk. Maybe I just don't like you.\"",
    "organization": "RAINBOW"
@@ -3481,7 +3481,7 @@
      "image": "img/loadout/Impact EMP Grenade.png"
     }
    ],
-   "image": "img/operators/nokk_render.png",
+   "image": "img/operators/nokk_render.webp",
    "icon": "img/operators/nokk_icon.png",
    "quote": "\"The only thing I feel when I pull the trigger is recoil.\"",
    "organization": "UNAFFILIATED"
@@ -3551,7 +3551,7 @@
      "image": "img/loadout/Airjab Launcher.png"
     }
    ],
-   "image": "img/operators/nomad_render.png",
+   "image": "img/operators/nomad_render.webp",
    "icon": "img/operators/nomad_icon.png",
    "quote": "\"Deep down in my veins, I knew I had to travel. Now that I have, I'm certain I haven't travelled enough.\"",
    "organization": "GSAC"
@@ -3626,7 +3626,7 @@
      "image": "img/loadout/REMAH DASH.png"
     }
    ],
-   "image": "img/operators/oryx_render.png",
+   "image": "img/operators/oryx_render.webp",
    "icon": "img/operators/oryx_icon.png",
    "quote": "\"Sometimes, the only way out is through.\"",
    "organization": "RAINBOW"
@@ -3696,7 +3696,7 @@
      "image": "img/loadout/TALON-8 CLEAR SHIELD.png"
     }
    ],
-   "image": "img/operators/osa_render.png",
+   "image": "img/operators/osa_render.webp",
    "icon": "img/operators/osa_icon.png",
    "quote": "\"The best ideas come to me when I exclude rules and guidelines from the equation.\"",
    "organization": "NIGHTHAVENLABS"
@@ -3778,7 +3778,7 @@
      "image": "img/loadout/Observation Blocker.png"
     }
    ],
-   "image": "img/operators/pulse_render.png",
+   "image": "img/operators/pulse_render.webp",
    "icon": "img/operators/pulse_icon.png",
    "quote": "\"The heart is just a motor. Like any machine, it can be fine-tuned.\"",
    "organization": "ARASSAS"
@@ -3842,7 +3842,7 @@
      "image": "img/loadout/BU-GI AUTO BREACHER.png"
     }
    ],
-   "image": "img/operators/ram_render.png",
+   "image": "img/operators/ram_render.webp",
    "icon": "img/operators/ram_icon.png",
    "quote": "\"I may not have family, but I have Redhammer.\"",
    "organization": "35CB"
@@ -3912,7 +3912,7 @@
      "image": "img/loadout/D.O.M. Panel Launcher.png"
     }
    ],
-   "image": "img/operators/rauora_render.png",
+   "image": "img/operators/rauora_render.webp",
    "icon": "img/operators/rauora_icon.png",
    "quote": "\"Either you follow me out, or I carry you out. It's your choice.\"",
    "organization": "RAINBOW"
@@ -3999,7 +3999,7 @@
      "image": "img/loadout/Armor Pack.png"
     }
    ],
-   "image": "img/operators/rook_render.png",
+   "image": "img/operators/rook_render.webp",
    "icon": "img/operators/rook_icon.png",
    "quote": "\"If you're going to get shot, you may as well do it right.\"",
    "organization": "GIGN"
@@ -4069,7 +4069,7 @@
      "image": "img/loadout/R.O.U. Projector System.png"
     }
    ],
-   "image": "img/operators/sens_render.png",
+   "image": "img/operators/sens_render.webp",
    "icon": "img/operators/sens_icon.png",
    "quote": "\"Brute force only gets you so far. Victory is determined in the mind of a strategist.\"",
    "organization": "RAINBOW"
@@ -4167,7 +4167,7 @@
      "image": "img/loadout/PROXIMITY ALARM.png"
     }
    ],
-   "image": "img/operators/sentry_render.png",
+   "image": "img/operators/sentry_render.webp",
    "icon": "img/operators/sentry_icon.png",
    "quote": "\"We eat, sleep and dream Rainbow during training. And one day, it'll pay off.\"",
    "organization": "RAINBOW"
@@ -4225,7 +4225,7 @@
      "image": "img/loadout/V10 Pantheon Shells.png"
     }
    ],
-   "image": "img/operators/skopos_render.png",
+   "image": "img/operators/skopos_render.webp",
    "icon": "img/operators/skopos_icon.png",
    "quote": "\"Here's my quote: Don't waste my fucking time.\"",
    "organization": "GSAC"
@@ -4302,7 +4302,7 @@
      "image": "img/loadout/BREACHING HAMMER.png"
     }
    ],
-   "image": "img/operators/sledge_render.png",
+   "image": "img/operators/sledge_render.webp",
    "icon": "img/operators/sledge_icon.png",
    "quote": "\"Coming through!\"",
    "organization": "RAINBOW"
@@ -4373,7 +4373,7 @@
      "image": "img/loadout/PROXIMITY ALARM.png"
     }
    ],
-   "image": "img/operators/smoke_render.png",
+   "image": "img/operators/smoke_render.webp",
    "icon": "img/operators/smoke_icon.png",
    "quote": "\"Sure, I care about the environment. Immediately around me, anyway.\"",
    "organization": "ARASSAS"
@@ -4453,7 +4453,7 @@
      "image": "img/loadout/SOLITON RADAR MK III.png"
     }
    ],
-   "image": "img/operators/solid-snake_render.png",
+   "image": "img/operators/solid-snake_render.webp",
    "icon": "img/operators/solid-snake_icon.png",
    "quote": "\"It's easy to forget what a sin is in the middle of a battlefield.\"",
    "organization": "UNAFFILIATED"
@@ -4517,7 +4517,7 @@
      "image": "img/loadout/Spec-IO Electro-Sensor.png"
     }
    ],
-   "image": "img/operators/solis_render.png",
+   "image": "img/operators/solis_render.webp",
    "icon": "img/operators/solis_icon.png",
    "quote": "\"People lie. Data does not.\"",
    "organization": "ARCHNET"
@@ -4615,7 +4615,7 @@
      "image": "img/loadout/Impact EMP Grenade.png"
     }
    ],
-   "image": "img/operators/striker_render.png",
+   "image": "img/operators/striker_render.webp",
    "icon": "img/operators/striker_icon.png",
    "quote": "\"We earned the right to be here. Now we just have to earn the right to stay\"",
    "organization": "RAINBOW"
@@ -4697,7 +4697,7 @@
      "image": "img/loadout/Deployable Shield.png"
     }
    ],
-   "image": "img/operators/tachanka_render.png",
+   "image": "img/operators/tachanka_render.webp",
    "icon": "img/operators/tachanka_icon.png",
    "quote": "\"They told me I'd died. They were wrong. I was reborn.\"",
    "organization": "SPETSNAZ"
@@ -4773,7 +4773,7 @@
      "image": "img/loadout/E.G.S. Disruptor (Electronic Gear Scanner Disruptor).png"
     }
    ],
-   "image": "img/operators/thatcher_render.png",
+   "image": "img/operators/thatcher_render.webp",
    "icon": "img/operators/thatcher_icon.png",
    "quote": "\"What you can feel, what you can touch – those are the things that are real. Everything else is just a distraction.\"",
    "organization": "SAS"
@@ -4850,7 +4850,7 @@
      "image": "img/loadout/Exothermic Charge.png"
     }
    ],
-   "image": "img/operators/thermite_render.png",
+   "image": "img/operators/thermite_render.webp",
    "icon": "img/operators/thermite_icon.png",
    "quote": "\"You see a wall, I see an opportunity.\"",
    "organization": "UNAFFILIATED"
@@ -4920,7 +4920,7 @@
      "image": "img/loadout/RAZORBLOOM SHELL.png"
     }
    ],
-   "image": "img/operators/thorn_render.png",
+   "image": "img/operators/thorn_render.webp",
    "icon": "img/operators/thorn_icon.png",
    "quote": "\"We eat, sleep and dream Rainbow during training. And one day, it'll pay off.\"",
    "organization": "RAINBOW"
@@ -5001,7 +5001,7 @@
      "image": "img/loadout/KÓNA STATION.png"
     }
    ],
-   "image": "img/operators/thunderbird_render.png",
+   "image": "img/operators/thunderbird_render.webp",
    "icon": "img/operators/thunderbird_icon.png",
    "quote": "\"Air or ground, you find your balance or end up with a face full of dirt.\"",
    "organization": "SNA"
@@ -5065,7 +5065,7 @@
      "image": "img/loadout/Zoto Canister.png"
     }
    ],
-   "image": "img/operators/tubarao_render.png",
+   "image": "img/operators/tubarao_render.webp",
    "icon": "img/operators/tubarao_icon.png",
    "quote": "\"Acceptable casualties? Nah.\"",
    "organization": "RAINBOW"
@@ -5141,7 +5141,7 @@
      "image": "img/loadout/SHOCK DRONE.png"
     }
    ],
-   "image": "img/operators/twitch_render.png",
+   "image": "img/operators/twitch_render.webp",
    "icon": "img/operators/twitch_icon.png",
    "quote": "\"Machine learning and teamwork have one thing in common: Always lead by example.\"",
    "organization": "UNAFFILIATED"
@@ -5205,7 +5205,7 @@
      "image": "img/loadout/Black Eye.png"
     }
    ],
-   "image": "img/operators/valkyrie_render.png",
+   "image": "img/operators/valkyrie_render.webp",
    "icon": "img/operators/valkyrie_icon.png",
    "quote": "\"If you don't constantly feel like you're being watched, then you aren't paying attention.\"",
    "organization": "NAVYSEALS"
@@ -5275,7 +5275,7 @@
      "image": "img/loadout/ERC-7.png"
     }
    ],
-   "image": "img/operators/vigil_render.png",
+   "image": "img/operators/vigil_render.webp",
    "icon": "img/operators/vigil_icon.png",
    "quote": "\"Don't worry about me. I was never here.\"",
    "organization": "SMB"
@@ -5357,7 +5357,7 @@
      "image": "img/loadout/Mag-net System.png"
     }
    ],
-   "image": "img/operators/wamai_render.png",
+   "image": "img/operators/wamai_render.webp",
    "icon": "img/operators/wamai_icon.png",
    "quote": "\"The closer you are to death, the more vibrant life becomes.\"",
    "organization": "UNAFFILIATED"
@@ -5433,7 +5433,7 @@
      "image": "img/loadout/Glance Smart Glasses.png"
     }
    ],
-   "image": "img/operators/warden_render.png",
+   "image": "img/operators/warden_render.webp",
    "icon": "img/operators/warden_icon.png",
    "quote": "\"I'm never unprepared.\"",
    "organization": "SECRETSERVICE"
@@ -5503,7 +5503,7 @@
      "image": "img/loadout/Candela.png"
     }
    ],
-   "image": "img/operators/ying_render.png",
+   "image": "img/operators/ying_render.webp",
    "icon": "img/operators/ying_icon.png",
    "quote": "\"Protecting others is a calling. If you don't feel it, walk away.\"",
    "organization": "RAINBOW"
@@ -5573,7 +5573,7 @@
      "image": "img/loadout/ARGUS LAUNCHER.png"
     }
    ],
-   "image": "img/operators/zero_render.png",
+   "image": "img/operators/zero_render.webp",
    "icon": "img/operators/zero_icon.png",
    "quote": "\"Prepare, execute, vanish.\"",
    "organization": "UNAFFILIATED"
@@ -5637,7 +5637,7 @@
      "image": "img/loadout/KS79 Lifeline.png"
     }
    ],
-   "image": "img/operators/zofia_render.png",
+   "image": "img/operators/zofia_render.webp",
    "icon": "img/operators/zofia_icon.png",
    "quote": "\"It isn't about where you end up, it's about how you make it home.\"",
    "organization": "GROM"
