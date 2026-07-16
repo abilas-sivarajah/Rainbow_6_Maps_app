@@ -6,7 +6,7 @@
 // Get a free key at https://r6data.com and set R6DATA_API_KEY in .env.local.
 
 import { OPERATOR_ICONS } from './operatorIcons';
-import { parseFullProfiles, type FullProfilesData } from './ubi';
+import { parseFullProfiles, type FullProfilesData } from './fullProfiles';
 import type {
   BoardStats,
   GeneralStats,
@@ -461,7 +461,11 @@ export async function getPlayerDataViaR6Data(
   const operators = operatorsRes?.operators ?? [];
 
   // Inactivity: how many seasons behind the current one is the player's data.
-  const currentSeason = Number(process.env.R6_CURRENT_SEASON ?? 42);
+  // fullStats liefert die aktuelle Season gleich mit — kein Hardcoding nötig;
+  // R6_CURRENT_SEASON bleibt als manueller Override.
+  const currentSeason = Number(
+    process.env.R6_CURRENT_SEASON ?? full.data?.metadata?.currentSeason ?? 0,
+  );
   const inactiveSeasons =
     profiles.seasonId > 0 && profiles.seasonId < currentSeason
       ? currentSeason - profiles.seasonId

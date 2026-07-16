@@ -6,7 +6,6 @@ import { getR6DataRawDebug, hasR6DataKey, r6dataProbe } from '@/lib/r6data';
 import { TRACKER_ENABLED } from '@/lib/features';
 import type { Platform } from '@/lib/types';
 
-// r6api.js + node-fetch need the Node.js runtime (not Edge).
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
@@ -76,12 +75,13 @@ export async function GET(request: Request) {
       err instanceof Error ? err.message : 'Unbekannter Fehler beim Abruf.';
     console.error('[r6-tracker] player lookup failed:', err);
     // Surface credential/config errors clearly, but don't leak internals otherwise.
-    const isConfig = message.includes('Ubisoft credentials');
+    const isConfig =
+      message.includes('R6DATA_API_KEY') || message.includes('invalid API key');
     return NextResponse.json(
       {
         error: isConfig
           ? message
-          : 'Daten konnten nicht abgerufen werden. Eventuell ist die Ubisoft-API gerade nicht erreichbar oder die Zugangsdaten sind ungültig.',
+          : 'Daten konnten nicht abgerufen werden. Eventuell ist die R6Data-API gerade nicht erreichbar.',
       },
       { status: isConfig ? 500 : 502 },
     );

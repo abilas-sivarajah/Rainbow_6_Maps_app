@@ -4,8 +4,9 @@ import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 
+// sharp ist bewusst keine App-Dependency: bei Bedarf `npm install --no-save sharp`
 const require = createRequire(import.meta.url);
-const sharp = require('C:/Rainbow_6_Maps_app/node_modules/sharp');
+const sharp = require('sharp');
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PUBLIC = path.join(ROOT, 'public');
