@@ -2,106 +2,13 @@
 
 import { useState } from 'react';
 import RpChart from '@/components/RpChart';
-import type { BoardStats, PlayerData, RecentMatch, OperatorBrief, SeasonRank, PlayerMatchStat, MatchDetails } from '@/lib/types';
+import type { BoardStats, PlayerData, RecentMatch, OperatorBrief, SeasonRank, PlayerMatchStat } from '@/lib/types';
 
 function getKdClass(kd: number): string {
   if (kd >= 1.2) return 'kd-high';
   if (kd >= 1.0) return 'kd-good';
   if (kd >= 0.8) return 'kd-warning';
   return 'kd-low';
-}
-
-function generateSimulatedDetails(match: RecentMatch, myUsername: string): MatchDetails {
-  const maps = ['Clubhouse', 'Oregon', 'Chalet', 'Kafe Dostoyevsky', 'Bank', 'Border', 'Villa', 'Theme Park', 'Consulate', 'Nighthaven Labs'];
-  
-  // Simple hash of the date and RP to get stable random-like values
-  const seedString = match.date + match.rp + match.rpChange;
-  const hash = seedString.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-  const mapName = maps[hash % maps.length];
-  
-  const isWin = match.result === 'win';
-  const scoreBlue = isWin ? 7 : (hash % 3 === 0 ? 6 : hash % 3 === 1 ? 5 : 4);
-  const scoreOrange = isWin ? (hash % 3 === 0 ? 5 : hash % 3 === 1 ? 4 : 3) : 7;
-  
-  // Estimate my kills/deaths based on my K/D and result
-  const myKills = Math.max(0, Math.round((isWin ? 8 : 4) + (hash % 5)));
-  const myDeaths = Math.max(1, Math.round((isWin ? 5 : 8) + (hash % 3)));
-  const myAssists = Math.round(hash % 4);
-  
-  const rankColors = ['#b4764a', '#cd7f32', '#9aa7b5', '#e8b13a', '#28aab4', '#2fb56a', '#5bc8ff', '#d14fd1'];
-  const rankNames = ['Bronze 2', 'Silver 1', 'Gold 3', 'Gold 1', 'Platinum 2', 'Emerald 4', 'Emerald 2', 'Diamond 5'];
-  
-  const getMockRankIcon = (index: number): string => {
-    const color = rankColors[index % rankColors.length];
-    const letter = rankNames[index % rankNames.length][0];
-    const svg =
-      `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">` +
-      `<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">` +
-      `<stop offset="0" stop-color="${color}"/><stop offset="1" stop-color="#0b0e14"/></linearGradient></defs>` +
-      `<path d="M32 4 L58 14 V34 C58 48 46 57 32 62 C18 57 6 48 6 34 V14 Z" fill="url(#g)" stroke="${color}" stroke-width="2"/>` +
-      `<text x="32" y="40" font-family="Arial" font-size="26" font-weight="bold" fill="#fff" text-anchor="middle">${letter}</text>` +
-      `</svg>`;
-    return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
-  };
-
-  const mkPlayer = (
-    uName: string,
-    rank: string,
-    mmr: number,
-    kills: number,
-    deaths: number,
-    assists: number,
-    hs: string,
-    rankIdx: number,
-    isMe = false,
-  ): PlayerMatchStat => ({
-    username: uName,
-    rank,
-    rankImage: getMockRankIcon(rankIdx),
-    mmr,
-    kills,
-    deaths,
-    assists,
-    hsPercent: hs,
-    isMe,
-  });
-
-  const myRankIdx = hash % rankNames.length;
-
-  const teamBlue: PlayerMatchStat[] = [
-    {
-      username: myUsername,
-      rank: match.rank,
-      rankImage: match.rankImage,
-      mmr: match.rp,
-      kills: myKills,
-      deaths: myDeaths,
-      assists: myAssists,
-      hsPercent: `${Math.round(25 + (hash % 25))}%`,
-      isMe: true,
-    },
-    mkPlayer('SledgeMain', rankNames[(myRankIdx + 1) % rankNames.length], match.rp - 40, Math.max(0, Math.round(4 + (hash % 5))), Math.max(1, Math.round(5 + (hash % 3))), 2, '20%', myRankIdx + 1),
-    mkPlayer('ValkyrieEye', rankNames[(myRankIdx - 1 + rankNames.length) % rankNames.length], match.rp + 20, Math.max(0, Math.round(5 + (hash % 4))), Math.max(1, Math.round(6 + (hash % 2))), 3, '40%', myRankIdx - 1),
-    mkPlayer('HardBreach', rankNames[(myRankIdx + 2) % rankNames.length], match.rp - 120, Math.max(0, Math.round(3 + (hash % 3))), Math.max(1, Math.round(6 + (hash % 2))), 4, '15%', myRankIdx + 2),
-    mkPlayer('RoamingRooster', rankNames[(myRankIdx - 2 + rankNames.length) % rankNames.length], match.rp - 80, Math.max(0, Math.round(6 + (hash % 4))), Math.max(1, Math.round(5 + (hash % 4))), 1, '50%', myRankIdx - 2),
-  ];
-
-  const teamOrange: PlayerMatchStat[] = [
-    mkPlayer('AshRusher', rankNames[(myRankIdx + 3) % rankNames.length], match.rp + 250, Math.max(0, Math.round(9 + (hash % 4))), Math.max(1, Math.round(5 + (hash % 3))), 1, '45%', myRankIdx + 3),
-    mkPlayer('SpawnPeekerPro', rankNames[(myRankIdx + 1) % rankNames.length], match.rp + 50, Math.max(0, Math.round(7 + (hash % 3))), Math.max(1, Math.round(6 + (hash % 3))), 2, '33%', myRankIdx + 1),
-    mkPlayer('DefensiveTurtle', rankNames[(myRankIdx + 2) % rankNames.length], match.rp + 120, Math.max(0, Math.round(5 + (hash % 3))), Math.max(1, Math.round(7 + (hash % 2))), 3, '25%', myRankIdx + 2),
-    mkPlayer('SilentStep', rankNames[(myRankIdx - 1 + rankNames.length) % rankNames.length], match.rp - 30, Math.max(0, Math.round(6 + (hash % 2))), Math.max(1, Math.round(8 + (hash % 2))), 1, '16%', myRankIdx - 1),
-    mkPlayer('CastleDoor', rankNames[(myRankIdx - 3 + rankNames.length) % rankNames.length], match.rp - 200, Math.max(0, Math.round(2 + (hash % 4))), Math.max(1, Math.round(7 + (hash % 1))), 0, '10%', myRankIdx - 3),
-  ];
-
-  return {
-    mapName,
-    mapImage: '',
-    scoreBlue,
-    scoreOrange,
-    teamBlue,
-    teamOrange,
-  };
 }
 
 function RankCard({ title, board }: { title: string; board: BoardStats | null }) {
@@ -190,8 +97,8 @@ function MatchRow({ match, onClick }: { match: RecentMatch; onClick?: () => void
     <div
       className={`match-row ${isWin ? 'win-border' : 'loss-border'}`}
       onClick={onClick}
-      style={{ cursor: 'pointer' }}
-      title="Klicke für Match-Scorecard"
+      style={{ cursor: onClick ? 'pointer' : 'default' }}
+      title={onClick ? 'Klicke für Match-Scorecard' : undefined}
     >
       <div className="match-left">
         <span className={`result-badge ${isWin ? 'win-badge' : 'loss-badge'}`}>
@@ -366,7 +273,7 @@ const TeamScorecard = ({ teamName, titleClass, players }: { teamName: string; ti
   </div>
 );
 
-function MatchDetailsModal({ match, onClose, isSimulated }: { match: RecentMatch; onClose: () => void; isSimulated: boolean }) {
+function MatchDetailsModal({ match, onClose }: { match: RecentMatch; onClose: () => void }) {
   if (!match.details) return null;
   const d = match.details;
   const isWin = match.result === 'win';
@@ -376,22 +283,6 @@ function MatchDetailsModal({ match, onClose, isSimulated }: { match: RecentMatch
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose}>✕</button>
         <div className="modal-header">
-          {isSimulated ? (
-            <div style={{
-              background: 'rgba(255, 122, 26, 0.08)',
-              border: '1px solid rgba(255, 122, 26, 0.25)',
-              borderRadius: '8px',
-              padding: '10px 16px',
-              fontSize: '0.85rem',
-              color: 'var(--accent-2)',
-              maxWidth: '600px',
-              margin: '0 auto 20px',
-              textAlign: 'left',
-              lineHeight: '1.4'
-            }}>
-              💡 <strong>Simulierte Lobby:</strong> Da für diesen Account kein stats.cc Desktop-Client läuft, wurden Map, Roster und K/D/A für dieses Match geschätzt.
-            </div>
-          ) : null}
           <p className="modal-map-name">{d.mapName}</p>
           <div className={`modal-score ${isWin ? 'win' : 'loss'}`}>
             <span>{d.scoreBlue}</span>
@@ -415,7 +306,6 @@ export default function PlayerProfile({ data }: { data: PlayerData }) {
   const [activeTab, setActiveTab] = useState<'overview' | 'operators' | 'matches' | 'history'>('overview');
   const [opSortBy, setOpSortBy] = useState<'kills' | 'playtime' | 'kd' | 'winrate'>('kills');
   const [selectedMatch, setSelectedMatch] = useState<RecentMatch | null>(null);
-  const [isSimulated, setIsSimulated] = useState(false);
   const [expandedSeasons, setExpandedSeasons] = useState<Record<number, boolean>>({});
 
   const toggleSeason = (seasonId: number) => {
@@ -425,19 +315,10 @@ export default function PlayerProfile({ data }: { data: PlayerData }) {
     }));
   };
 
-  const handleMatchClick = (m: RecentMatch) => {
-    if (m.details) {
-      setIsSimulated(false);
-      setSelectedMatch(m);
-    } else {
-      const simulatedDetails = generateSimulatedDetails(m, data.username);
-      setIsSimulated(true);
-      setSelectedMatch({
-        ...m,
-        details: simulatedDetails,
-      });
-    }
-  };
+  // Nur Matches mit echten Details (Demo-Modus) sind klickbar — R6Data liefert
+  // keine Match-Rosters, und erfundene "simulierte Lobbys" zeigen wir nicht an.
+  const handleMatchClick = (m: RecentMatch) =>
+    m.details ? () => setSelectedMatch(m) : undefined;
 
   // Sort logic for operators
   const sortedOperators = [...data.topOperators].sort((a, b) => {
@@ -652,7 +533,7 @@ export default function PlayerProfile({ data }: { data: PlayerData }) {
               {data.recentMatches && data.recentMatches.length > 0 ? (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                   {data.recentMatches.slice(0, 5).map((m, i) => (
-                    <MatchRow key={`${m.date}-${i}`} match={m} onClick={() => handleMatchClick(m)} />
+                    <MatchRow key={`${m.date}-${i}`} match={m} onClick={handleMatchClick(m)} />
                   ))}
                 </div>
               ) : (
@@ -705,7 +586,7 @@ export default function PlayerProfile({ data }: { data: PlayerData }) {
           {data.recentMatches && data.recentMatches.length > 0 ? (
             <div className="matches-list">
               {data.recentMatches.map((m, i) => (
-                <MatchRow key={`${m.date}-${i}`} match={m} onClick={() => handleMatchClick(m)} />
+                <MatchRow key={`${m.date}-${i}`} match={m} onClick={handleMatchClick(m)} />
               ))}
             </div>
           ) : (
@@ -741,7 +622,7 @@ export default function PlayerProfile({ data }: { data: PlayerData }) {
 
       {/* Detail Modal Overlay */}
       {selectedMatch ? (
-        <MatchDetailsModal match={selectedMatch} onClose={() => setSelectedMatch(null)} isSimulated={isSimulated} />
+        <MatchDetailsModal match={selectedMatch} onClose={() => setSelectedMatch(null)} />
       ) : null}
     </div>
   );
