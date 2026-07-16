@@ -24,12 +24,12 @@ Dieses Dokument gibt zukünftigen KIs/Entwicklern eine schnelle Übersicht über
 
 2. **Interaktive Waffenliste (`/weapons`):** Detail-Browser für 118 Waffen mit URL-Query-Sync (`/weapons?name=L85A2`).
 
-3. **Operator-Seiten (`/operators`, `/operators/[id]`):** Filter/Suche, Loadout-Waffen sind Links zur Waffen-Detailansicht.
+3. **Operator-Seiten (`/operators`, `/operators/[id]`):** Filter/Suche, Loadout-Waffen sind Links zur Waffen-Detailansicht. Operator-Renders liegen als WebP unter `public/img/operators/<slug>_render.webp` (Icons weiterhin PNG — werden u.a. von `ReplayScorecard` direkt referenziert).
 
 4. **Mehrsprachigkeit (DE, EN, FR):** UI über `src/data/i18n.ts` (Key→{de,en,fr}); Spieldaten über `R6_bundle/R6_complete_[de|en|fr].json`. State in `LanguageContext.tsx` (localStorage, Browsersprache-Erkennung). `useLanguage()` liefert `{ operators, weapons, gadgets, t, language, setLanguage }`. Umschalter in `SiteHeader.tsx`.
 
 5. **R6 Tracker (`/stats`) — Spielerstatistiken über R6Data:**
-   * Datenquelle ist **R6Data** (`src/lib/r6data.ts`), Key via Env `R6DATA_API_KEY`. R6Data umgeht den Ubisoft-Login komplett (kein DataDome/2FA/IP-Limit). Der alte direkte Ubisoft-Client (`src/lib/ubi.ts`) existiert noch als Fallback, ist aber wegen Ubisofts IP-Rate-Limits praktisch unbrauchbar (Vercel/Rechenzentrums-IPs werden geblockt — auch ein Hetzner-Proxy half nicht).
+   * Datenquelle ist **R6Data** (`src/lib/r6data.ts`), Key via Env `R6DATA_API_KEY`. R6Data umgeht den Ubisoft-Login komplett (kein DataDome/2FA/IP-Limit). Der alte direkte Ubisoft-Client (`ubi.ts`) und der Redis-Login-Cache (`kv.ts`) wurden **entfernt** (waren wegen Ubisofts IP-Blocks auf Rechenzentrums-IPs unbrauchbar); der geteilte Ranked-2.0-Parser lebt jetzt in `src/lib/fullProfiles.ts`. Ohne Key liefert `/api/player` eine klare Konfig-Fehlermeldung (500).
    * `src/lib/r6.ts` wählt automatisch R6Data, wenn ein Key gesetzt ist.
    * **Eine Suche = 4 R6Data-Aufrufe:** `fullStats` (Ränge + Season-Historie + Level + Avatar in einem), plus `operatorStats`, `seasonalStats`, `isBanned`. API hat ein Kontingent (Endpoint `/api/me/usage`).
    * Profil (`PlayerProfile.tsx`): aktuelle Ränge (ranked/casual), **RP-Verlaufs-Graph** der Season (`RpChart.tsx`, SVG), **Season-Historie**-Tab, Top-Operatoren, Karriere-Stats, Ban-Details (Grund/Datum aus `banAlerts`), „Datenstand"-Hinweis mit Link „Jetzt aktualisieren" (R6Data frischt Daten nur beim Aufruf auf r6data.com auf — es gibt KEINEN Refresh-API-Parameter).
@@ -53,6 +53,7 @@ Dieses Dokument gibt zukünftigen KIs/Entwicklern eine schnelle Übersicht über
 * **Konvention:** Seiten mit Client-Interaktivität = dünne Server-`page.tsx` + separate `XxxPageClient.tsx` (`'use client'`).
 * **Styling:** Tailwind v4, Theme im `@theme`-Block von `src/app/globals.css` (`--color-accent` = Wiki-Orange `#ff7a1a`; auch `--color-win/-loss/-attacker/-defender`). Der Tracker nutzt zusätzlich eigene CSS-Variablen unter `:root` (dort ist `--accent-2` bewusst ebenfalls auf Orange gesetzt, damit `/stats` wie der Rest des Wikis wirkt).
 * **Routen:** `/`, `/operators`(+`/[id]`), `/weapons`, `/maps`(+`/[id]`), `/compare`, `/search`, `/favorites`, `/stats`, `/replays`.
+* **npm-Override:** `package.json` erzwingt `postcss >= 8.5.10` (Next 16.2.x pinnt intern eine Version mit bekannter XSS-Advisory; Override entfernen, sobald ein Next-Update das selbst mitbringt).
 
 ---
 
@@ -60,7 +61,8 @@ Dieses Dokument gibt zukünftigen KIs/Entwicklern eine schnelle Übersicht über
 
 * `R6DATA_API_KEY` — **einzige nötige Variable** für den Live-Tracker (Key von r6data.com). Doku als Referenz: die vom Nutzer gepflegte Offline-Kopie der R6Data-API.
 * `R6_DEMO=1` — Mock-Modus für Tracker/Leaderboard/Status ohne Key.
-* Nicht mehr nötig (aus früheren Ansätzen, können weg): `UBI_EMAIL`, `UBI_PASSWORD`, `R6_DATADOME`, `UBI_PROXY_URL`, `REDIS_URL`. `.env.example` dokumentiert Details. **Niemals echte Secrets in `.env.example` committen.**
+* `R6_CURRENT_SEASON` — optionaler Override für die "inaktiv seit X Seasons"-Anzeige; Standard kommt aus der fullStats-Antwort (`data.metadata.currentSeason`).
+* Entfernt (alte Ansätze, auch in Vercel löschen falls noch gesetzt): `UBI_EMAIL`, `UBI_PASSWORD`, `R6_DATADOME`, `UBI_PROXY_URL`, `REDIS_URL`. **Niemals echte Secrets in `.env.example` committen.**
 
 ---
 
