@@ -48,7 +48,7 @@ Dieses Dokument gibt zukünftigen KIs/Entwicklern eine schnelle Übersicht über
 ## 🏗️ Architektur & Daten
 
 * **Feature-Flags:** `src/lib/features.ts` — `TRACKER_ENABLED`, `REPLAYS_ENABLED` (blenden Nav-Links, Seiten und zugehörige API-Routen aus).
-* **Spieldaten:** `R6_bundle/R6_complete[_de|_en|_fr].json`. Typen: `src/data/types.ts`. Tracker-Typen: `src/lib/types.ts`.
+* **Spieldaten:** `R6_bundle/R6_complete[_de|_en|_fr].json`. Typen: `src/data/types.ts`. Tracker-Typen: `src/lib/types.ts`. **Statischer Snapshot** (kein Scraper im Repo) — Balance-Patches müssen manuell nachgepflegt werden; aktueller Stand steht in `meta.patchLevel` (derzeit Y11S2.2, 14.07.2026: Jäger 3-Speed/100 HP, Wamai-Loadout Nitro Cell + Deployable Shield). Achtung: Basis/EN sind mit `indent=1` formatiert, DE/FR mit `indent=2`; in DE/FR sind die Gadget-Namen übersetzt → beim Skript-Patchen über `image`-Pfad matchen. R6Data bietet zwar `/api/operators` (health/speed/bio, kein Loadout), war aber beim Y11S2.2-Patch selbst nicht aktueller als der Snapshot.
 * **API-Routen (`src/app/api/`):** `player` (Spielersuche), `leaderboard`, `gamestatus`. (Replays haben KEINE Server-Route mehr — alles clientseitig.)
 * **Konvention:** Seiten mit Client-Interaktivität = dünne Server-`page.tsx` + separate `XxxPageClient.tsx` (`'use client'`).
 * **Styling:** Tailwind v4, Theme im `@theme`-Block von `src/app/globals.css` (`--color-accent` = Wiki-Orange `#ff7a1a`; auch `--color-win/-loss/-attacker/-defender`). Der Tracker nutzt zusätzlich eigene CSS-Variablen unter `:root` (dort ist `--accent-2` bewusst ebenfalls auf Orange gesetzt, damit `/stats` wie der Rest des Wikis wirkt).

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated": "2026-07-12",
+    "generated": "2026-07-16",
     "sources": {
       "operators": "Offizielle Ubisoft-Website (rainbow-six/siege)",
       "weaponStats": "Rainbow Six Wiki (Fandom) – inoffiziell, patch-abhängig",
@@ -14,7 +14,8 @@
       "abilities": 73,
       "maps": 29
     },
-    "note": "Bilder-Pfade (image/icon) sind relativ zum Ordner ubisoft/. Biografien wurden auf Wunsch weggelassen."
+    "note": "Bilder-Pfade (image/icon) sind relativ zum Ordner ubisoft/. Biografien wurden auf Wunsch weggelassen.",
+    "patchLevel": "Y11S2.2 (14.07.2026)"
   },
   "operators": [
     {
@@ -2448,9 +2449,9 @@
       "slug": "jager",
       "realName": "Marius Streicher",
       "side": "defender",
-      "health": 110,
-      "speed": 2,
-      "armor": 2,
+      "health": 100,
+      "speed": 3,
+      "armor": 1,
       "difficulty": 2,
       "faction": "GSG9",
       "squad": [
@@ -5338,10 +5339,16 @@
           "image": "img/loadout/PROXIMITY ALARM.png"
         },
         {
-          "name": "Impact Grenade",
+          "name": "Nitro Cell",
           "slot": "gadget",
           "subtype": null,
-          "image": "img/loadout/Impact Grenade.png"
+          "image": "img/loadout/Nitro Cell.png"
+        },
+        {
+          "name": "Deployable Shield",
+          "slot": "gadget",
+          "subtype": null,
+          "image": "img/loadout/Deployable Shield.png"
         },
         {
           "name": "Mag-net System",
@@ -8303,6 +8310,7 @@
         "Tachanka",
         "Thorn",
         "Thunderbird",
+        "Wamai",
         "Warden"
       ],
       "description": "Der Deployable Shield ist ein zusammenklappbarer, hüfthoher, kugelsicherer Metallschild, der von Verteidigern platziert werden kann, um zusätzlichen Schutz zu schaffen. In den Deployable Shield sind winzige kugelsichere Fensterschlitze eingebaut, die es beiden Seiten ermöglichen, durch den Shield zu sehen."
@@ -8390,8 +8398,7 @@
         "Sentry",
         "Skopós",
         "Valkyrie",
-        "Vigil",
-        "Wamai"
+        "Vigil"
       ],
       "description": "Die Impact Grenade ist eine explosive Granate, die, wie der Name schon sagt, beim Aufprall explodiert und leichten Schaden verursacht. Sie wurde entwickelt, um effizient Rotationsrouten und Sichtlinien zu erzeugen. Einmal geworfen, können Aufprallgranaten bis zu 20 Meter weit fliegen, bevor sie eine Oberfläche treffen oder in der Luft explodieren."
     },
@@ -8410,6 +8417,7 @@
         "Sentry",
         "Tubarão",
         "Valkyrie",
+        "Wamai",
         "Warden"
       ],
       "description": "Zusammensetzung 4, oft mit C4 abgekürzt, ist ein Plastiksprengstoff, der aus RDX, Kunststoffbindemittel, Weichmacher und einer Markierungschemikalie zur Identifizierung seiner Quelle besteht. Es ist 1,34-mal so explosiv wie TNT und wird seit seiner Entwicklung in den 1960er Jahren verwendet. C4 wird häufig beim Durchbrechen von Hindernissen oder beim Abriss großer Bauwerke eingesetzt."

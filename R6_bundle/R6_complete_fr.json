@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated": "2026-07-12",
+    "generated": "2026-07-16",
     "sources": {
       "operators": "Offizielle Ubisoft-Website (rainbow-six/siege)",
       "weaponStats": "Rainbow Six Wiki (Fandom) – inoffiziell, patch-abhängig",
@@ -14,7 +14,8 @@
       "abilities": 73,
       "maps": 29
     },
-    "note": "Bilder-Pfade (image/icon) sind relativ zum Ordner ubisoft/. Biografien wurden auf Wunsch weggelassen."
+    "note": "Bilder-Pfade (image/icon) sind relativ zum Ordner ubisoft/. Biografien wurden auf Wunsch weggelassen.",
+    "patchLevel": "Y11S2.2 (14.07.2026)"
   },
   "operators": [
     {
@@ -2448,9 +2449,9 @@
       "slug": "jager",
       "realName": "Marius Streicher",
       "side": "defender",
-      "health": 110,
-      "speed": 2,
-      "armor": 2,
+      "health": 100,
+      "speed": 3,
+      "armor": 1,
       "difficulty": 2,
       "faction": "GSG9",
       "squad": [
@@ -5338,10 +5339,16 @@
           "image": "img/loadout/PROXIMITY ALARM.png"
         },
         {
-          "name": "Impact Grenade",
+          "name": "Nitro Cell",
           "slot": "gadget",
           "subtype": null,
-          "image": "img/loadout/Impact Grenade.png"
+          "image": "img/loadout/Nitro Cell.png"
+        },
+        {
+          "name": "Deployable Shield",
+          "slot": "gadget",
+          "subtype": null,
+          "image": "img/loadout/Deployable Shield.png"
         },
         {
           "name": "Mag-net System",
@@ -8303,6 +8310,7 @@
         "Tachanka",
         "Thorn",
         "Thunderbird",
+        "Wamai",
         "Warden"
       ],
       "description": "Le bouclier déployable est un bouclier métallique pare-balles pliable à hauteur de taille qui peut être placé par les défenseurs pour créer une couverture supplémentaire. De minuscules fentes de fenêtre pare-balles sont intégrées au bouclier déployable, permettant aux deux côtés de voir à travers le bouclier."
@@ -8390,8 +8398,7 @@
         "Sentry",
         "Skopós",
         "Valkyrie",
-        "Vigil",
-        "Wamai"
+        "Vigil"
       ],
       "description": "La grenade à impact est une grenade explosive qui, comme son nom l'indique, explose à l'impact et inflige de légers dégâts, conçue pour créer efficacement des itinéraires de rotation et des lignes de vue. Une fois lancées, les grenades à impact peuvent parcourir jusqu'à 20 mètres avant de toucher une surface ou d'exploser dans les airs."
     },
@@ -8410,6 +8417,7 @@
         "Sentry",
         "Tubarão",
         "Valkyrie",
+        "Wamai",
         "Warden"
       ],
       "description": "La composition 4, souvent abrégée en C4, est un explosif plastique composé de RDX, d'un liant plastique, d'un plastifiant et d'un marqueur chimique permettant d'identifier sa source. Il est 1,34 fois plus explosif que le TNT et est utilisé depuis les années 1960, date à laquelle il a été développé. Le C4 est souvent utilisé pour franchir des obstacles ou pour démolir de grandes structures."
