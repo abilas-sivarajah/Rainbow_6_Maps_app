@@ -10,21 +10,51 @@ import { useMounted } from "@/lib/useMounted";
 import { AssetImage } from "@/components/AssetImage";
 import { OperatorAvatar, SideBadge, Tag } from "@/components/ui";
 import NewsSection from "@/components/NewsSection";
-import { NEWS_ENABLED, TRACKER_ENABLED } from "@/lib/features";
+import { NEWS_ENABLED, REPLAYS_ENABLED, TRACKER_ENABLED } from "@/lib/features";
 
 export default function Home() {
   const { operators, weapons, t } = useLanguage();
   const router = useRouter();
   const mounted = useMounted();
 
-  const stats = [
-    { label: t("nav.operators"), value: operators.length, href: "/operators" },
-    { label: t("nav.maps"), value: maps.length, href: "/maps" },
-    { label: t("nav.weapons"), value: weapons.length, href: "/weapons" },
-  ];
-
   const attackers = operators.filter((o) => o.side === "attacker").length;
   const defenders = operators.filter((o) => o.side === "defender").length;
+
+  // Banner-Zeilen im Stil des Tracker-Banners für die Hauptbereiche.
+  const sections = [
+    {
+      href: "/operators",
+      emoji: "🎯",
+      kicker: t("home.sec.operators.kicker"),
+      title: t("home.sec.operators.title", { count: operators.length }),
+      text: t("home.sec.operators.text", { atk: attackers, def: defenders }),
+    },
+    {
+      href: "/maps",
+      emoji: "🗺️",
+      kicker: t("home.sec.maps.kicker"),
+      title: t("home.sec.maps.title", { count: maps.length }),
+      text: t("home.sec.maps.text"),
+    },
+    {
+      href: "/weapons",
+      emoji: "🔫",
+      kicker: t("home.sec.weapons.kicker"),
+      title: t("home.sec.weapons.title", { count: weapons.length }),
+      text: t("home.sec.weapons.text"),
+    },
+    ...(REPLAYS_ENABLED
+      ? [
+          {
+            href: "/replays",
+            emoji: "🎬",
+            kicker: t("home.sec.replays.kicker"),
+            title: t("home.sec.replays.title"),
+            text: t("home.sec.replays.text"),
+          },
+        ]
+      : []),
+  ];
 
   // Operator des Tages: datumsabhängig, stabil pro Tag (nur clientseitig).
   const [dayNumber] = useState(() => {
@@ -143,31 +173,30 @@ export default function Home() {
         </section>
       )}
 
-      {NEWS_ENABLED && <NewsSection />}
-
-      <section className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
-        {stats.map((s) => (
+      {sections.map((s) => (
+        <section key={s.href} className="mb-4">
           <Link
-            key={s.label}
             href={s.href}
-            className="rounded-xl border border-border bg-surface p-6 transition-all hover:-translate-y-0.5 hover:border-accent/60 hover:bg-surface-2"
+            className="group flex flex-wrap items-center gap-5 rounded-xl border border-border bg-surface p-5 transition-all hover:-translate-y-0.5 hover:border-accent/60 hover:bg-surface-2"
           >
-            <div className="text-4xl font-black tabular-nums">{s.value}</div>
-            <div className="mt-1 text-muted">{s.label}</div>
+            <span className="grid h-16 w-16 shrink-0 place-items-center rounded-lg bg-accent/10 text-3xl">
+              {s.emoji}
+            </span>
+            <div className="min-w-0 flex-1">
+              <div className="mb-1 text-xs font-semibold uppercase tracking-widest text-accent">
+                {s.kicker}
+              </div>
+              <div className="text-2xl font-black">{s.title}</div>
+              <p className="mt-1 text-sm text-muted">{s.text}</p>
+            </div>
+            <span className="hidden shrink-0 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-bg sm:block">
+              {t("home.view")}
+            </span>
           </Link>
-        ))}
-      </section>
+        </section>
+      ))}
 
-      <section className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="rounded-xl border border-border bg-surface p-6">
-          <div className="text-sm text-muted">{t("home.attackers")}</div>
-          <div className="text-3xl font-bold text-attacker">{attackers}</div>
-        </div>
-        <div className="rounded-xl border border-border bg-surface p-6">
-          <div className="text-sm text-muted">{t("home.defenders")}</div>
-          <div className="text-3xl font-bold text-defender">{defenders}</div>
-        </div>
-      </section>
+      {NEWS_ENABLED && <NewsSection />}
     </div>
   );
 }

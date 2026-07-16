@@ -259,6 +259,66 @@ export const UI_TRANSLATIONS = {
     en: "Search player",
     fr: "Rechercher un joueur"
   },
+  "home.sec.operators.kicker": {
+    de: "Operator-Datenbank",
+    en: "Operator database",
+    fr: "Base de données des opérateurs"
+  },
+  "home.sec.operators.title": {
+    de: "{count} Operator",
+    en: "{count} Operators",
+    fr: "{count} Opérateurs"
+  },
+  "home.sec.operators.text": {
+    de: "{atk} Angreifer und {def} Verteidiger – mit Loadouts, Fähigkeiten, Speed und Health.",
+    en: "{atk} attackers and {def} defenders – with loadouts, abilities, speed and health.",
+    fr: "{atk} assaillants et {def} défenseurs – avec équipements, capacités, vitesse et santé."
+  },
+  "home.sec.maps.kicker": {
+    de: "Interaktive Karten",
+    en: "Interactive maps",
+    fr: "Cartes interactives"
+  },
+  "home.sec.maps.title": {
+    de: "{count} Maps",
+    en: "{count} Maps",
+    fr: "{count} Cartes"
+  },
+  "home.sec.maps.text": {
+    de: "Alle Etagenpläne mit Zoom und Vollbild – Etage für Etage erkunden.",
+    en: "All floor plans with zoom and fullscreen – explore floor by floor.",
+    fr: "Tous les plans d'étage avec zoom et plein écran – à explorer étage par étage."
+  },
+  "home.sec.weapons.kicker": {
+    de: "Waffen-Datenbank",
+    en: "Weapon database",
+    fr: "Base de données des armes"
+  },
+  "home.sec.weapons.title": {
+    de: "{count} Waffen",
+    en: "{count} Weapons",
+    fr: "{count} Armes"
+  },
+  "home.sec.weapons.text": {
+    de: "Schaden, Feuerrate, Magazin und wer sie im Loadout hat – im Detail-Browser.",
+    en: "Damage, fire rate, magazine and who runs them – in the detail browser.",
+    fr: "Dégâts, cadence de tir, chargeur et qui les utilise – dans le navigateur détaillé."
+  },
+  "home.sec.replays.kicker": {
+    de: "Match-Analyse",
+    en: "Match analysis",
+    fr: "Analyse de match"
+  },
+  "home.sec.replays.title": {
+    de: "Replay-Analyse",
+    en: "Replay analysis",
+    fr: "Analyse de replays"
+  },
+  "home.sec.replays.text": {
+    de: ".rec-Replays direkt im Browser auswerten – Scoreboard, Kill-Feed und Runden-Details, 100 % lokal.",
+    en: "Analyse .rec replays right in your browser – scoreboard, kill feed and round details, 100% local.",
+    fr: "Analysez vos replays .rec dans le navigateur – tableau des scores, kill feed et détails des manches, 100 % local."
+  },
   "home.news.kicker": {
     de: "Offizielle Ubisoft-News",
     en: "Official Ubisoft news",
