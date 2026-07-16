@@ -3,6 +3,11 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import PlayerProfile from '@/components/PlayerProfile';
+import {
+  removeSavedPlayer,
+  useSavedPlayers,
+  type SavedPlayer,
+} from '@/lib/playerFavorites';
 import type { ApiError, PlayerData, Platform } from '@/lib/types';
 
 const PLATFORMS: { value: Platform; label: string }[] = [
@@ -10,6 +15,76 @@ const PLATFORMS: { value: Platform; label: string }[] = [
   { value: 'psn', label: 'PlayStation' },
   { value: 'xbl', label: 'Xbox' },
 ];
+
+const PLATFORM_SHORT: Record<Platform, string> = {
+  uplay: 'PC',
+  psn: 'PS',
+  xbl: 'Xbox',
+};
+
+/** Gemerkte Spieler als Chips unter dem Suchfeld — Klick sucht direkt. */
+function SavedPlayers({ onSelect }: { onSelect: (p: SavedPlayer) => void }) {
+  const saved = useSavedPlayers();
+  if (saved.length === 0) return null;
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 8,
+        marginTop: 14,
+      }}
+    >
+      <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+        ★ Gespeichert:
+      </span>
+      {saved.map((p) => (
+        <span
+          key={`${p.platform}:${p.username}`}
+          className="badge"
+          style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}
+        >
+          <button
+            onClick={() => onSelect(p)}
+            title={`${p.username} im Tracker suchen`}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: 'var(--accent-2)',
+              font: 'inherit',
+              fontWeight: 700,
+              cursor: 'pointer',
+              padding: 0,
+            }}
+          >
+            {p.username}{' '}
+            <span style={{ color: 'var(--text-muted)', fontWeight: 400 }}>
+              ({PLATFORM_SHORT[p.platform]})
+            </span>
+          </button>
+          <button
+            onClick={() => removeSavedPlayer(p)}
+            aria-label={`${p.username} aus der Merkliste entfernen`}
+            title="Entfernen"
+            style={{
+              background: 'none',
+              border: 'none',
+              color: 'var(--text-muted)',
+              cursor: 'pointer',
+              padding: 0,
+              font: 'inherit',
+              lineHeight: 1,
+            }}
+          >
+            ✕
+          </button>
+        </span>
+      ))}
+    </div>
+  );
+}
 
 interface LeaderboardEntry {
   id: string;
@@ -336,6 +411,14 @@ export function StatsPageClient() {
           {loading ? 'Suchen...' : 'Suchen'}
         </button>
       </form>
+
+      <SavedPlayers
+        onSelect={(p) => {
+          setUsername(p.username);
+          setPlatform(p.platform);
+          void runSearch(p.username, p.platform);
+        }}
+      />
 
       {error ? <div className="message error">{error}</div> : null}
 

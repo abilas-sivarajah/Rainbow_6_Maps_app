@@ -34,6 +34,7 @@ Dieses Dokument gibt zukünftigen KIs/Entwicklern eine schnelle Übersicht über
    * **Eine Suche = 4 R6Data-Aufrufe:** `fullStats` (Ränge + Season-Historie + Level + Avatar in einem), plus `operatorStats`, `seasonalStats`, `isBanned`. API hat ein Kontingent (Endpoint `/api/me/usage`).
    * Profil (`PlayerProfile.tsx`): aktuelle Ränge (ranked/casual), **RP-Verlaufs-Graph** der Season (`RpChart.tsx`, SVG), **Season-Historie**-Tab, Top-Operatoren, Karriere-Stats, Ban-Details (Grund/Datum aus `banAlerts`), „Datenstand"-Hinweis mit Link „Jetzt aktualisieren" (R6Data frischt Daten nur beim Aufruf auf r6data.com auf — es gibt KEINEN Refresh-API-Parameter).
    * Startansicht: **Live-Status-Leiste** (`/api/gamestatus`) + **Top-Spieler-Bestenliste** (`/api/leaderboard`, PC/Konsole, paginiert, Klick sucht Spieler). Beide 5-Min-Cache + Demo-Modus.
+   * **Spieler-Merkliste:** „☆ Merken"-Button im Profilkopf speichert Name+Plattform in localStorage (`src/lib/playerFavorites.ts`, gleiches useSyncExternalStore-Muster wie `favorites.ts`); gespeicherte Spieler erscheinen als Chips unter dem Suchfeld (Klick sucht direkt, ✕ entfernt, max. 24).
 
 6. **Match-Replay-Analyse (`/replays`) — 100% lokal im Browser:**
    * `.rec`-Replays werden per **WebAssembly** geparst (r6-dissect nach WASM kompiliert). **Kein Upload, kein Server, kein Größenlimit, kein Kontingent.** WASM liegt fertig unter `public/wasm/r6dissect.wasm` (+ `wasm_exec.js`) → Vercel braucht **kein Go-Toolchain**. Go-Quellcode + Build-Anleitung: `wasm/`.

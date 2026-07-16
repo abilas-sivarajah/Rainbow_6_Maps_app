@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import RpChart from '@/components/RpChart';
+import { togglePlayerSaved, useIsPlayerSaved } from '@/lib/playerFavorites';
 import type { BoardStats, PlayerData, RecentMatch, OperatorBrief, SeasonRank, PlayerMatchStat } from '@/lib/types';
 
 function getKdClass(kd: number): string {
@@ -9,6 +10,27 @@ function getKdClass(kd: number): string {
   if (kd >= 1.0) return 'kd-good';
   if (kd >= 0.8) return 'kd-warning';
   return 'kd-low';
+}
+
+/** Stern im Profilkopf: Spieler in die Merkliste des Trackers aufnehmen. */
+function SavePlayerButton({ username, platform }: { username: string; platform: PlayerData['platform'] }) {
+  const saved = useIsPlayerSaved({ username, platform });
+  return (
+    <button
+      className="badge"
+      onClick={() => togglePlayerSaved({ username, platform })}
+      title={saved ? 'Aus der Merkliste entfernen' : 'Spieler merken — erscheint dann unter dem Suchfeld'}
+      style={{
+        cursor: 'pointer',
+        color: saved ? 'var(--accent-2)' : undefined,
+        borderColor: saved ? 'var(--accent-2)' : undefined,
+        background: 'none',
+        font: 'inherit',
+      }}
+    >
+      {saved ? '★ Gespeichert' : '☆ Merken'}
+    </button>
+  );
 }
 
 function RankCard({ title, board }: { title: string; board: BoardStats | null }) {
@@ -367,6 +389,7 @@ export default function PlayerProfile({ data }: { data: PlayerData }) {
           <h2 className="name">
             {data.username}
             <span className="badge">{data.platform.toUpperCase()}</span>
+            <SavePlayerButton username={data.username} platform={data.platform} />
             {data.currentRegion ? (
               <span className="badge">{data.currentRegion}</span>
             ) : null}
