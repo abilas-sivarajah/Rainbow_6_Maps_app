@@ -9,7 +9,8 @@ import { maps } from "@/data/maps";
 import { useMounted } from "@/lib/useMounted";
 import { AssetImage } from "@/components/AssetImage";
 import { OperatorAvatar, SideBadge, Tag } from "@/components/ui";
-import { TRACKER_ENABLED } from "@/lib/features";
+import NewsSection from "@/components/NewsSection";
+import { NEWS_ENABLED, TRACKER_ENABLED } from "@/lib/features";
 
 export default function Home() {
   const { operators, weapons, t } = useLanguage();
@@ -142,7 +143,9 @@ export default function Home() {
         </section>
       )}
 
-      <section className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      {NEWS_ENABLED && <NewsSection />}
+
+      <section className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
         {stats.map((s) => (
           <Link
             key={s.label}

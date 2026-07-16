@@ -259,6 +259,21 @@ export const UI_TRANSLATIONS = {
     en: "Search player",
     fr: "Rechercher un joueur"
   },
+  "home.news.kicker": {
+    de: "Offizielle Ubisoft-News",
+    en: "Official Ubisoft news",
+    fr: "Actualités officielles Ubisoft"
+  },
+  "home.news.title": {
+    de: "Aktuelle News & Patchnotes",
+    en: "Latest news & patch notes",
+    fr: "Dernières actus & notes de patch"
+  },
+  "home.news.all": {
+    de: "Alle News",
+    en: "All news",
+    fr: "Toutes les actus"
+  },
 
   // PWA installieren
   "pwa.install": {

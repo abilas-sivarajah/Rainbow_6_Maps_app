@@ -10,3 +10,7 @@ export const TRACKER_ENABLED = true;
 // Browser (WebAssembly, kein Upload). Auf `false` setzen, um Nav-Link und
 // Seite auszublenden.
 export const REPLAYS_ENABLED = true;
+
+// Offizielle Ubisoft-News (Patchnotes etc.) auf der Startseite (/api/news).
+// Auf `false` setzen, um Sektion und API-Route auszublenden.
+export const NEWS_ENABLED = true;
