@@ -35,9 +35,13 @@ export async function GET(request: Request) {
     );
   }
 
+  // Spielerdaten dürfen NIE aus einem Browser-/CDN-Cache kommen — sonst wirkt
+  // die Matchhistorie veraltet, bis der Nutzer hart neu lädt (Strg+F5).
+  const noStore = { headers: { 'Cache-Control': 'no-store' } };
+
   // Demo mode: serve mock data without Ubisoft credentials / network.
   if (process.env.R6_DEMO === '1') {
-    return NextResponse.json(getDemoPlayer(platform, username));
+    return NextResponse.json(getDemoPlayer(platform, username), noStore);
   }
 
   // Debug: raw, unmapped R6Data responses (to inspect what the API offers,
@@ -66,10 +70,10 @@ export async function GET(request: Request) {
     if (!data) {
       return NextResponse.json(
         { error: `Kein Spieler "${username}" auf dieser Plattform gefunden.` },
-        { status: 404 },
+        { status: 404, ...noStore },
       );
     }
-    return NextResponse.json(data);
+    return NextResponse.json(data, noStore);
   } catch (err) {
     const message =
       err instanceof Error ? err.message : 'Unbekannter Fehler beim Abruf.';

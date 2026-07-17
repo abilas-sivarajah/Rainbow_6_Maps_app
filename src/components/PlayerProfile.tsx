@@ -324,7 +324,13 @@ function MatchDetailsModal({ match, onClose }: { match: RecentMatch; onClose: ()
   );
 }
 
-export default function PlayerProfile({ data }: { data: PlayerData }) {
+export default function PlayerProfile({
+  data,
+  onRefresh,
+}: {
+  data: PlayerData;
+  onRefresh?: () => void;
+}) {
   const [activeTab, setActiveTab] = useState<'overview' | 'operators' | 'matches' | 'history'>('overview');
   const [opSortBy, setOpSortBy] = useState<'kills' | 'playtime' | 'kd' | 'winrate'>('kills');
   const [selectedMatch, setSelectedMatch] = useState<RecentMatch | null>(null);
@@ -434,18 +440,37 @@ export default function PlayerProfile({ data }: { data: PlayerData }) {
               style={{ marginTop: 6, fontSize: '0.78rem', color: 'var(--text-muted)' }}
               title="Die Daten stammen von R6Data und werden dort erst beim Aufruf des Profils auf r6data.com aufgefrischt — die neuesten Matches können daher etwas später erscheinen."
             >
-              Datenstand: {dataAsOf} Uhr ·{' '}
+              Datenstand: {dataAsOf} Uhr
+              {onRefresh ? (
+                <>
+                  {' · '}
+                  <button
+                    onClick={onRefresh}
+                    title="Profil neu von R6Data abrufen — die erste Abfrage stößt dort oft erst die Aktualisierung an, ein erneutes Laden holt dann die frischen Matches."
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: 'var(--accent-2)',
+                      textDecoration: 'underline',
+                      cursor: 'pointer',
+                      font: 'inherit',
+                      padding: 0,
+                    }}
+                  >
+                    🔄 Neu laden
+                  </button>
+                </>
+              ) : null}
+              {' · '}
               <a
                 href={`https://r6data.com/stats?username=${encodeURIComponent(data.username)}&platform=${encodeURIComponent(data.platform)}`}
                 target="_blank"
                 rel="noreferrer"
                 style={{ color: 'var(--accent-2)', textDecoration: 'underline' }}
+                title="Öffnet dein Profil auf r6data.com — das stößt dort die Aktualisierung an. Danach hier 'Neu laden' klicken."
               >
-                Jetzt aktualisieren ↗
-              </a>{' '}
-              <span title="Öffnet dein Profil auf r6data.com — das stößt dort die Aktualisierung an. Danach hier einfach neu suchen.">
-                (öffnet r6data.com, danach neu suchen)
-              </span>
+                r6data.com aktualisieren ↗
+              </a>
             </div>
           ) : null}
           {data.xp > 0 ? (

@@ -336,6 +336,8 @@ export function StatsPageClient() {
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<PlayerData | null>(null);
   const [searched, setSearched] = useState(false);
+  // Zuletzt gesuchter Spieler — für den "Neu laden"-Button im Profil.
+  const [lastSearch, setLastSearch] = useState<{ name: string; plat: Platform } | null>(null);
 
   const runSearch = useCallback(async (name: string, plat: Platform) => {
     if (!name) return;
@@ -343,10 +345,12 @@ export function StatsPageClient() {
     setError(null);
     setData(null);
     setSearched(true);
+    setLastSearch({ name, plat });
 
     try {
       const params = new URLSearchParams({ username: name, platform: plat });
-      const res = await fetch(`/api/player?${params.toString()}`);
+      // no-store: niemals eine gecachte Antwort — Matchhistorie soll live sein.
+      const res = await fetch(`/api/player?${params.toString()}`, { cache: 'no-store' });
       const body: PlayerData | ApiError = await res.json();
       if (!res.ok) {
         setError((body as ApiError).error ?? 'Abruf fehlgeschlagen.');
@@ -429,7 +433,14 @@ export function StatsPageClient() {
         </div>
       ) : null}
 
-      {!loading && !error && data ? <PlayerProfile data={data} /> : null}
+      {!loading && !error && data ? (
+        <PlayerProfile
+          data={data}
+          onRefresh={
+            lastSearch ? () => void runSearch(lastSearch.name, lastSearch.plat) : undefined
+          }
+        />
+      ) : null}
 
       {!loading && !error && !data && searched ? (
         <div className="message info">Kein Spieler mit diesem Namen gefunden.</div>
