@@ -231,7 +231,7 @@ function mapOperators(ops: RawOperator[]): OperatorBrief[] {
 /** Aggregate per-operator (ranked) stats into a career overview. */
 function aggregateGeneral(ops: RawOperator[]): GeneralStats | null {
   if (ops.length === 0) return null;
-  let kills = 0, deaths = 0, headshots = 0, wins = 0, losses = 0, rounds = 0, ms = 0;
+  let kills = 0, deaths = 0, headshots = 0, wins = 0, losses = 0, rounds = 0;
   for (const o of ops) {
     kills += o.kills;
     deaths += o.deaths;
@@ -239,7 +239,6 @@ function aggregateGeneral(ops: RawOperator[]): GeneralStats | null {
     wins += o.wins;
     losses += o.losses;
     rounds += o.roundsPlayed;
-    ms += o.timePlayedMs;
   }
   return {
     kills,
@@ -251,7 +250,6 @@ function aggregateGeneral(ops: RawOperator[]): GeneralStats | null {
     matches: rounds,
     headshots,
     headshotPercent: kills > 0 ? `${((headshots / kills) * 100).toFixed(1)}%` : '0%',
-    playtimeHours: Math.round((ms / 3_600_000) * 10) / 10,
   };
 }
 

@@ -160,7 +160,7 @@ function OperatorCard({ op }: { op: OperatorBrief }) {
         <div className="op-name">{op.name}</div>
         <div className="op-stats">
           <div>Spiele: <span className="op-stat-val">{op.matches}</span></div>
-          <div>Zeit: <span className="op-stat-val">{op.playtime}h</span></div>
+          <div title="Gesamtdauer aller Matches, in denen dieser Operator gespielt wurde (R6Data-Zählweise)">Matchzeit: <span className="op-stat-val">{op.playtime}h</span></div>
           <div>K/D: <span className={`op-stat-val ${kdClass}`}>{op.kd}</span></div>
           <div>Winrate: <span className="op-stat-val">{op.winRate}</span></div>
         </div>
@@ -536,17 +536,19 @@ export default function PlayerProfile({
             </div>
           ) : null}
 
-          {/* General Stats */}
+          {/* General Stats (Summe der Ranked-Operator-Stats von R6Data).
+              Bewusst KEINE Spielzeit-Kachel: R6Data schreibt jedem Operator die
+              komplette Matchdauer gut — eine Summe über alle Operator zählt
+              jedes Match mehrfach und ist massiv zu hoch. */}
           {data.general ? (
             <div className="section">
-              <p className="section-title">Allgemeine Karriere-Stats</p>
+              <p className="section-title">Ranked-Karriere-Stats</p>
               <div className="grid cols-3">
                 <Tile value={<span className={getKdClass(data.general.kd)}>{data.general.kd}</span>} label="K/D-Verhältnis" />
                 <Tile value={data.general.winRate} label="Runden-Winrate" />
                 <Tile value={data.general.matches.toLocaleString()} label="Runden gespielt" />
                 <Tile value={data.general.kills.toLocaleString()} label="Kills" />
                 <Tile value={data.general.headshotPercent} label="Headshots %" />
-                <Tile value={`${data.general.playtimeHours}h`} label="Spielzeit" />
               </div>
             </div>
           ) : null}
@@ -607,7 +609,7 @@ export default function PlayerProfile({
                 onChange={(e) => setOpSortBy(e.target.value as typeof opSortBy)}
               >
                 <option value="kills">Kills</option>
-                <option value="playtime">Spielzeit</option>
+                <option value="playtime">Matchzeit</option>
                 <option value="kd">K/D</option>
                 <option value="winrate">Winrate</option>
               </select>

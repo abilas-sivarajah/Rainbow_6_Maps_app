@@ -157,7 +157,6 @@ export function getDemoPlayer(
       matches: 1850,
       headshots: 5230,
       headshotPercent: '42.0%',
-      playtimeHours: 412.5,
     },
     topOperators: [
       { name: 'Ash', icon: opIcon('#e74c3c', 'A'), kills: 2310, deaths: 1890, kd: 1.22, winRate: '55.1%', matches: 420, playtime: 96.4 },

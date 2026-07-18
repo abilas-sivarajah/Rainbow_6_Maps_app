@@ -65,7 +65,6 @@ export interface GeneralStats {
   matches: number;
   headshots: number;
   headshotPercent: string;
-  playtimeHours: number;
 }
 
 export interface RankHistoryPoint {
