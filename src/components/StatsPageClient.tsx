@@ -372,9 +372,10 @@ export function StatsPageClient() {
       }
       setData(body as PlayerData);
 
-      // R6Datas ERSTER Abruf liefert oft noch deren alten Cache und stößt erst
-      // die Aktualisierung an. Deshalb: nach kurzer Wartezeit einmal still im
-      // Hintergrund nachladen und das Profil ohne Lade-Flackern austauschen —
+      // Der Server pingt bei der Suche die r6data.com-Profilseite an — erst
+      // das stößt dort die Aktualisierung aus Ubisoft an (die API selbst
+      // liefert nur deren Cache). Deshalb: nach kurzer Wartezeit einmal still
+      // im Hintergrund nachladen und das Profil ohne Flackern austauschen —
       // so ist die Matchhistorie automatisch frisch, ohne Klick.
       refreshTimer.current = setTimeout(async () => {
         try {
@@ -386,7 +387,7 @@ export function StatsPageClient() {
         } catch {
           // still: der erste Datenstand bleibt einfach stehen
         }
-      }, 5000);
+      }, 8000);
     } catch {
       setError('Netzwerkfehler — bitte erneut versuchen.');
     } finally {

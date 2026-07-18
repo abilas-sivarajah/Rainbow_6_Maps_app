@@ -413,17 +413,49 @@ interface FullStatsResponse extends FullProfilesData {
   };
 }
 
+/**
+ * Best-effort: die r6data.com-Profilseite des Spielers anpingen. Erst DAS
+ * stößt dort die Aktualisierung aus Ubisoft an — die reine API liefert nur
+ * R6Datas Cache und hat keinen Refresh-Parameter (nachgewiesen: Matches
+ * erschienen erst nach einem Besuch der Profilseite). Der stille
+ * Client-Refresh ein paar Sekunden später holt dann die frischen Daten.
+ */
+async function triggerR6DataRefresh(
+  platform: Platform,
+  username: string,
+): Promise<void> {
+  try {
+    await fetch(
+      `https://r6data.com/stats?username=${encodeURIComponent(username)}&platform=${encodeURIComponent(platform)}`,
+      {
+        headers: {
+          'User-Agent':
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36',
+        },
+        cache: 'no-store',
+        signal: AbortSignal.timeout(4000),
+      },
+    );
+  } catch {
+    // best effort — bei Fehler bleibt es einfach beim Cache-Stand
+  }
+}
+
 export async function getPlayerDataViaR6Data(
   platform: Platform,
   username: string,
 ): Promise<PlayerData | null> {
   // One consolidated call instead of stats + seasonsStats + accountInfo —
   // player searches used to cost 6 R6Data requests, now 4 (API quota!).
-  const full = await r6dataGet<FullStatsResponse | null>({
-    type: 'fullStats',
-    nameOnPlatform: username,
-    platformType: platform,
-  });
+  // Parallel dazu: Refresh auf r6data.com anstoßen (siehe oben).
+  const [full] = await Promise.all([
+    r6dataGet<FullStatsResponse | null>({
+      type: 'fullStats',
+      nameOnPlatform: username,
+      platformType: platform,
+    }),
+    triggerR6DataRefresh(platform, username),
+  ]);
   // No profile structure => player not found.
   if (!full || !full.platform_families_full_profiles) return null;
 
