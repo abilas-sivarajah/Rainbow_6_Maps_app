@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import PlayerProfile from '@/components/PlayerProfile';
 import {
@@ -338,25 +338,55 @@ export function StatsPageClient() {
   const [searched, setSearched] = useState(false);
   // Zuletzt gesuchter Spieler — für den "Neu laden"-Button im Profil.
   const [lastSearch, setLastSearch] = useState<{ name: string; plat: Platform } | null>(null);
+  // Laufnummer der Suche + Timer der stillen Hintergrund-Aktualisierung.
+  const searchGen = useRef(0);
+  const refreshTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(
+    () => () => {
+      if (refreshTimer.current) clearTimeout(refreshTimer.current);
+    },
+    [],
+  );
 
   const runSearch = useCallback(async (name: string, plat: Platform) => {
     if (!name) return;
+    const gen = ++searchGen.current;
+    if (refreshTimer.current) clearTimeout(refreshTimer.current);
     setLoading(true);
     setError(null);
     setData(null);
     setSearched(true);
     setLastSearch({ name, plat });
 
+    const params = new URLSearchParams({ username: name, platform: plat });
+    // no-store: niemals eine gecachte Antwort — Matchhistorie soll live sein.
+    const url = `/api/player?${params.toString()}`;
+
     try {
-      const params = new URLSearchParams({ username: name, platform: plat });
-      // no-store: niemals eine gecachte Antwort — Matchhistorie soll live sein.
-      const res = await fetch(`/api/player?${params.toString()}`, { cache: 'no-store' });
+      const res = await fetch(url, { cache: 'no-store' });
       const body: PlayerData | ApiError = await res.json();
       if (!res.ok) {
         setError((body as ApiError).error ?? 'Abruf fehlgeschlagen.');
         return;
       }
       setData(body as PlayerData);
+
+      // R6Datas ERSTER Abruf liefert oft noch deren alten Cache und stößt erst
+      // die Aktualisierung an. Deshalb: nach kurzer Wartezeit einmal still im
+      // Hintergrund nachladen und das Profil ohne Lade-Flackern austauschen —
+      // so ist die Matchhistorie automatisch frisch, ohne Klick.
+      refreshTimer.current = setTimeout(async () => {
+        try {
+          const res2 = await fetch(url, { cache: 'no-store' });
+          if (!res2.ok) return;
+          const fresh: PlayerData = await res2.json();
+          // Nur übernehmen, wenn nicht längst eine neue Suche läuft.
+          if (searchGen.current === gen) setData(fresh);
+        } catch {
+          // still: der erste Datenstand bleibt einfach stehen
+        }
+      }, 5000);
     } catch {
       setError('Netzwerkfehler — bitte erneut versuchen.');
     } finally {
