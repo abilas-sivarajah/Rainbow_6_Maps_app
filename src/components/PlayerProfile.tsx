@@ -327,9 +327,11 @@ function MatchDetailsModal({ match, onClose }: { match: RecentMatch; onClose: ()
 export default function PlayerProfile({
   data,
   onRefresh,
+  autoUpdating = false,
 }: {
   data: PlayerData;
   onRefresh?: () => void;
+  autoUpdating?: boolean;
 }) {
   const [activeTab, setActiveTab] = useState<'overview' | 'operators' | 'matches' | 'history'>('overview');
   const [opSortBy, setOpSortBy] = useState<'kills' | 'playtime' | 'kd' | 'winrate'>('kills');
@@ -441,6 +443,15 @@ export default function PlayerProfile({
               title="Die Daten stammen von R6Data und werden dort erst beim Aufruf des Profils auf r6data.com aufgefrischt — die neuesten Matches können daher etwas später erscheinen."
             >
               Datenstand: {dataAsOf} Uhr
+              {autoUpdating ? (
+                <span
+                  title="R6Data holt gerade die neuesten Daten von Ubisoft — die Seite prüft automatisch nach und aktualisiert sich von selbst (bis zu ~70 s)."
+                  style={{ color: 'var(--accent-2)' }}
+                >
+                  {' '}
+                  · ⏳ aktualisiere…
+                </span>
+              ) : null}
               {onRefresh ? (
                 <>
                   {' · '}
