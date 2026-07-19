@@ -338,13 +338,20 @@ export function StatsPageClient() {
   const [searched, setSearched] = useState(false);
   // Zuletzt gesuchter Spieler — für den "Neu laden"-Button im Profil.
   const [lastSearch, setLastSearch] = useState<{ name: string; plat: Platform } | null>(null);
+  // Unsichtbares iframe mit der r6data.com-Profilseite: deren Seite (samt
+  // eigenem JavaScript) stößt die Aktualisierung aus Ubisoft an — der reine
+  // API-Abruf und auch ein serverseitiger Seiten-Ping tun das nachweislich
+  // nicht. Läuft im Browser des Nutzers, wie ein manueller Besuch.
+  const [refreshFrameUrl, setRefreshFrameUrl] = useState<string | null>(null);
   // Laufnummer der Suche + Timer der stillen Hintergrund-Aktualisierung.
   const searchGen = useRef(0);
   const refreshTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const frameTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(
     () => () => {
       if (refreshTimer.current) clearTimeout(refreshTimer.current);
+      if (frameTimer.current) clearTimeout(frameTimer.current);
     },
     [],
   );
@@ -372,11 +379,19 @@ export function StatsPageClient() {
       }
       setData(body as PlayerData);
 
-      // Der Server pingt bei der Suche die r6data.com-Profilseite an — erst
-      // das stößt dort die Aktualisierung aus Ubisoft an (die API selbst
-      // liefert nur deren Cache). Deshalb: nach kurzer Wartezeit einmal still
-      // im Hintergrund nachladen und das Profil ohne Flackern austauschen —
-      // so ist die Matchhistorie automatisch frisch, ohne Klick.
+      // r6data.com-Profilseite unsichtbar im Browser laden (triggert dort die
+      // Aktualisierung aus Ubisoft), nach 12 s wieder entfernen.
+      const handle = (body as PlayerData).username || name;
+      setRefreshFrameUrl(
+        `https://r6data.com/stats?username=${encodeURIComponent(handle)}&platform=${encodeURIComponent(plat)}`,
+      );
+      if (frameTimer.current) clearTimeout(frameTimer.current);
+      frameTimer.current = setTimeout(() => setRefreshFrameUrl(null), 12000);
+
+      // Nach kurzer Wartezeit das Profil einmal still im Hintergrund
+      // nachladen und ohne Flackern austauschen — bis dahin hat R6Data die
+      // frischen Daten von Ubisoft geholt (angestoßen durch das iframe oben
+      // plus den serverseitigen Ping in getPlayerDataViaR6Data).
       refreshTimer.current = setTimeout(async () => {
         try {
           const res2 = await fetch(url, { cache: 'no-store' });
@@ -387,7 +402,7 @@ export function StatsPageClient() {
         } catch {
           // still: der erste Datenstand bleibt einfach stehen
         }
-      }, 8000);
+      }, 10000);
     } catch {
       setError('Netzwerkfehler — bitte erneut versuchen.');
     } finally {
@@ -483,6 +498,19 @@ export function StatsPageClient() {
           <GameStatusBar />
           <Leaderboard onSelect={searchFromLeaderboard} />
         </>
+      ) : null}
+
+      {/* Unsichtbar: r6data.com-Profilseite, stößt dort den Datenabruf aus
+          Ubisoft an (siehe runSearch). Sandbox verhindert Popups/Navigation. */}
+      {refreshFrameUrl ? (
+        <iframe
+          src={refreshFrameUrl}
+          sandbox="allow-scripts allow-same-origin"
+          style={{ display: 'none' }}
+          aria-hidden="true"
+          tabIndex={-1}
+          title="r6data-refresh"
+        />
       ) : null}
     </main>
   );
