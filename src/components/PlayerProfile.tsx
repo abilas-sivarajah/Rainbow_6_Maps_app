@@ -1,9 +1,43 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type CSSProperties } from 'react';
 import RpChart from '@/components/RpChart';
 import { togglePlayerSaved, useIsPlayerSaved } from '@/lib/playerFavorites';
+import { rankBadge } from '@/lib/rankBadge';
 import type { BoardStats, PlayerData, RecentMatch, OperatorBrief, SeasonRank, PlayerMatchStat } from '@/lib/types';
+
+/**
+ * Rang-Icon mit Fallback: R6Data hostet zwar echte Tier-Bilder, die im Browser
+ * aber oft nicht laden (Hotlink-Schutz/404). Schlägt das Laden fehl, springt
+ * onError auf die selbst-generierte, hostunabhängige SVG-Badge zurück, damit
+ * nie ein kaputtes Bild-Icon erscheint.
+ */
+function RankIcon({
+  name,
+  src,
+  className,
+  style,
+}: {
+  name: string;
+  src?: string;
+  className?: string;
+  style?: CSSProperties;
+}) {
+  const fallback = rankBadge(name);
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      className={className}
+      style={style}
+      src={src || fallback}
+      alt={name}
+      onError={(e) => {
+        const img = e.currentTarget;
+        if (img.src !== fallback) img.src = fallback;
+      }}
+    />
+  );
+}
 
 function getKdClass(kd: number): string {
   if (kd >= 1.2) return 'kd-high';
@@ -49,10 +83,7 @@ function RankCard({ title, board }: { title: string; board: BoardStats | null })
     <div className="card">
       <p className="section-title">{title}</p>
       <div className="rank-card">
-        {board.current.icon ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img className="rank-icon" src={board.current.icon} alt={board.current.name} />
-        ) : null}
+        <RankIcon className="rank-icon" name={board.current.name} src={board.current.icon} />
         <div>
           <div className="rank-name">{board.current.name}</div>
           <div className="mmr">{board.mmr} MMR</div>
@@ -138,10 +169,7 @@ function MatchRow({ match, onClick }: { match: RecentMatch; onClick?: () => void
         {match.rp} RP
       </div>
       <div className="match-rank">
-        {match.rankImage ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={match.rankImage} alt={match.rank} />
-        ) : null}
+        <RankIcon name={match.rank} src={match.rankImage} />
         <span>{match.rank}</span>
       </div>
     </div>
@@ -195,10 +223,7 @@ function SeasonAccordionItem({
         </div>
         <div className="match-change">{history.mmr} RP</div>
         <div className="match-rank">
-          {history.rank.icon ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={history.rank.icon} alt={history.rank.name} />
-          ) : null}
+          <RankIcon name={history.rank.name} src={history.rank.icon} />
           <span>{history.rank.name}</span>
         </div>
         <div className="accordion-trigger">▼</div>
@@ -267,12 +292,11 @@ const TeamScorecard = ({ teamName, titleClass, players }: { teamName: string; ti
                   <span>{p.username}</span>
                 </td>
                 <td style={{ textAlign: 'center' }}>
-                  {p.rankImage ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={p.rankImage} alt={p.rank} style={{ width: '22px', height: '22px', verticalAlign: 'middle' }} />
-                  ) : (
-                    p.rank
-                  )}
+                  <RankIcon
+                    name={p.rank}
+                    src={p.rankImage}
+                    style={{ width: '22px', height: '22px', verticalAlign: 'middle' }}
+                  />
                 </td>
                 <td style={{ textAlign: 'center', color: 'var(--text-muted)' }}>
                   {p.mmr.toLocaleString()}
