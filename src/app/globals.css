@@ -996,3 +996,37 @@ a {
   gap: 16px;
   grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
 }
+
+/* --- Hintergrund-Aktualisierung (Tracker): Banner + Ladebalken --- */
+.updating-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 14px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(255, 122, 26, 0.35);
+  background: rgba(255, 122, 26, 0.07);
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent-2);
+  white-space: nowrap;
+}
+.updating-track {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 122, 26, 0.15);
+  overflow: hidden;
+}
+.updating-bar {
+  width: 35%;
+  height: 100%;
+  border-radius: 2px;
+  background: var(--accent-2);
+  animation: updating-slide 1.3s ease-in-out infinite;
+}
+@keyframes updating-slide {
+  0% { transform: translateX(-110%); }
+  100% { transform: translateX(320%); }
+}

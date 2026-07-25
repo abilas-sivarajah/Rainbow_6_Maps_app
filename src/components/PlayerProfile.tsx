@@ -12,6 +12,22 @@ function getKdClass(kd: number): string {
   return 'kd-low';
 }
 
+/** Deutlicher Hinweis samt Ladebalken, solange die Matchdaten nochstill
+ *  im Hintergrund aktualisiert werden (R6Data holt sie erst von Ubisoft). */
+function UpdatingBanner() {
+  return (
+    <div
+      className="updating-banner"
+      title="R6Data holt gerade die neuesten Daten von Ubisoft. Die Liste unten kann noch unvollständig sein und aktualisiert sich in den nächsten Sekunden von selbst."
+    >
+      <span>🔄 Aktualisiere Matchdaten…</span>
+      <div className="updating-track">
+        <div className="updating-bar" />
+      </div>
+    </div>
+  );
+}
+
 /** Stern im Profilkopf: Spieler in die Merkliste des Trackers aufnehmen. */
 function SavePlayerButton({ username, platform }: { username: string; platform: PlayerData['platform'] }) {
   const saved = useIsPlayerSaved({ username, platform });
@@ -591,6 +607,7 @@ export default function PlayerProfile({
                 <span>Letzte Ranked Matches (Klick für Details)</span>
                 <button className="badge" style={{ cursor: 'pointer' }} onClick={() => setActiveTab('matches')}>Alle anzeigen</button>
               </div>
+              {autoUpdating ? <UpdatingBanner /> : null}
               {data.recentMatches && data.recentMatches.length > 0 ? (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                   {data.recentMatches.slice(0, 5).map((m, i) => (
@@ -644,6 +661,7 @@ export default function PlayerProfile({
       {activeTab === 'matches' ? (
         <div className="section">
           <p className="section-title">Match-Verlauf (Klick für Details)</p>
+          {autoUpdating ? <UpdatingBanner /> : null}
           {data.recentMatches && data.recentMatches.length > 0 ? (
             <div className="matches-list">
               {data.recentMatches.map((m, i) => (
