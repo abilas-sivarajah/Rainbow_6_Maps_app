@@ -383,17 +383,17 @@ export function StatsPageClient() {
       // probiert und wieder entfernt: X-Frame-Options 'sameorigin'.)
 
       // R6Datas erster Abruf liefert deren alten Cache; die Suche selbst
-      // stößt die Aktualisierung aus Ubisoft an, die aber ~30-60 s dauern
-      // kann (Nutzertest: erneute Suche nach ca. einer Minute war frisch).
-      // Deshalb still im Hintergrund nachfassen — bei 15 s, 35 s und 70 s —
-      // und stoppen, sobald neuere Daten ankommen. Profiltausch ohne
-      // Flackern; eine neue Suche bricht die Kette ab (searchGen).
+      // stößt die Aktualisierung aus Ubisoft an, die einige Sekunden bis
+      // ~1 Minute dauert (Nutzertests: mal <15 s, mal ~1 Min). Deshalb still
+      // im Hintergrund nachfassen — bei 6 s, 15 s, 35 s und 70 s — und
+      // stoppen, sobald neuere Daten ankommen. Profiltausch ohne Flackern;
+      // eine neue Suche bricht die Kette ab (searchGen).
       const newestOf = (d: PlayerData): string =>
         d.rankHistory?.[d.rankHistory.length - 1]?.date ??
         d.recentMatches?.[0]?.date ??
         '';
       const baseline = newestOf(body as PlayerData);
-      const attempts = [15000, 35000, 70000];
+      const attempts = [6000, 15000, 35000, 70000];
       setAutoUpdating(true);
       const runAttempt = (idx: number) => {
         refreshTimer.current = setTimeout(async () => {
